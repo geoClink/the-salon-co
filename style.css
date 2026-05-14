@@ -1,46 +1,87 @@
 /* -- CSS VARIABLES & RESET */
-
 :root {
     --color-primary: #1A2E2A;
     --color-secondary: #F5F0E8;
 
-    --color-accent:  #C9A96E;
-    --color-text:#2C2C2C;
+    --color-accent: #C9A96E;
+    --color-text: #2C2C2C;
     --color-white: #FAFAF7;
 
-    --font-heading: ;
-    --font-body: ;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
 }
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+p a {
+    font-family: var(--font-body);
+}
+
+section {
+    padding: 4rem 0 4rem 0;
+    padding-left: 1rem;
+}
+
+section h2 {
+    border-bottom: 1px solid var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+.btn {
+    background-color: var(--color-white);
+    text-decoration: none;
+    color: var(--color-primary);
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.btn:hover {
+    background-color: var(--color-accent);
+    color: inherit;
+    text-decoration: none;
+}
+
+
 
 /* -- HEADER */
 header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1rem 2rem;
-background-color: var(--color-primary);
-position: stick;
-top:0;
-z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-primary);
+    position: sticky;
+    top: 0;
+    z-index: 200;
 }
 
 header a {
     color: var(--color-white);
-    text-decoration: none;    
+    text-decoration: none;
 }
 
 header a:hover {
     color: var(--color-accent);
 }
 
- header nav {
+header nav {
     display: flex;
     gap: 2rem;
 }
 
 nav a {
-color: var(--color-white);
-font-size: 1rem;
+    color: var(--color-white);
+    font-size: 1rem;
 }
 
 nav a:hover {
@@ -49,7 +90,7 @@ nav a:hover {
 
 nav a.nav-active {
     color: var(--color-accent);
-    border-bottom: 2px solid var (--color-accent);
+    border-bottom: 2px solid var(--color-accent);
     padding-bottom: 2px;
 }
 
@@ -58,13 +99,13 @@ footer {
     display: flex;
     justify-content: space-between;
     margin: auto;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
     padding: 30px;
 }
 
 footer address {
-font-style: normal;
+    font-style: normal;
 }
 
 footer address h3 {
@@ -78,9 +119,231 @@ footer div h3 {
 footer nav h3 {
     color: var(--color-accent);
 }
+
 footer a {
     color: inherit;
     text-decoration: none;
 }
 
 
+/* -- HERO (homepage only) */
+.hero {
+    background: var(--color-primary);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    text-align: center;
+    padding: 20rem 2rem 12rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+.hero h1 {
+    font-size: clamp(56px, 9.5vw, 150px);
+    color: var(--color-accent);
+}
+
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.65) 100%);
+}
+
+.hero h1, .hero p, .hero a {
+    position: relative;
+}
+
+
+/* --OUR STORY (homepage */
+.about-blurb {
+    background-color: var(--color-secondary);
+}
+
+.about-blurb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-blurb p {
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    color: var(--color-primary);
+}
+
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9rem;
+}
+
+/* --WHY US (homepage) */
+.why-us {
+    background-color: var(--color-secondary);
+    text-align: center;
+}
+
+.why-us-cards {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 3rem;
+    border-radius: 5px;
+    align-items: stretch;
+}
+
+.why-us-card {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-secondary);
+    padding: 20px;
+    flex: 1;
+    border-top: 1px solid rgba(26, 46, 42, 0.15);
+}
+
+.why-us-card p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(26, 46, 42, 0.75)
+}
+
+.why-us-card .numeral {
+font-size: 6rem;
+font-family: var(--font-heading);
+font-style: italic;
+color: var(--color-primary);
+width: 200px;
+}
+
+.why-us-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.why-us-card h3 {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+/* --SERVICES (homepage) */
+.services {
+    background-color: var(--color-secondary);
+    text-align: center;
+}
+
+.services p {
+    color: black;
+}
+
+.services-button {
+margin-top: 2rem;
+}
+
+.service-cards {
+    display: flex;
+    gap: 0.4rem;
+}
+
+
+.service-card a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.service-card {
+    flex: 1;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.service-card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+/* --REVIEWS */
+.reviews {
+    background-color: var(--color-primary);
+    text-align: center;
+}
+
+.reviews h2, .reviews p, .reviews blockquote {
+    color: white;
+}
+
+.review-cards {
+    display: flex;
+    padding: 2rem;
+    justify-content: space-between;
+}
+
+.review-card {
+    flex:1;
+}
+
+blockquote {
+    font-family: "Lobster Two", cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: unset;
+    background-color: var(--color-secondary);
+    padding: 3rem;
+    border-radius: 5px;
+}
+
+blockquote::before {
+content: "\201C";
+color: var(--color-accent);
+font-size: 5rem ;
+display: block;
+}
+
+/* --CTA (homepage) */
+.cta {
+    background-color: var(--color-primary);
+    text-align: center;
+    color: var(--color-accent);
+}
+
+.cta a {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-white);
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 4px;
+}
+
+.cta h2 {
+    font-size: clamp(56px, 9.5vw, 100px);
+}
+
+.cta-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.cta h2 {
+    text-transform: none;
+    font-style: italic;
+    border-bottom: none;
+    letter-spacing: normal;
+}
