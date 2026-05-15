@@ -11,7 +11,9 @@
     --font-body: 'Jost', sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--font-heading);
 }
 
@@ -28,11 +30,11 @@ section {
     padding-left: 1rem;
 }
 
-section h2 {
+/* section h2 {
     border-bottom: 1px solid var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-}
+} */
 
 .btn {
     background-color: var(--color-white);
@@ -56,7 +58,6 @@ section h2 {
 /* -- HEADER */
 header {
     display: flex;
-    text-transform: uppercase;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
@@ -67,11 +68,11 @@ header {
 }
 
 header .mark {
-font-family: var(--font-heading);
-font-style: italic;
-font-size: 36px;
-color: var(--color-secondary);
-margin-bottom: 12px;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--color-secondary);
+    margin-bottom: 12px;
 }
 
 header.scrolled .mark {
@@ -79,16 +80,15 @@ header.scrolled .mark {
 }
 
 header .mark .amp {
-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 header.scrolled {
-    background-color: var(--color-secondary);
+    background-color: #ebebe8
 }
 
 header.scrolled a {
     color: var(--color-primary);
-    text-transform: uppercase;
 }
 
 header a {
@@ -103,11 +103,15 @@ header a:hover {
 header nav {
     display: flex;
     gap: 2rem;
+        border-bottom: 1px solid black;
+
 }
 
 nav a {
     color: var(--color-white);
     font-size: 1rem;
+    font-weight: 100;
+     border-bottom: 2px solid var(--color-white);
 }
 
 nav a:hover {
@@ -116,8 +120,8 @@ nav a:hover {
 
 nav a.nav-active {
     color: var(--color-accent);
-    border-bottom: 2px solid var(--color-accent);
     padding-bottom: 2px;
+     border-bottom: 2px solid var(--color-accent);
 }
 
 /* -- FOOTER */
@@ -166,7 +170,9 @@ footer {
     margin: 0 0 22px;
 }
 
-.foot p, .foot a, .foot li {
+.foot p,
+.foot a,
+.foot li {
     font-family: var(--font-body);
     font-weight: 300;
     font-size: 13px;
@@ -203,18 +209,16 @@ footer {
 
 .foot .legal {
     margin-top: 80px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(26, 46, 42, 0.1);
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(26, 46, 42, 0.45);
+    padding-top: 24px;
+    border-top: 1px solid rgba(26, 46, 42, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(26, 46, 42, 0.45);
 }
-
-
 
 /* -- HERO (homepage only) */
 .hero {
@@ -223,15 +227,19 @@ footer {
     background-position: center;
     position: relative;
     text-align: center;
-    padding: 20rem 2rem 12rem;
+    padding: 9rem 2rem 12rem;
     background-color: var(--color-primary);
     color: var(--color-white);
-}
-.hero h1 {
-    font-size: clamp(56px, 9.5vw, 150px);
-    color: var(--color-accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
+.hero h1 {
+    font-size: clamp(56px, 9.5vw, 150px);
+    color: var(--color-white);
+    font-weight: 300;
+}
 
 .hero::before {
     content: '';
@@ -240,44 +248,101 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom,
-            rgba(0, 0, 0, 0.2) 0%,
-            rgba(0, 0, 0, 0.65) 100%);
+    background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
 }
 
-.hero h1, .hero p, .hero a {
+.hero h1,
+.hero p,
+.hero a {
     position: relative;
+}
+
+.hero p {
+position: absolute;
+  bottom: 4rem;
+  left: 2rem;
+  color: #6a746d
 }
 
 
 /* --OUR STORY (homepage */
-.about-blurb {
-    background-color: var(--color-secondary);
-}
 
 .about-blurb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    aspect-ratio: 4/5;
+    max-width: 600px;
+    margin-left: 75px;
+    margin-top: 40px;
+}
+.about-blurb {
+    background-color: var(--color-secondary);
+
 }
 
-.about-blurb p {
-    justify-content: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 2rem;
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.about-blurb h2 {
+    line-height: 4rem;
+    font-weight: 300;
+}
+
+.about-blurb blockquote {
+    width: 400px;
+    text-align: left;
+    margin: 0;
+    padding-left: 24px;
+   font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 36px;
+    margin-bottom: 12px;
+    border-left: 1px solid var(--color-primary);
+    line-height: 4rem;
+    margin-top: 2rem;
+}
+
+.about-columns {
+    display: flex;
+    gap: 10rem;
+}
+
+.about-content p {
+    line-height: 2rem;
     color: var(--color-primary);
+   font-size: 14px;
 }
 
-.about-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9rem;
+.about-content cite h4 {
+    color: var(--color-accent);
+    font-size: 4rem;
+
+}
+.about-title p {
+    color: var(--color-accent);
+    line-height: 2rem;
+}
+
+.about-title {
+    text-align: left;
+}
+
+.about-content h4 {
+    font-family: '';
+    color: var(--color-accent);
+    transform: rotate(-3deg);
+}
+
+
+section p {
+    color: var(--color-accent);
 }
 
 /* --WHY US (homepage) */
 .why-us {
-    background-color: var(--color-secondary);
+    background-color: var(--color-white);
     text-align: center;
 }
 
@@ -310,16 +375,16 @@ footer {
 }
 
 .why-us-card .numeral {
-font-size: 6rem;
-font-family: var(--font-heading);
-font-style: italic;
-color: var(--color-primary);
-width: 200px;
+    font-size: 6rem;
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-primary);
+    width: 200px;
 }
 
 .why-us-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .why-us-card h3 {
@@ -339,7 +404,7 @@ width: 200px;
 }
 
 .services-button {
-margin-top: 2rem;
+    margin-top: 2rem;
 }
 
 .service-cards {
@@ -359,7 +424,7 @@ margin-top: 2rem;
 
 .service-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .service-card img {
@@ -374,7 +439,9 @@ margin-top: 2rem;
     text-align: center;
 }
 
-.reviews h2, .reviews p, .reviews blockquote {
+.reviews h2,
+.reviews p,
+.reviews blockquote {
     color: white;
 }
 
@@ -385,7 +452,7 @@ margin-top: 2rem;
 }
 
 .review-card {
-    flex:1;
+    flex: 1;
 }
 
 blockquote {
@@ -400,10 +467,10 @@ blockquote {
 }
 
 blockquote::before {
-content: "\201C";
-color: var(--color-accent);
-font-size: 5rem ;
-display: block;
+    content: "\201C";
+    color: var(--color-accent);
+    font-size: 5rem;
+    display: block;
 }
 
 /* --CTA (homepage) */
