@@ -52,7 +52,9 @@ section p {
     color: var(--color-primary);
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid var(--color-primary);
+    .about-content .section-title p {
+      color: var(--color-accent);
+  }border: 2px solid var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.2em;
 }
@@ -141,6 +143,10 @@ footer {
     padding: 96px 0 48px;
     position: relative;
     overflow: hidden;
+}
+
+.foot span a{
+    text-decoration: none;
 }
 
 .footer-mark {
@@ -339,6 +345,10 @@ position: absolute;
     transform: rotate(-3deg);
 }
 
+.about-content .section-title p {
+      color: var(--color-accent);
+  }
+
 .about-title p {
     color: var(--color-accent);
     line-height: 2rem;
@@ -363,8 +373,9 @@ position: absolute;
 .why-us-upper-content h3 {
     font-size: 80px;
     font-weight: 300;
-    text-align: left;
+    text-align: center;
     margin-top: 0;
+    color: rgba(26, 46, 42, 0.75)
 }
 
 .why-us-upper-content p {
@@ -397,7 +408,7 @@ position: absolute;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.8;
-    color: rgba(26, 46, 42, 0.75)
+    color: rgba(26, 46, 42, 0.75);
 }
 
 .why-us-card .numeral {

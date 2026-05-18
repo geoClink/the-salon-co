@@ -10,7 +10,30 @@ if (window.scrollY > 10) {
 
 
 
-/*-- carosoel quote rotation --*/
+/*-- carousel quote rotation --*/
 
 const reviews = document.querySelectorAll('.review');
 const bars = document.querySelectorAll('.review-bar');
+
+function rotateReview(index) {
+    reviews.forEach(review => {
+        review.classList.remove('active');
+    });
+    bars.forEach(bar => {
+        bar.classList.remove('active');
+    })
+    reviews[index].classList.add('active')
+    bars[index].classList.add('active');
+};
+
+bars.forEach((bar, index) => {
+    bar.addEventListener('click', () => {
+        rotateReview(index)
+    })
+});
+
+let currentIndex = 0
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % reviews.length;
+    rotateReview(currentIndex);
+}, 3000);
