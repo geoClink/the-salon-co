@@ -41,10 +41,6 @@ section p {
     color: var(--color-accent);
 }
 
-.about-content .section-title p {
-      color: var(--color-accent);
-  }
-
 .section-title p {
     text-align: left;
     color: var(--color-accent);
@@ -469,7 +465,7 @@ position: absolute;
 
 .service-image img {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
 }
 
