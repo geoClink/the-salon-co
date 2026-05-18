@@ -32,7 +32,6 @@ section {
 section p {
     color: var(--color-accent);
     font-family: var(--font-body);
-    text-transform: uppercase;
 }
 
 .section-title {
@@ -122,6 +121,9 @@ header nav {
 nav a {
     text-decoration: none;
     text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 nav a:hover {
@@ -130,22 +132,25 @@ nav a:hover {
 
 nav a.nav-active {
     color: var(--color-accent);
-    padding-bottom: 2px;
-      var(--color-accent);
+    padding-bottom: 1px; var(--color-accent);
 }
 
 .nav-reserve {
 color: var(--color-white);
     font-size: 1rem;
     font-weight: 100;
-    border-bottom: 2px solid var(--color-white);
+    border-bottom: 1px solid var(--color-white);
     text-decoration: none;
     justify-self: end;
 }
 
 .nav-reserve:hover {
     color: var(--color-accent);
-    border-bottom: 2px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+}
+
+header.scrolled .nav-reserve{
+    border-bottom: 1px solid var(--color-primary);
 }
 
 /* -- FOOTER */
@@ -631,5 +636,6 @@ quote-footer {
 
 .cta p {
     color: var(--color-white);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
