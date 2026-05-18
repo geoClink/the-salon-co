@@ -29,9 +29,10 @@ section {
     padding: 4rem 0 4rem 0;
     padding-left: 1rem;
 }
-
 section p {
     color: var(--color-accent);
+    font-family: var(--font-body);
+    text-transform: uppercase;
 }
 
 .section-title {
@@ -432,7 +433,7 @@ position: absolute;
 
 /* -- SERVICES (homepage) */
 .services {
-    background-color: var(--color-primary);
+    background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
     padding-left: 4rem;
     padding-right: 4rem;
 }
@@ -457,7 +458,7 @@ position: absolute;
 }
 
 .view-menu-link a {
-    padding-bottom: 1rem;
+    padding-bottom: 0.3rem;
 }
 
 .whole-service-row {
@@ -515,6 +516,7 @@ position: absolute;
 
 .service-price {
     color: var(--color-accent);
+    font-size: 1.5rem;
 }
 
 .service-duration {
@@ -586,7 +588,7 @@ quote-footer {
 
 /* -- CTA (homepage) */
 .cta {
-    background-color: var(--color-primary);
+    background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
     text-align: center;
     color: var(--color-accent);
 }
@@ -597,6 +599,8 @@ quote-footer {
     border-bottom: none;
     letter-spacing: normal;
     font-size: clamp(56px, 9.5vw, 100px);
+    color: var(--color-white);
+    font-weight: 300;
 }
 
 .cta-links {
@@ -612,4 +616,9 @@ quote-footer {
     border-bottom: 1px solid var(--color-accent);
     padding-bottom: 5px;
     text-decoration: none;
+}
+
+.cta p {
+    color: var(--color-white);
+    font-size: 0.9rem;
 }
