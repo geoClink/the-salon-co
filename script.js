@@ -7,3 +7,10 @@ if (window.scrollY > 10) {
     header.classList.remove('scrolled');
 }
 });
+
+
+
+/*-- carosoel quote rotation --*/
+
+const reviews = document.querySelectorAll('.review');
+const bars = document.querySelectorAll('.review-bar');
