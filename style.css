@@ -52,9 +52,7 @@ section p {
     color: var(--color-primary);
     padding: 10px;
     border-radius: 5px;
-    .about-content .section-title p {
-      color: var(--color-accent);
-  }border: 2px solid var(--color-primary);
+    border: 2px solid var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.2em;
 }
@@ -132,7 +130,7 @@ nav a:hover {
 
 nav a.nav-active {
     color: var(--color-accent);
-    padding-bottom: 1px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
 }
 
 .nav-reserve {
@@ -657,7 +655,6 @@ quote-footer {
     /*--NAV--*/
     header {
         grid-template-columns: 1fr auto;
-        position: relative;
     }
 
     header nav {
