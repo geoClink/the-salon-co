@@ -153,6 +153,10 @@ header.scrolled .nav-reserve{
     border-bottom: 1px solid var(--color-primary);
 }
 
+.menu-toggle {
+    display: none;
+}
+
 /* -- FOOTER */
 footer {
     background-color: var(--color-white);
@@ -642,3 +646,157 @@ quote-footer {
     text-transform: uppercase;
     letter-spacing: 0.3em;
 }
+
+/*-- MOBILE --*/
+@media (max-width: 768px) {
+    /*--BODY--*/
+    body {
+        overflow-x: hidden;
+    }
+
+    /*--NAV--*/
+    header {
+        grid-template-columns: 1fr auto;
+        position: relative;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    .nav-reserve {
+        display: none;
+    }
+
+    nav.nav-open {
+        display:flex;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left:0;
+        right: 0;
+        background-color: var(--color-primary);
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    button.menu-open {
+        display: none;
+    }
+
+    .menu-toggle {
+        justify-self: end;
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 24px;
+        height: 18px;
+        position: relative;    
+    }
+
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: var(--color-white);
+        position: absolute;
+    }
+
+    .menu-toggle::before {
+        content: '';
+        top: 0;
+    }
+
+    .menu-toggle span {
+        top: 50%;
+    }
+
+    .menu-toggle::after {
+        content: '';
+        bottom: 0;
+    }
+
+    /*--SECTION--*/
+    section {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /*--ABOUT-SECTION--*/
+
+    .about-content {
+        margin-top: 10px;
+    }
+
+    .about-columns {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .about-blurb img {
+        height: 400px;
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .about-blurb blockquote {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /*--WHY-US--*/
+    .why-us-upper-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .why-us-card {
+        grid-template-columns: 1fr;
+    }
+
+.why-us-upper-content p {
+    padding-top: 1rem;
+}
+    /*--SERVICES--*/
+    .services {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .whole-service-row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .whole-service-row:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .service-image {
+        width: 100%;
+    }
+
+    .service-text-content {
+        width: 100%;
+    }
+
+    /*--REVIEWS--*/
+    .review-cards blockquote {
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0;
+    }
+
+    /*--FOOTER--*/
+    .foot-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .wrap {
+        padding: 0 1rem;
+    }
+
+    .foot h4 {
+        letter-spacing: 0.1rem;
+    }

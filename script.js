@@ -37,3 +37,30 @@ setInterval(() => {
     currentIndex = (currentIndex + 1) % reviews.length;
     rotateReview(currentIndex);
 }, 3000);
+
+/*--MOBILE-HAMBURGER-MENU--*/
+
+document.addEventListener('click', (event) => {
+    if (!navBar.contains(event.target) && !menuToggle.contains(event.target)) {
+        closeNav()
+    }
+});
+
+const menuToggle = document.querySelector('.menu-toggle');
+const navBar = document.querySelector('nav');
+
+menuToggle.addEventListener('click', () => {
+    navBar.classList.toggle('nav-open');
+    menuToggle.classList.toggle('menu-open');
+});
+
+const navLinks = document.querySelectorAll('nav a');
+function closeNav() {
+    navBar.classList.remove('nav-open');
+    menuToggle.classList.remove('menu-open');
+}
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeNav);
+});
+
+const tapAnywhere = document.addEventListener
