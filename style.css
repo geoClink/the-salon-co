@@ -128,6 +128,10 @@ nav a:hover {
     color: var(--color-accent);
 }
 
+.nav-reserve-mobile {
+    display: none;
+}
+
 nav a.nav-active {
     color: var(--color-accent);
     border-bottom: 1px solid var(--color-accent);
@@ -584,6 +588,7 @@ blockquote {
 
 blockquote p {
     color: var(--color-primary);
+    font-family: var(--font-heading);
 }
 
 blockquote::before {
@@ -647,34 +652,48 @@ quote-footer {
 
 /*-- MOBILE --*/
 @media (max-width: 768px) {
+
     /*--BODY--*/
-    body {
+    html {
         overflow-x: hidden;
     }
 
-    /*--NAV--*/
+    /*--HEADER--*/
     header {
         grid-template-columns: 1fr auto;
+        overflow: visible;
     }
+
+     header.scrolled nav.nav-open a {
+      color: var(--color-white);
+  }
 
     header nav {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%;
+        height: 100vh;
+        background-color: var(--color-primary);
+        flex-direction: column;
+        padding-top: 88px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        display: flex;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 199;
+        box-sizing: border-box;
     }
 
+    /*--NAV--*/
+    
     .nav-reserve {
         display: none;
     }
 
     nav.nav-open {
-        display:flex;
-        flex-direction: column;
-        position: fixed;
-        top: 60px;
-        left:0;
-        right: 0;
-        background-color: var(--color-primary);
-        padding: 1rem;
-        box-sizing: border-box;
+        transform: translateX(0);
     }
 
     button.menu-open {
@@ -699,6 +718,12 @@ quote-footer {
         background-color: var(--color-white);
         position: absolute;
     }
+
+     header.scrolled .menu-toggle span,
+  header.scrolled .menu-toggle::before,
+  header.scrolled .menu-toggle::after {
+      background-color: var(--color-primary);
+  }
 
     .menu-toggle::before {
         content: '';
