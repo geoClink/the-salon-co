@@ -6,6 +6,7 @@
     --color-accent: #C9A96E;
     --color-text: #2C2C2C;
     --color-white: #FAFAF7;
+    --color-muted: #6a746d;
 
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Jost', sans-serif;
@@ -95,7 +96,7 @@ header .mark .amp {
 }
 
 header.scrolled {
-    background-color: #ebebe8
+    background-color: var(--color-secondary);
 }
 
 header.scrolled a {
@@ -113,7 +114,7 @@ header a:hover {
 
 header nav {
     display: flex;
-    gap: 2rem;
+    gap: 4rem;
 }
 
 nav a {
@@ -122,6 +123,7 @@ nav a {
     font-family: var(--font-body);
     font-size: 0.8rem;
     text-transform: uppercase;
+    font-weight: 300;
 }
 
 nav a:hover {
@@ -140,7 +142,7 @@ nav a.nav-active {
 .nav-reserve {
 color: var(--color-white);
     font-size: 1rem;
-    font-weight: 100;
+    font-weight: 300;
     border-bottom: 1px solid var(--color-white);
     text-decoration: none;
     justify-self: end;
@@ -258,6 +260,7 @@ footer {
     color: rgba(26, 46, 42, 0.45);
 }
 
+/*-- HOMEPAGE --*/
 /* -- HERO (homepage only) */
 .hero {
     background: var(--color-primary);
@@ -265,7 +268,7 @@ footer {
     background-position: center;
     position: relative;
     text-align: center;
-    padding: 9rem 2rem 12rem;
+    padding: 4rem 2rem 6rem;
     background-color: var(--color-primary);
     color: var(--color-white);
     display: flex;
@@ -277,6 +280,8 @@ footer {
     font-size: clamp(56px, 9.5vw, 150px);
     color: var(--color-white);
     font-weight: 300;
+    line-height: 7rem;
+
 }
 
 .hero::before {
@@ -290,16 +295,16 @@ footer {
 }
 
 .hero h1,
-.hero p,
+.hero-tag,
 .hero a {
     position: relative;
 }
 
-.hero p {
+.hero-tag {
 position: absolute;
   bottom: 4rem;
   left: 2rem;
-  color: #6a746d
+  color: var(--color-muted)
 }
 
 
@@ -591,6 +596,9 @@ blockquote p {
     font-family: var(--font-heading);
 }
 
+.foot-grid li a {
+        text-decoration: none;
+}
 blockquote::before {
     content: "\201C";
     color: var(--color-accent);
@@ -649,6 +657,60 @@ quote-footer {
     text-transform: uppercase;
     letter-spacing: 0.3em;
 }
+
+
+
+
+/*-- ABOUT PAGE --*/
+/*-- HERO (ABOUT) --*/
+.page-hero > * {
+    position: relative;
+}
+
+.hero-divider {
+    display: flex;
+    gap: 10rem;
+    align-items: flex-end;
+}
+
+.page-hero {
+    text-align: left;
+    padding-left: 6em;
+}
+
+.page-hero > p {
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 300;
+
+}
+
+.page-hero span {
+    color: var(--color-accent);
+}
+
+.page-description p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    padding-bottom: 4rem;
+    color: var(--color-muted);
+    text-align: right;
+    line-height: 2rem;
+}
+
+.hero .page-title p {
+    color: accent;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+.hero-divider h2 {
+    font-size: 6rem;
+    font-weight: 300;
+    line-height: 5rem;
+}
+
 
 /*-- MOBILE --*/
 @media (max-width: 768px) {
