@@ -218,6 +218,7 @@ footer {
     font-size: 13px;
     line-height: 2;
     color: rgba(26, 46, 42, 0.75);
+    text-align: left;
 }
 
 .foot ul {
