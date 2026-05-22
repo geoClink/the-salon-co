@@ -42,7 +42,9 @@ section p {
     margin: 0 auto;
     text-align: left;
 }
-
+.how-booking .section-title {
+    text-align: center;
+}
 .page-title p {
     text-align: left;
 }
