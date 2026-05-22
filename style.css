@@ -943,7 +943,7 @@ justify-content: space-between;
 .inside-the-room {
     background-color: var(--color-white);
 }
-.section-title {
+.inside-the-room .section-title {
     color: var(--color-primary);
     font-size: 2.5rem;
     font-family: var(--font-heading);
