@@ -34,7 +34,22 @@ section p {
     color: var(--color-accent);
     font-family: var(--font-body);
 }
+.how-booking p {
+    text-align: left;
+}
+.about-content p {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
 
+.page-title p {
+    text-align: left;
+}
+
+.about-text-column p{
+    text-align: left;
+}
 .section-title {
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -45,6 +60,7 @@ section p {
 .section-title p {
     text-align: left;
     color: var(--color-accent);
+    max
 }
 
 .btn {
