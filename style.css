@@ -389,7 +389,7 @@ position: absolute;
 
 .about-columns {
     display: flex;
-    gap: 10rem;
+    gap: 20rem;
 }
 
 .about-content {
@@ -1653,15 +1653,24 @@ text-align: left;
     display: flex;
     background-color: var(--color-secondary);
     justify-content: center;
-      align-items: flex-start; 
+      align-items: flex-start;
+       padding: 4rem 5%;
+      gap: 12rem;
+  }
+  .image-section {
+      position: sticky;
+      top: 5rem;
+      align-self: flex-start;
+            flex: 0 0 35%;
   }
   .image-section img {
-    height: 500px;
-    width: 400px;
+    height: 700px;
+    width: 600px;
+    
   }
   .text-column {
-            padding: 4rem;
-  }
+ flex: 1;
+      padding: 0;  }
  .what-to-expect .section-label {
     max-width: 50%;
     text-align: left;
@@ -1674,12 +1683,71 @@ text-align: left;
       max-width: 50%;
   }
 
+   .expectations {
+      border-top: 0.5px solid rgba(26, 46, 42, 0.2);
+      padding-bottom: 2rem;
+  }
+
   .what-to-expect .section-subtext {
-    max-width: 50%;
+    max-width: 45%;
     text-align: left;
-    border-bottom: 0.5px solid var(--color-primary);
+
     padding-bottom: 3rem;
   }
+
+  .expectation {
+    display: flex;
+    gap: 5rem;
+    align-items: flex-start;
+     border-bottom: 0.5px solid rgba(26, 46, 42, 0.2);
+      padding-bottom: 2rem;
+  }
+  .expectation-number {
+    color: var(--color-accent);
+    font-size: 3rem;
+    font-family: var(--font-heading);
+    font-weight: 300;
+  }
+  .expectation-title {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 2rem;
+  }
+  .expectation-description {
+
+    max-width: 50%;
+    text-align: left;
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--color-muted);
+  }
+
+  .booking-note {
+    background-color: var(--color-white);
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .booking-note .section-heading h2 {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 300;
+    max-width: 55%;
+          margin: 0 auto;
+          padding-bottom: 2rem;
+          padding-top: 2rem;
+
+        }
+
+  .booking-note .section-subtext p{
+    color: var(--color-muted);
+    font-family: var(--font-heading);
+    font-weight: 300;
+    max-width: 50%;
+    line-height: 1.8rem;
+          margin: 0 auto;
+  }
+
 
 /*-- MOBILE --*/
 @media (max-width: 768px) {
