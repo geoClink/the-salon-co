@@ -443,6 +443,7 @@ position: absolute;
     display: flex;
     gap: 20rem;
     padding-top: 30px;
+    
 }
 
 
@@ -455,7 +456,7 @@ position: absolute;
     color: rgba(26, 46, 42, 0.75)
 }
 
-.why-us-upper-content p {
+.why-us .why-us-upper-content p {
     text-align: left;
     padding-top: 8rem;
     font-family: var(--font-body);
@@ -470,6 +471,7 @@ position: absolute;
     gap: 1rem;
     border-radius: 5px;
     align-items: stretch;
+    
 }
 
 .why-us-card {
@@ -481,6 +483,7 @@ position: absolute;
     padding: 20px;
     flex: 1;
     border-top: 1px solid rgba(26, 46, 42, 0.15);
+    
 }
 
 .why-us-card p {
@@ -488,6 +491,8 @@ position: absolute;
     font-weight: 300;
     line-height: 1.8;
     color: rgba(26, 46, 42, 0.75);
+    margin: 0;
+      text-align: left;
 }
 
 .why-us-card .numeral {
@@ -861,7 +866,7 @@ text-align: left;
 
 .principles-class {
     background-color: var(--color-primary);
-    padding: 0 4rem;
+    padding: 0 4rem 0 4rem;
 }
 
 .principles-class .page-title {
@@ -871,12 +876,23 @@ text-align: left;
 .page-title p {
     font-size: 0.8rem;
     padding-top: 2rem;
+    
+}
+
+.principles-class .principles-intro {
+    text-align: left;
+    max-width: 25%;
 }
 .hero-divider {
     display: flex;
     gap: 17rem;
+    
 }
 
+.principles-class .hero-divider {
+          justify-content: flex-start; 
+     gap: 40vw;
+}
 .hero-divider h2 {
     color: var(--color-white);
     font-size: 4rem;
@@ -896,11 +912,17 @@ text-align: left;
 }
 
 .protect-count {
-display: flex;
-justify-content: space-between;
-padding-top: 4rem;
-padding-bottom: 4rem;
-justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 4rem 0;
+}
+
+.protect-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    padding: 0 4rem 0 4rem;
 }
 
 .protect-card .numeral {
@@ -914,14 +936,17 @@ justify-content: space-between;
     color: var(--color-white);
     font-size: 2rem;
     font-weight: 300;
-    max-width: 150px;
+    max-width: 50%;
+    margin-bottom: 0.5rem;
 }
 
 .protect-card p {
     color: var(--color-muted);
     font-family: var(--font-body);
     font-size: 0.8rem;
-    max-width: 150px;
+    max-width: 50%;
+    margin-top: 0;
+    text-align: left;
 }
 
 .history {
@@ -978,11 +1003,17 @@ justify-content: space-between;
     color: var(--color-muted);
 }
 
+
 .inside-the-room {
-    text-align: center;
-}
-.inside-the-room {
+        text-align: center;
+
     background-color: var(--color-white);
+          padding-left: 0;
+}
+
+.inside-the-room .wrap {
+    padding: 0 4rem;
+    max-width: 100%;
 }
 .inside-the-room .section-title {
     color: var(--color-primary);
@@ -1001,6 +1032,7 @@ justify-content: space-between;
     padding-top: 2rem;
     font-weight: 300;
     font-family: var(--font-body);
+    padding-bottom: 2rem;
 }
 
 .image-section {
@@ -1010,17 +1042,25 @@ justify-content: space-between;
     align-content: center;
     margin: 0 auto;
     max-width: 1016px;
+    
 }
 
 .image-section img {
-width: 300px;
-height: 400px;
-object-fit: cover;
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
 }
 
-#img-2 {
-    width: 500px;
+
+.room-images {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.room-images img {
     height: 400px;
+    flex: 1;
     object-fit: cover;
 }
 
