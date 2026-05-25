@@ -1,6 +1,7 @@
 /* -- CSS VARIABLES & RESET */
 :root {
     --color-primary: #1A2E2A;
+    --color-surface: #313e3a;
     --color-secondary: #F5F0E8;
 
     --color-accent: #C9A96E;
@@ -43,19 +44,20 @@ header {
     grid-template-columns: 1fr auto 1fr;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 2rem 4rem;
     background-color: var(--color-primary);
     position: sticky;
     top: 0;
     z-index: 200;
+    padding-right:5rem;
 }
 
 header .mark {
     font-family: var(--font-heading);
     font-style: italic;
-    font-size: 36px;
+    font-size: 30px;
     color: var(--color-secondary);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 header.scrolled .mark {
@@ -95,6 +97,7 @@ nav a {
     font-size: 0.8rem;
     text-transform: uppercase;
     font-weight: 300;
+    letter-spacing: 0.2rem;
 }
 
 nav a:hover {
@@ -107,7 +110,7 @@ nav a:hover {
 
 nav a.nav-active {
     color: var(--color-accent);
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 0.5px solid var(--color-accent);
 }
 
 .nav-reserve {
@@ -115,13 +118,15 @@ color: var(--color-white);
     font-size: 1rem;
     font-weight: 300;
     border-bottom: 1px solid var(--color-white);
+    padding-bottom: 0.4rem;
     text-decoration: none;
     justify-self: end;
+    width: fit-content;
 }
 
 .nav-reserve:hover {
     color: var(--color-accent);
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 0.5px solid var(--color-accent);
 }
 
 header.scrolled .nav-reserve{
@@ -241,12 +246,19 @@ footer {
       text-transform: uppercase;
       color: var(--color-accent);
   }
+
+  .label-dot {
+      font-size: 4rem;
+      vertical-align: -0.17em;
+            margin-right: -0.5rem;
+  }
   
   .section-heading {
       font-family: var(--font-heading);
       font-size: 4rem;
       font-weight: 300;
-  }
+    margin: 0;
+    }
 
   .section-subtext {
       font-family: var(--font-body);
@@ -303,7 +315,7 @@ footer {
     font-size: clamp(56px, 9.5vw, 150px);
     color: var(--color-white);
     font-weight: 300;
-    line-height: 7rem;
+    line-height: 8rem;
 
 }
 
@@ -327,44 +339,49 @@ footer {
 position: absolute;
   bottom: 4rem;
   left: 2rem;
-  color: var(--color-muted)
+  color: var(--color-muted);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.2rem;
 }
 
 
 /* -- OUR STORY (homepage) */
 .about-content h2 {
-    max-width: 50%;
+    max-width: 100%;
     font-size: 5rem;
     line-height: 10rem;
-}
+        padding-bottom: 1.5rem;
 
-.about-content p {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
 }
-
+.about-content .section-label {
+    padding-bottom: 1.5rem
+}
 .about-blurb {
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary); 
 }
 
 .about-blurb img {
     aspect-ratio: 4/5;
-    max-width: 600px;
-    height: 1000px;
+    max-width: 500px;
+    height: 750px;
     margin-left: 75px;
     margin-top: 40px;
     position: sticky;
     top: 3rem;
 }
-
+.about-columns .section-label {
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    
+}
 .about-blurb h2 {
     line-height: 5rem;
     font-weight: 300;
 }
 
 .about-blurb blockquote {
-    width: 400px;
+    width: 45%;
     text-align: left;
     margin: 0;
     padding-left: 24px;
@@ -373,16 +390,15 @@ position: absolute;
     font-size: 36px;
     margin-bottom: 12px;
     border-left: 1px solid var(--color-accent);
-    line-height: 4rem;
+    line-height: 3rem;
     margin-top: 2rem;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
-    max-width: 300px;
 }
 
 .about-columns {
     display: flex;
-    gap: clamp(6rem, 5vw, 20rem);
+    gap: 15rem;
 }
 
 .about-content {
@@ -393,22 +409,33 @@ position: absolute;
 }
 
 .about-content p {
+    max-width: 60%;
+    text-align: left;
     line-height: 2rem;
-    color: var(--color-primary);
-   font-size: 14px;
+    font-size: 1.2rem;
+    color: var(--color-muted);
+    font-weight: 300;
 }
 
 .about-content cite p {
     letter-spacing: 0.3rem;
+    max-width: none;
+    font-size: 0.8rem;
+    
 }
 
-.about-content cite h4 {
+.about-content cite h4{
     color: var(--color-accent);
-    font-size: 4rem;
+    font-size: 3.5rem;
+        font-weight: 300;
+        padding-left: 1rem;
+        margin: 0;
+        padding-top: 2rem;
+
 }
 
 .about-content h4 {
-    font-family: '';
+    font-family: var(--font-heading);
     color: var(--color-accent);
     transform: rotate(-3deg);
 }
@@ -423,11 +450,9 @@ position: absolute;
 /* -- WHY US (homepage) */
 .why-us {
     background-color: var(--color-white);
+    padding-left: 12rem;
 }
 
-.why-us-title p {
-    text-align: left;
-}
 
 .why-us-upper-content {
     padding: 0rem;
@@ -437,19 +462,32 @@ position: absolute;
     
 }
 
-
-
-.why-us-upper-content h3 {
-    font-size: 80px;
-    font-weight: 300;
-    text-align: center;
-    margin-top: 0;
-    color: rgba(26, 46, 42, 0.75)
+.why-us .section-heading {
+    max-width: 30%;
 }
+
+.why-us .section-subtext {
+    margin-top: 6rem;
+    margin-right: 20rem;
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 28%;
+}
+
+
+.why-us-wrapper {
+    display: flex;
+    gap: clamp(6rem, 5vw, 30rem);
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 6rem;
+}
+
 
 .why-us .why-us-upper-content p {
     text-align: left;
-    padding-top: 8rem;
     font-family: var(--font-body);
     color: var(--color-muted);
 
@@ -462,7 +500,7 @@ position: absolute;
     gap: 1rem;
     border-radius: 5px;
     align-items: stretch;
-    
+    padding-bottom: 4rem;
 }
 
 .why-us-card {
@@ -471,14 +509,15 @@ position: absolute;
     align-items: center;
     justify-content: space-between;
     background-color: var(--color-secondary);
-    padding: 20px;
+    padding-left: 100px;
     flex: 1;
     border-top: 1px solid rgba(26, 46, 42, 0.15);
     
 }
 
 .why-us-card p {
-    font-size: 15px;
+    max-width: 50%;
+    font-size: 1.1rem;;
     font-weight: 300;
     line-height: 1.8;
     color: rgba(26, 46, 42, 0.75);
@@ -495,8 +534,8 @@ position: absolute;
 }
 
 .why-us-card h3 {
-    font-weight: 900;
-    text-transform: uppercase;
+    font-weight: 300;
+font-size: 2rem;
     letter-spacing: 0.2rem;
 }
 
@@ -508,21 +547,27 @@ position: absolute;
 /* -- SERVICES (homepage) */
 .services {
     background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding-left: 12rem;
+    padding-right: 12rem;
+    
 }
 
-.services h3 {
+
+.services .section-heading {
     text-align: left;
-    font-size: 5rem;
+    max-width: 30%;
     font-weight: 300;
     color: var(--color-white);
+    padding-bottom: 3rem;
+   
 }
+
+
 
 .services a {
     color: var(--color-white);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 01px solid var(--color-accent);
     font-weight: 300;
     font-family: var(--font-body);
 }
@@ -538,8 +583,10 @@ position: absolute;
 
 .whole-service-row {
     display: flex;
-    height: 500px;
+    height: 600px;
+    
 }
+
 
 .whole-service-row:nth-child(even) {
       flex-direction: row-reverse;
@@ -563,39 +610,73 @@ position: absolute;
     padding: 40px;
     box-sizing: border-box;
     text-align: left;
+    display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 }
 
 .service-number {
     color: var(--color-accent);
     display: block;
     margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+.service-blurb {
+        max-width: 75%;
+        line-height: 2.2rem;
+        color: var(--color-surface);
+
 }
 
 .service-title {
     color: var(--color-white);
     font-weight: 300;
+    max-width: 70%;
 }
 
 .service-text-content > p {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 1.5rem;
+   
+    padding-bottom: 4rem;
     margin-bottom: 1.5rem;
     color: rgba(255, 255, 255, 0.65);
-    font-size: 14px;
+    font-size: 1rem;
+    color: var(--color-muted);
+    font-weight: 300;
 }
 
 .service-meta {
     display: flex;
     justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+     border-top: 0.5px solid var(--color-accent);
 }
 
 .service-price {
     color: var(--color-accent);
     font-size: 1.5rem;
+    font-family: var(--font-body);
+        margin-top: 1rem;
+
 }
 
 .service-duration {
-    color: var(--color-white);
+    font-family: var(--font-body);
+    color: var(--color-muted);
+        font-size: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+}
+
+.view-menu-link a{
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+}
+
+.view-menu-link {
+    margin-bottom: 2rem;
 }
 
 /* -- REVIEWS */
@@ -637,6 +718,7 @@ blockquote {
     background-color: var(--color-secondary);
     padding: 3rem;
     color: var(--color-primary);
+    margin: 0;
 }
 
 blockquote p {
@@ -651,18 +733,25 @@ blockquote::before {
     content: "\201C";
     color: var(--color-accent);
     font-size: 5rem;
-    display: block;
+    display: none;
+    line-height: 0.3;
 }
+
+.review::before {
+      display: block;
+      font-size: 12rem;
+  }
 
 quote-footer {
     font-family: var(--font-body);
     font-size: 0.9rem;
+    text-transform: uppercase;
 }
 
 .received-service {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     color: var(--color-accent);
-    font-size: 0.9rem
+    font-size: 1rem
 }
 
 /* -- CTA (shared) */
@@ -675,6 +764,7 @@ quote-footer {
 .page-cta h2 {
     color: var(--color-white);
     font-weight: 300;
+    margin: 0;
 }
 
 .page-cta p {
@@ -690,6 +780,10 @@ quote-footer {
     justify-content: center;
 }
 
+
+.cta .hours-info {
+    color: var(--color-muted);
+}
 /* -- CTA (homepage overrides) */
 .cta {
     background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
@@ -706,7 +800,7 @@ quote-footer {
     font-family: var(--font-heading);
     font-style: italic;
     color: var(--color-white);
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 0.5px solid var(--color-accent);
     padding-bottom: 5px;
     text-decoration: none;
     font-size: 1.5rem;
@@ -1080,8 +1174,10 @@ text-align: left;
     color: var(--color-white);
     padding-bottom: 5px;
     padding-top: 30px;
-    border-bottom: 1px solid var(--color-accent);
-        font-family: var(--font-body);
+    border-bottom: 0.5px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
 
 }
 
@@ -1233,7 +1329,7 @@ font-size: 0.9rem;
     font-size: 1.5rem;
     font-weight: 300;
     text-decoration: none;
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 0.5px solid var(--color-accent);
 }
 
 .stylists blockquote {
@@ -1363,7 +1459,7 @@ font-size: 0.9rem;
 .the-apprenticeship a {
     text-decoration: none;
     color: var(--color-white);
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 0.5px solid var(--color-accent);
     padding-bottom: 0.5rem;
     font-family: var(--font-heading);
 }
@@ -1537,13 +1633,13 @@ font-size: 0.9rem;
     border-bottom: 1px solid rgba(26, 46, 42, 0.1);
           padding: 0.1rem 0;
   }
-   .service-duration {
+   .service-menu-duration {
       color: var(--color-muted);
       font-weight: 300;
       font-size: 0.8rem;
   }
 
-  .service-meta {
+  .service-menu-meta {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -1811,6 +1907,11 @@ font-size: 0.9rem;
         bottom: 0;
     }
 
+    /*--HERO--*/
+    .hero h1 {
+        line-height: 5rem;
+        padding-bottom: 3rem;
+    }
     /*--SECTION--*/
     section {
       padding-left: 1rem;
@@ -1836,9 +1937,18 @@ font-size: 0.9rem;
     }
 
     .about-blurb blockquote {
-        width: 100%;
+        width:100%;
         box-sizing: border-box;
     }
+
+    .about-content h2 {
+      font-size: 2.5rem;
+      line-height: 3rem;
+  }
+
+  .about-content p {
+     max-width: 100%;
+  }
 
     /*--WHY-US--*/
     .why-us-upper-content {
