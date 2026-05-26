@@ -1314,7 +1314,7 @@ max-width: 80%;
 
 .come-visit h2 {
     font-size: 5rem;
-    max-width: 400px;
+    max-width: 40%;
     margin: 0 auto;
     line-height: 5rem;
     margin-top: 4rem;
@@ -2098,26 +2098,34 @@ font-size: 0.9rem;
       display: flex;
     gap: clamp(2rem, 4vw, 4rem);     
  padding: 8rem 8rem;
-
-
+       justify-content: center;
 }
+
+
+  .hours-reach-us-elsewhere p {
+font-size: 1rem;
+}
+
+
+
 
     
   .contact-column {
       display: flex;
       flex-direction: column;
       border-right: 1px solid var(--color-muted);
-      padding-right: 12rem;
-  }
+  padding: 0 3rem 0 2rem;  }
 
    .contact-column:last-child {
-      border-right: none;   }
+      border-right: none;   
+    }
 
 
 .contact-column .contact-section-title {
     color: var(--color-white);
     font-weight: 300;
     font-size: 2rem;
+    font-size: 3rem;
 }
 
  .contact-column dl {
@@ -2126,6 +2134,8 @@ font-size: 0.9rem;
     color: var(--color-white);
     font-family: var(--font-body);
     font-weight: 300;
+        font-size: 1.5\2rem;
+
    
 }
 
@@ -2267,7 +2277,6 @@ font-size: 0.9rem;
         padding-right: 12rem;
 }
 
-
 .visit-columns {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -2301,6 +2310,59 @@ font-size: 0.9rem;
     font-weight: 300;
     text-align: left;
 }
+.questions {
+    background-color: var(--color-white);
+    padding: 12rem;
+    display: flex;
+    align-items: flex-start;
+}
+.questions .section-description {
+    color: var(--color-muted);
+    max-width: 60%;
+        padding-bottom: 2rem;
+        line-height: 1.5rem;
+
+}
+.questions-content {
+    min-height: 400px;
+    min-width: 60%;
+    padding-top: 3rem;
+}
+
+.questions a {
+    text-decoration: none;
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.2rem;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(26, 46, 42, 0.15);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+.faq-question {
+    display: flex;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    justify-content: space-between;
+}
+
+.faq-answer {
+    display: none;
+}
+.faq-answer p {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+}
+
+.faq-sign {
+    color: var(--color-accent);
+}
+
 
 
 /*-- TABLET --*/
