@@ -110,7 +110,6 @@ nav a:hover {
 
 nav a.nav-active {
     color: var(--color-accent);
-    border-bottom: 0.5px solid var(--color-accent);
 }
 
 .nav-reserve {
@@ -122,6 +121,10 @@ color: var(--color-white);
     text-decoration: none;
     justify-self: end;
     width: fit-content;
+}
+
+.nav-reserve em {
+    font-weight: 300;
 }
 
 .nav-reserve:hover {
@@ -237,6 +240,10 @@ footer {
     color: rgba(26, 46, 42, 0.45);
 }
 
+.foot .legal a {
+      font-size: 11px;
+  }
+
 
 /*--GENERIC SECTION--*/
  .section-label {
@@ -250,7 +257,7 @@ footer {
   .label-dot {
       font-size: 4rem;
       vertical-align: -0.17em;
-            margin-right: -0.5rem;
+      margin-right: 0.3rem;
   }
   
   .section-heading {
@@ -264,7 +271,8 @@ footer {
       font-family: var(--font-body);
       font-size: 0.9rem;
       color: var(--color-muted);
-  }
+      text-align: right;
+      }
 
 .btn {
     background-color: var(--color-white);
@@ -358,21 +366,23 @@ position: absolute;
     padding-bottom: 1.5rem
 }
 .about-blurb {
-    background-color: var(--color-secondary); 
+    background-color: var(--color-secondary);
+    padding-left: 12rem;
 }
 
 .about-blurb img {
-    aspect-ratio: 4/5;
-    max-width: 500px;
-    height: 750px;
-    margin-left: 75px;
-    margin-top: 40px;
+    flex: 0 0 40%;
+    height: 550px;
+    object-fit: cover;
+    padding: 0;
+    align-self: flex-start;
+    margin-top: 4rem;
     position: sticky;
-    top: 3rem;
+    top: 0;
 }
 .about-columns .section-label {
     color: var(--color-accent);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     
 }
 .about-blurb h2 {
@@ -381,7 +391,7 @@ position: absolute;
 }
 
 .about-blurb blockquote {
-    width: 45%;
+    width: 50%;
     text-align: left;
     margin: 0;
     padding-left: 24px;
@@ -398,14 +408,14 @@ position: absolute;
 
 .about-columns {
     display: flex;
-    gap: 15rem;
+    gap: 6rem;
 }
 
 .about-content {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 4rem;
 }
 
 .about-content p {
@@ -468,7 +478,7 @@ position: absolute;
 
 .why-us .section-subtext {
     margin-top: 6rem;
-    margin-right: 20rem;
+    margin-right: 10rem;
     font-family: var(--font-body);
     color: var(--color-muted);
     font-size: 1.1rem;
@@ -567,7 +577,7 @@ font-size: 2rem;
 .services a {
     color: var(--color-white);
     text-decoration: none;
-    border-bottom: 01px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
     font-weight: 300;
     font-family: var(--font-body);
 }
@@ -604,10 +614,10 @@ font-size: 2rem;
 }
 
 .service-text-content {
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 0.5px solid rgba(255, 255, 255, 0.25);
     flex: none;
     width: 50%;
-    padding: 40px;
+    padding: 6rem;
     box-sizing: border-box;
     text-align: left;
     display: flex;
@@ -618,9 +628,10 @@ font-size: 2rem;
 .service-number {
     color: var(--color-accent);
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
     font-family: var(--font-heading);
     font-size: 1.5rem;
+    font-style: italic;
 }
 
 .service-blurb {
@@ -638,7 +649,7 @@ font-size: 2rem;
 
 .service-text-content > p {
    
-    padding-bottom: 4rem;
+    padding-bottom: 1rem;
     margin-bottom: 1.5rem;
     color: rgba(255, 255, 255, 0.65);
     font-size: 1rem;
@@ -659,6 +670,7 @@ font-size: 2rem;
     font-size: 1.5rem;
     font-family: var(--font-body);
         margin-top: 1rem;
+        font-style: italic;
 
 }
 
@@ -673,6 +685,7 @@ font-size: 2rem;
 .view-menu-link a{
     font-family: var(--font-heading);
     font-size: 1.25rem;
+    font-style: italic;
 }
 
 .view-menu-link {
@@ -817,64 +830,109 @@ quote-footer {
 
 .hero-divider {
     display: flex;
-    gap: 10rem;
+    gap: 4rem;
     align-items: flex-end;
 }
 
 .page-hero {
     text-align: left;
-    padding-left: 6em;
+    padding-left: 4rem;
 }
 
 .page-hero > p {
     color: var(--color-muted);
-    font-size: 0.8rem;
     font-weight: 300;
+    margin: 0;
+}
 
+.page-hero > p:first-child {
+    margin-bottom: 0.5rem;
+}
+
+.page-hero .section-label {
+    padding-left: 7rem;
+}
+
+.page-hero .hero-divider {
+    padding-left: 8rem;
 }
 
 .page-hero span {
     color: var(--color-accent);
+    margin: 0 1rem;
+}
+
+.page-hero .section-subtext {
+    font-size:1.2rem;
+}
+.page-description {
+    flex-shrink: 0;
+    width: 400px;
+    padding-right: 5rem;
 }
 
 .page-description p {
     font-weight: 300;
-    padding-bottom: 4rem;
     text-align: right;
-    line-height: 2rem;
+    line-height: 1.6;
 }
 
 
 
 .hero-divider h2 {
-    font-size: 4rem;
+    font-size: clamp(56px, 9.5vw, 120px);
     font-weight: 300;
     color: var(--color-white);
-    line-height: 5rem;
+    line-height: 1.1;
+    max-width: calc(100% - 440px);
 }
 
 /*--SECOND_SECTION--*/
 
 .second-section {
     background-color: var(--color-secondary);
+    padding: 0 0 0 12rem;
 }
+
+.second-section .wrap {
+    max-width: 100%;
+    padding: 0;
+}
+
 .second-section-columns {
-        display: flex;
-        gap: 10rem;
-        align-items: flex-start;
+    display: flex;
+    gap: 4rem;
+    align-items: stretch;
 }
 
 .second-section img {
-    width: 350px;
-    height: 500px;
-    padding-left: 5rem;
-    padding-top: 7rem;
+    width: 42%;
+    flex-shrink: 0;
+    min-height: 500px;
+    object-fit: cover;
+    padding: 0;
+
+    align-self: flex-start;
+    margin-top: 4rem;
     position: sticky;
-    top: 3rem;
+    top: 0;
+}
+.page-hero .section-label {
+    color: var(--color-accent);
+}
+
+.about-text-column {
+    padding: 4rem 5rem 4rem 0;
+    flex: 1;
 }
 
 .about-text-column h2 {
+    font-size: 5.5rem;
     font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+        margin-top: 0rem;
+
 }
 
 .about-text-column .founder-name {
@@ -886,41 +944,57 @@ color: var(--color-accent);
     font-size: 0.8rem;
     letter-spacing: 0.1rem;
     color: var(--color-accent);
+    margin-bottom: 2rem;
 }
 
  .story-intro::first-letter {
-    font-size: 4rem;
+    font-size: 6rem;
     color: var(--color-accent);
     font-family: var(--font-heading);
 margin-top: 0.3rem;
  float: left;
   line-height: 0.8;
   margin-right: 0.1em;
+  font-style: italic;
  }
 
 .about-text-column p {
     color: var(--color-primary);
     font-weight: 300;
-    letter-spacing: 0.1rem;
-    line-height: 1.5rem;
-    max-width: 400px;
+    font-family: var(--font-body);
+    letter-spacing: 0.05rem;
+    line-height: 1.7;
+    font-size: 0.85rem;
+    
+}
+
+.page-description .section-subtext {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    text-align: right;
 }
 
 .about-text-column blockquote {
-text-align: left;
- width: 400px;
     text-align: left;
-    margin: 0;
-    padding-left: 24px;
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0;
     font-family: var(--font-heading);
     font-style: italic;
-    font-size: 36px;
-    margin-bottom: 12px;
+    font-size: 3rem;
+    border: none;
+    line-height: 1.15;
+    color: var(--color-primary);
+    max-width: 75%;
+    padding-left: 3rem;
     border-left: 1px solid var(--color-accent);
-    line-height: 4rem;
-    margin-top: 2rem;
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
+}
+
+.about-text-column blockquote::before {
+    display: inline;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
 }
 
 .about-content cite p {
@@ -929,11 +1003,21 @@ text-align: left;
 
 .about-text-column cite h4 {
     color: var(--color-accent);
-    font-size: 2rem;
+    font-size: 3.5rem;
+    font-weight: 300;
+    padding-left: 1rem;
+    margin: 0;
+    padding-top: 3rem;
+}
+
+.about-text-column cite p {
+    letter-spacing: 0.3rem;
+    font-size: 0.8rem;
+    max-width: none;
 }
 
 .about-text-column h4 {
-    font-family: '';
+    font-family: var(--font-heading);
     color: var(--color-accent);
     transform: rotate(-3deg);
 }
@@ -942,7 +1026,9 @@ text-align: left;
       color: var(--color-primary);
           font-size: 0.8rem;
               letter-spacing: 0.1rem;
-
+font-family: var(--font-body);
+font-size: 1.2rem;
+max-width: 80%;
 
   }
 
@@ -951,14 +1037,20 @@ text-align: left;
 
 .principles-class {
     background-color: var(--color-primary);
-    padding: 0 4rem 0 4rem;
+    padding: 0 4rem 0 12rem;
 }
 
 
 
 .principles-class .principles-intro {
     text-align: left;
-    max-width: 25%;
+    max-width: 23%;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    padding-bottom: 0.5rem;
+    padding-right: 8rem;
+    align-self: flex-end;
 }
 .hero-divider {
     display: flex;
@@ -967,10 +1059,15 @@ text-align: left;
 }
 
 .principles-class .hero-divider {
-          justify-content: flex-start; 
-     gap: 40vw;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
 }
 
+.principles-class .hero-divider .section-heading {
+    font-size: clamp(3rem, 6vw, 6rem);
+    max-width: 45%;
+}
 
 .page-hero p {
     text-align: left;
@@ -995,115 +1092,150 @@ text-align: left;
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
-    padding: 0 4rem 0 4rem;
+    padding: 0 3rem 0 0;
+    border-top: 0.5px solid rgba(250, 250, 247, 0.15);
+    padding-top: 1.5rem;
 }
 
 .protect-card .numeral {
-    font-size: 3rem;
+    font-size: 2rem;
     color: var(--color-accent);
     font-family: var(--font-heading);
+    font-style: italic;
     font-weight: 300;
+    margin-bottom: 0rem;
 }
 
 .protect-card h3 {
     color: var(--color-white);
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 300;
-    max-width: 50%;
-    margin-bottom: 0.5rem;
+    max-width: 100%;
+    margin-bottom: 0rem;
+    line-height: 1.2;
 }
 
 .protect-card p {
     color: var(--color-muted);
     font-family: var(--font-body);
-    font-size: 0.8rem;
-    max-width: 50%;
+    font-size: 0.9rem;
+    max-width: 100%;
     margin-top: 0;
     text-align: left;
+    line-height: 1.7;
+
 }
 
 .history {
     background-color: var(--color-white);
-    border-bottom: 0.1px solid var(--color-primary);
-    padding-left: 3rem;
+    padding-left: 12rem;
+    padding-right: 8rem;
 }
 
 
 
 .history h2 {
     color: var(--color-primary);
-    max-width: 500px;
-    font-size: 50px;
-    line-height: 3rem;
+    max-width: 40%;
+    line-height: 1.1;
+    font-size: 4rem;
+    margin-bottom: 3rem;
 }
 
 .timeline {
     display: flex;
     flex-direction: column;
-    padding: 4rem;
-    padding-left: 4rem;     
+    padding: 0;
+    border-left: 1px solid rgba(26, 46, 42, 0.2);
+    margin-left: 1rem;
+     border-top: 1px solid rgba(26, 46, 42, 0.2);
 }
+
 .event {
     display: grid;
-    grid-template-columns: 15rem 1fr 1fr; 
-    gap: 4rem;
-    justify-content: space-evenly;
-    border-bottom: 0.5px solid var(--color-primary);
-     border-left: 0.5px solid var(--color-primary);
-     padding-left: 4rem;
-     border-top: 1px solid
+    grid-template-columns: 12rem 1.8fr 1fr;
+    column-gap: 9rem;
+    row-gap: 0;
+    padding: 3rem 4rem 3rem 3rem;
+    border-bottom: 0.5px solid rgba(26, 46, 42, 0.15);
+    position: relative;
+    align-items: start;
+}
+
+.event::before {
+    content: "•";
+    position: absolute;
+    left: -0.4rem;
+    top: 3.4rem;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    line-height: 1;
+    font-family: var(--font-body);
 }
 
 .event h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 300;
-    max-width: 300px;
+    max-width: 90%;
     text-align: left;
+    line-height: 1.2;
+    color: var(--color-primary);
+    margin: 0;
 }
 
-.year {
-    font-size: 3rem;
+.timeline .year {
+    font-size: 3.3rem;
     font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-accent);
+    margin: 0;
 }
 
 .event p {
-    max-width: 300px;
+    max-width: 95%;
+    font-size: 1rem;
+    margin: 0;
 }
 
 .paragraph {
     color: var(--color-muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-weight: 300;
 }
 
 
 .inside-the-room {
-        text-align: center;
-
+    text-align: center;
     background-color: var(--color-white);
-          padding-left: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+    padding-top: 2rem;
 }
 
 .inside-the-room .wrap {
-    padding: 0 4rem;
+    padding: 0rem;
     max-width: 100%;
 }
 .inside-the-room .room-heading {
     color: var(--color-primary);
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-family: var(--font-heading);
     font-weight: 300;
-    max-width: 500px;
+    max-width: 34%;
     margin: 0 auto;
-    padding-top: 2rem;
+    padding-top: 0rem;
 }
 
 #address {
     color: var(--color-muted);
     max-width: 400px;
     margin: 0 auto;
-    padding-top: 2rem;
+    padding-top: 1rem;
     font-weight: 300;
     font-family: var(--font-body);
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
 }
 
 .image-section {
@@ -1124,27 +1256,31 @@ text-align: left;
 
 
 .room-images {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
     gap: 0.5rem;
-    width: 100%;
+    width: calc(100% - 26rem);
+    margin: 0 auto;
 }
 
 .room-images img {
     height: 400px;
-    flex: 1;
+    width: 100%;
     object-fit: cover;
 }
 
 .as-featured {
     background-color: var(--color-secondary);
-    padding-left: 8rem;
-    padding-right: 8rem;
+    padding-left: 14rem;
+    padding-right: 14rem;
 }
 
 .places {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
+    padding: 2rem 0;
+    font-style: italic;
 }
 .as-featured .section-label {
     color: var(--color-muted);
@@ -1155,6 +1291,7 @@ text-align: left;
     font-size: 1.5rem;
     font-weight: 300;
     font-family: var(--font-heading);
+    
 }
 
 .come-visit h2 {
@@ -1162,6 +1299,7 @@ text-align: left;
     max-width: 400px;
     margin: 0 auto;
     line-height: 5rem;
+    margin-top: 4rem;
 }
 
 .come-visit p {
@@ -1188,7 +1326,18 @@ text-align: left;
     text-align: center;
 }
 
+.how-booking .section-heading {
+    line-height: 4rem;
+    max-width: 49%;
+}
 .how-booking .section-label {
+    text-align: center;
+    color: var(--color-accent);
+}
+
+.how-booking .section-subtext {
+    font-size: 1.2rem;
+    max-width: 45%;
     text-align: center;
 }
 
@@ -1214,7 +1363,7 @@ text-align: left;
 
 .stylists {
     display: flex;
-    padding: 4rem;
+    padding: 4rem 4rem 4rem 11rem;
     gap: 8rem;
     background-color: var(--color-white);
 }
@@ -1344,6 +1493,13 @@ font-size: 0.9rem;
 .stylists--reverse {
     flex-direction: row-reverse;
     background-color: var(--color-secondary);
+    padding-left: 11rem;
+    padding-right: 19rem;
+    gap: 8rem;
+}
+
+.stylists--reverse .stylists-content {
+    padding-right: 0;
 }
 
 .stylists--reverse blockquote {
@@ -1433,7 +1589,8 @@ font-size: 0.9rem;
     display: flex;
     gap: 3rem;
 }
-.four-images img{
+
+.four-images img {
     width: 125px;
     height: 150px;
 }
@@ -1469,6 +1626,11 @@ font-size: 0.9rem;
     padding-top: 4rem;
 }
 
+.apprenticeship-cta h3 {
+    margin-top: 12rem;
+    margin-bottom: 0rem;
+}
+
 
 .divider {
       display: flex;
@@ -1489,6 +1651,7 @@ font-size: 0.9rem;
 
   .not-sure {
         background-color: var(--color-secondary);
+        padding-top: 4rem;
 
   }
 .not-sure p {
@@ -1496,13 +1659,30 @@ font-size: 0.9rem;
     color: var(--color-muted);
     font-size: 2rem;
     font-weight: 300;
-    max-width: 600px;
+    max-width: 50%;
     margin: 0 auto;
     padding: 2rem 0 4rem 0;
+    text-align: center;
+    
 }
 
 
+.the-apprenticeship .section-label {
+    color: var(--color-accent);
+}
+
+.the-apprenticeship a {
+    font-style: italic;
+}
+
+.the-apprenticeship .cta {
+    padding-top: 8rem;
+
+} 
+
 /*--SERVICES--*/
+
+
 
 .menu-note {
     background-color: var(--color-secondary); 
@@ -1530,13 +1710,15 @@ font-size: 0.9rem;
     font-weight: 300;
     max-width: 550px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
+    padding-top: 2rem;
 }
 
 .menu-items {
     background-color: var(--color-white);
     width: 100%;
           padding: 0;
+          
 
 }
 
@@ -1546,7 +1728,7 @@ font-size: 0.9rem;
  .menu-category {
       width: 100%;
       display: flex;
-      padding: 4rem;
+      padding: 4rem 8rem 4rem 12rem;
             box-sizing: border-box;
             gap: 4rem;
              align-items: flex-start
@@ -1673,7 +1855,7 @@ font-size: 0.9rem;
 
   .add-ons {
     background-color: var(--color-primary);
-          padding: 4rem;
+          padding: 4rem 8rem 4rem 12rem;
   }
 
   .add-on-card {
@@ -1723,7 +1905,7 @@ font-size: 0.9rem;
     background-color: var(--color-secondary);
     justify-content: center;
       align-items: flex-start;
-       padding: 4rem 5%;
+       padding: 4rem 8rem 4rem 12rem;
       gap: 12rem;
   }
   .image-section {
@@ -1750,6 +1932,8 @@ font-size: 0.9rem;
       font-family: var(--font-heading);
       font-weight: 300;
       max-width: 50%;
+      font-size: 3rem;
+      white-space: nowrap;
   }
 
    .expectations {
@@ -1766,16 +1950,17 @@ font-size: 0.9rem;
 
   .expectation {
     display: flex;
-    gap: 5rem;
+    gap: 2rem;
     align-items: flex-start;
-     border-bottom: 0.5px solid rgba(26, 46, 42, 0.2);
-      padding-bottom: 2rem;
+    border-bottom: 0.5px solid rgba(26, 46, 42, 0.2);
+    padding: 1.5rem 0;
   }
   .expectation-number {
     color: var(--color-accent);
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: var(--font-heading);
     font-weight: 300;
+    min-width: 3rem;
   }
   .expectation-title {
     font-family: var(--font-heading);
@@ -1817,6 +2002,102 @@ font-size: 0.9rem;
           margin: 0 auto;
   }
 
+
+/*-- TABLET --*/
+@media (max-width: 1024px) {
+    .about-content h2 {
+        font-size: 3rem;
+        line-height: 4rem;
+    }
+
+    header .mark {
+        font-size: 24px;
+    }
+
+    header nav {
+        gap: 2rem;
+    }
+
+    .whole-service-row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .whole-service-row:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .service-image {
+        width: 100%;
+        height: 300px;
+    }
+
+    .service-text-content {
+        width: 100%;
+    }
+
+    /* -- ABOUT PAGE TABLET -- */
+
+    .page-hero {
+        padding-left: 3rem;
+    }
+
+    .page-hero .section-label,
+    .page-hero .hero-divider {
+        padding-left: 2rem;
+    }
+
+    .hero-divider {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .page-description {
+        width: 100%;
+    }
+
+    .page-description p {
+        text-align: left;
+    }
+
+    .second-section {
+        padding: 0 0 0 3rem;
+    }
+
+    .second-section img {
+        width: 38%;
+    }
+
+    .about-text-column {
+        padding: 3rem 3rem 3rem 0;
+    }
+
+    .principles-class {
+        padding: 0 2rem 0 3rem;
+    }
+
+    .principles-class .hero-divider .section-heading {
+        font-size: 3rem;
+    }
+
+    .protect-count {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .history {
+        padding-left: 3rem;
+    }
+
+    .event {
+        grid-template-columns: 6rem 1fr 1fr;
+        column-gap: 2rem;
+    }
+
+    .room-images {
+        width: calc(100% - 6rem);
+    }
+}
 
 /*-- MOBILE --*/
 @media (max-width: 1000px) {
@@ -1929,12 +2210,18 @@ font-size: 0.9rem;
         gap: 1rem;
     }
     .about-blurb img {
-        height: 800px;
+        height: 400px;
         margin-left: 0;
         width: 100%;
         max-width: 100%;
         position: static;
     }
+     .about-blurb {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+            padding-bottom: 2rem;
+  }
+
 
     .about-blurb blockquote {
         width:100%;
@@ -1955,19 +2242,81 @@ font-size: 0.9rem;
         flex-direction: column;
         gap: 1rem;
     }
+    .why-us-cards {
+      grid-template-columns: 1fr;
+  }
 
     .why-us-card {
         grid-template-columns: 1fr;
+              text-align: left;
+      padding-left: 1.5rem;
+            }
+
+    .why-us-card .numeral {
+      text-align: left !important;
+      line-height: 1;
+      font-size: 2rem;
+      padding-top:1rem;
+    margin-bottom: 0;
+  }
+
+  .why-us-card h3 {
+      font-size: 1.5rem; 
+      margin-top: 0.5rem;
+      letter-spacing: normal;
+  }
+
+  .why-us-card p {
+  font-size: 0.9rem;
+      max-width: 100%; 
+    padding-right: 1rem;
+    padding-bottom: 2rem;
     }
+
+  
+
+   
+
+    .why-us {
+        padding-left: 1.5rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+              padding-top: 2rem;
+    }
+
+    .why-us-wrapper {
+        flex-direction: column;
+              gap: 0.5rem;
+              padding-bottom: 2rem;
+    }
+
+    .why-us .section-heading {
+        max-width: 100%;
+              font-size: 2.5rem;
+    }
+
+    .why-us .section-subtext {
+        max-width: 100%;
+        padding-left: 0 ;
+              margin-right: 0;
+                    margin-top: 0;
+    margin-bottom: 0;
+                }
 
 .why-us-upper-content p {
     padding-top: 1rem;
 }
     /*--SERVICES--*/
     .services {
-        padding-left: 1rem;
+        padding-left: 1.5rem;
         padding-right: 1rem;
+              padding-top: 2rem;
     }
+
+     .service-blurb {
+      line-height: 1.6;
+      max-width: 100%;
+  }
 
     .whole-service-row {
         flex-direction: column;
@@ -1984,25 +2333,194 @@ font-size: 0.9rem;
 
     .service-text-content {
         width: 100%;
+        
     }
+
+    .service-text-content > p {
+      padding-bottom: 1.5rem;   
+  }
+
+  .service-meta {
+      flex-direction: column;
+      gap: 0.3rem;
+  }
+
 
     /*--REVIEWS--*/
     .review-cards blockquote {
         width: 100%;
         box-sizing: border-box;
-        padding-left: 0;
+        padding-left: 1.5;
     }
+    .reviews {
+      padding-top: 2rem;
+    }
+  .review::before {
+      font-size: 2.5rem;
+  }   
+
+  .review p {
+      font-size: 1.2rem;
+  }   
+
+
+    /*--CTA--*/
+    .hours-info {
+        letter-spacing: 0.1rem;
+    }
+    .page-cta {
+      padding-bottom: 3rem;
+  }
 
     /*--FOOTER--*/
-    .foot-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .wrap {
-        padding: 0 1rem;
-    }
+    
+    
+  .wrap {
+      padding: 1.5rem;
+  }
 
     .foot h4 {
         letter-spacing: 0.1rem;
     }
+
+   .foot-grid { 
+      grid-template-columns: 1fr;
+      gap: 2rem;
+  }
+ .foot .mark {
+      font-size: 28px;
+  }
+footer {
+    padding-top: 2rem;
+}
+
+    /* -- ABOUT PAGE -- */
+
+    .page-hero {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .page-hero .section-label,
+    .page-hero .hero-divider {
+        padding-left: 0;
+    }
+
+    .hero-divider h2 {
+        font-size: clamp(2.5rem, 10vw, 5rem);
+    }
+
+    .page-description {
+        width: 100%;
+    }
+
+    .page-description p {
+        text-align: left;
+    }
+
+    .second-section {
+        padding: 0;
+    }
+
+    .second-section-columns {
+        flex-direction: column;
+    }
+
+    .second-section img {
+        width: 100%;
+        min-height: 300px;
+        position: static;
+        margin-top: 0;
+    }
+
+    .about-text-column {
+        padding: 2rem 1.5rem;
+    }
+
+    .about-text-column h2 {
+        font-size: 2.5rem;
+    }
+
+    .about-text-column blockquote {
+        font-size: 1.8rem;
+        max-width: 100%;
+    }
+
+    .about-text-column cite h4 {
+        font-size: 2rem;
+        padding-left: 0;
+    }
+
+    .principles-class {
+        padding: 2rem 1.5rem;
+    }
+
+    .principles-class .hero-divider {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .principles-class .hero-divider .section-heading {
+        font-size: 2.5rem;
+        max-width: 100%;
+    }
+
+    .principles-class .principles-intro {
+        max-width: 100%;
+    }
+
+    .protect-count {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .principles-intro .section-subtext {
+        padding-right: 9rem;
+    }
+
+    .protect-card {
+        padding: 0;
+        border-top: 0.5px solid rgba(250, 250, 247, 0.15);
+        padding-top: 1rem;
+    }
+
+    .history {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .history h2 {
+        max-width: 100%;
+        font-size: 2.5rem;
+    }
+
+    .timeline {
+        margin-left: 0.5rem;
+    }
+
+    .event {
+        grid-template-columns: 5rem 1fr;
+        column-gap: 1.5rem;
+        padding: 2rem 1rem 2rem 1.5rem;
+    }
+
+    .event .paragraph {
+        grid-column: 2;
+        margin-top: 0.5rem;
+    }
+
+    .inside-the-room {
+        padding-top: 2rem;
+    }
+
+    .room-images {
+        grid-template-columns: 1fr;
+        width: calc(100% - 3rem);
+    }
+
+    .room-images img {
+        height: 250px;
+    }
+
 }
