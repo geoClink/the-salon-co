@@ -337,6 +337,17 @@ footer {
     background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(80% 60% at 70% 30%, rgba(201, 169, 110, 0.18), transparent 60%),
+        radial-gradient(60% 50% at 20% 80%, rgba(0, 0, 0, 0.45), transparent 70%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
 .hero h1,
 .hero-tag,
 .hero a {
@@ -801,6 +812,16 @@ quote-footer {
 .cta {
     background: linear-gradient(135deg, #0f1e1b 0%, #1A2E2A 45%, #243d36 100%);
     padding-bottom: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(60% 50% at 50% 50%, rgba(201, 169, 110, 0.10), transparent 70%);
+    pointer-events: none;
 }
 
 .cta h2 {
@@ -855,6 +876,8 @@ quote-footer {
 
 .page-hero .hero-divider {
     padding-left: 8rem;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .page-hero span {
@@ -1051,11 +1074,6 @@ max-width: 80%;
     padding-bottom: 0.5rem;
     padding-right: 8rem;
     align-self: flex-end;
-}
-.hero-divider {
-    display: flex;
-    gap: 17rem;
-    
 }
 
 .principles-class .hero-divider {
@@ -1855,7 +1873,8 @@ font-size: 0.9rem;
 
   .add-ons {
     background-color: var(--color-primary);
-          padding: 4rem 8rem 4rem 12rem;
+          padding: 4rem 8rem 12rem 12rem;
+          
   }
 
   .add-on-card {
@@ -1942,7 +1961,7 @@ font-size: 0.9rem;
   }
 
   .what-to-expect .section-subtext {
-    max-width: 45%;
+    max-width: 55%;
     text-align: left;
 
     padding-bottom: 3rem;
@@ -1982,25 +2001,37 @@ font-size: 0.9rem;
     margin: 0 auto;
   }
 
-  .booking-note .section-heading h2 {
+  .booking-note .section-heading {
     color: var(--color-primary);
     font-family: var(--font-heading);
     font-weight: 300;
-    max-width: 55%;
+    max-width: 65%;
           margin: 0 auto;
           padding-bottom: 2rem;
           padding-top: 2rem;
 
         }
 
-  .booking-note .section-subtext p{
+  .booking-note .section-subtext {
     color: var(--color-muted);
     font-family: var(--font-heading);
     font-weight: 300;
     max-width: 50%;
+    text-align: center;
     line-height: 1.8rem;
           margin: 0 auto;
   }
+
+/*-- CHOOSE CHAIR --*/
+.choose-chair h1 {
+    color: var(--color-white);
+    font-size: clamp(56px, 9.5vw, 100px);
+    font-weight: 300;
+    margin: 0;
+}
+.choose-chair p {
+    color: var(--color-muted);
+}
 
 
 /*-- TABLET --*/
@@ -2096,6 +2127,45 @@ font-size: 0.9rem;
 
     .room-images {
         width: calc(100% - 6rem);
+    }
+
+    /* -- SHARED PAGE HERO TABLET -- */
+    .hero-divider h2 {
+        max-width: 100%;
+        font-size: clamp(2.5rem, 7vw, 5rem);
+    }
+
+    /* -- SERVICES PAGE TABLET -- */
+    .menu-category {
+        padding: 3rem 3rem 3rem 4rem;
+        gap: 2rem;
+    }
+
+    .category-info {
+        flex: 0 0 200px;
+        min-width: 200px;
+        width: 200px;
+    }
+
+    .add-ons {
+        padding: 3rem 3rem 6rem 4rem;
+    }
+
+    .add-ons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .what-to-expect {
+        padding: 3rem 3rem 3rem 4rem;
+        gap: 4rem;
+    }
+
+    .booking-note .section-heading {
+        max-width: 85%;
+    }
+
+    .booking-note .section-subtext {
+        max-width: 75%;
     }
 }
 
