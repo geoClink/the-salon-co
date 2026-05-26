@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:ital,wght@0,100..900;1,100..900&family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-     <script src="script.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:ital,wght@0,100..900;1,100..900&family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-     <header>
-        <a href="index.html"><div class="mark">The Salon<span class="amp">&amp;</span>Co.</div></a>
+    <header>
+        <a href="index.html">
+            <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
+        </a>
         <nav>
             <a href="about.html">About</a>
             <a href="stylists.html">Stylists</a>
@@ -29,19 +33,191 @@
 
     <main>
         <section class="hero page-hero">
-            <p>HOME  <span>/</span>  CONTACT</p>
+            <p>HOME <span>/</span> CONTACT</p>
             <p class="section-label"><span class="label-dot">·</span>FIND US</p>
             <div class="hero-divider">
                 <h2 class="section-heading">
                     By <em>appointment.</em><br> Always.
                 </h2>
                 <div class="page-description">
-                <p class="section-subtext">We don’t take walk-ins. Booking is by phone, email, or the form below — whichever feels easiest. We answer within a day.</p>
+                    <p class="section-subtext">We don’t take walk-ins. Booking is by phone, email, or the form below —
+                        whichever feels easiest. We answer within a day.</p>
                 </div>
             </div>
 
         </section>
-       
+
+        <section class="the-studio">
+            <div class="styled-address">
+                <p class="section-label"><span class="label-dot">·</span>THE STUDIO</p>
+
+                <h1>123 Main <em>Street.</em></h1>
+                <h3>between Oak & Cedar</h3>
+            </div>
+            <div class="location-description">
+                <p>Above the bookshop, on the second floor. Buzzer is to the left of the dark green door — we’ll come
+                    down for you. Parking on Cedar after 6pm, free on weekends. Closest transit: Oak & 4th, two blocks.
+                </p>
+                <a href="#" target="_blank">Open in Maps →</a>
+                <a href="#" target="_blank">Transit directions →</a>
+                <a href="#" target="_blank">Parking notes →</a>
+            </div>
+        </section>
+
+        <section class="hours-reach-us-elsewhere">
+
+            <div class="contact-column">
+                <p class="section-label">Hours</p>
+                <h3 class="contact-section-title"><em>Tue — Sat</em></h3>
+                <dl>
+                    <dt>Tuesday</dt>
+                    <dd>09 — 18</dd>
+                    <dt>Wednesday</dt>
+                    <dd>09 — 18</dd>
+                    <dt>Thursday</dt>
+                    <dd>09 — 20</dd>
+                    <dt>Friday</dt>
+                    <dd>09 — 18</dd>
+                    <dt>Saturday</dt>
+                    <dd>10 — 17</dd>
+                    <dt>Sunday</dt>
+                    <dd class="closed">closed</dd>
+                    <dt>Monday</dt>
+                    <dd class="closed">closed</dd>
+                </dl>
+            </div>
+
+            <div class="contact-column">
+                <p class="section-label">Reach Us</p>
+                <h3 class="contact-section-title"><em>By telephone</em></h3>
+                <dl>
+                    <dt>Studio</dt>
+                    <dd>(555) 555 · 5555</dd>
+                    <dt>General</dt>
+                    <dd>info@thesalonco.com</dd>
+                    <dt>Press</dt>
+                    <dd>press@thesalonco.com</dd>
+                    <dt>Editorial</dt>
+                    <dd>editorial@thesalonco</dd>
+                    <dt>Wholesale</dt>
+                    <dd>wholesale@thesalonco</dd>
+                </dl>
+            </div>
+
+            <div class="contact-column">
+                <p class="section-label">Elsewhere</p>
+                <h3 class="contact-section-title"><em>Follow along</em></h3>
+                <dl>
+                    <dt>Instagram</dt>
+                    <dd>@thesalonco</dd>
+                    <dt>TikTok</dt>
+                    <dd>@thesalon.co</dd>
+                    <dt>Pinterest</dt>
+                    <dd>/thesalonco</dd>
+                    <dt>Journal</dt>
+                    <dd>Monthly letter</dd>
+                    <dt>Newsletter</dt>
+                    <dd>First Wednesday</dd>
+                </dl>
+            </div>
+
+        </section>
+
+        <section class="send-a-note">
+            <div class="send-note-image">
+                <img class="end-note-image" src="https://images.pexels.com/photos/36407530/pexels-photo-36407530.jpeg"
+                    alt="picture of the Salon & Co.">
+            </div>
+            <div class="send-a-note-content">
+                <p class="section-label"><span class="label-dot">·</span>Send a Note</p>
+
+                <h3 class="section-heading">Tell us what you’re <em>thinking.</em></h3>
+                <p class="section-description">New booking, color consult, press request, or just a question — this form
+                    goes straight to Margaux. We answer within one business day.</p>
+
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" placeholder="Margaux">
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" placeholder="Hale">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="you@example.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="tel">Phone (optional)</label>
+                            <input type="tel" id="tel" placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="help">What can we help you with?</label>
+                        <select id="help">
+                            <option value="">Choose one</option>
+                            <option value="booking">Booking</option>
+                            <option value="press">Press</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="message">Tell us a little more</label>
+                        <textarea id="message" placeholder="A few sentences. We read every note."></textarea>
+                    </div>
+
+                    <button type="submit">Send a note →</button>
+                </form>
+
+            </div>
+
+        </section>
+
+        <section class="first-visit">
+            <p class="section-label"><span class="label-dot">·</span>Your First Visit</p>
+            <h3 class="section-heading">Four small things that’ll<br> make<br> the <em>hour</em> a better one.</h3>
+            <div class="visit-columns">
+                <div class="visit-column">
+                    <p class="numeral">I.</p>
+                    <h4>Arrive ten <em>minutes</em> early.</h4>
+                    <p>New guests are booked for an extended consultation. Tea or coffee is on the counter.</p>
+                </div>
+                <div class="visit-column">
+                    <p class="numeral">II.</p>
+                    <h4>Come with photos, <em>if you like.</em></h4>
+                    <p>Or come with nothing at all. We’ll work from your hair, your life, and a long conversation.</p>
+                </div>
+                <div class="visit-column">
+                    <p class="numeral">III.</p>
+                    <h4>Skip the wash if you <em>need to.</em></h4>
+                    <p>We can cut on day-old hair. We can’t cut what’s already wet from the rain.</p>
+                </div>
+                <div class="visit-column">
+                    <p class="numeral">IV.</p>
+                    <h4>Tell us about your <em>week.</em></h4>
+                    <p>How you actually wear your hair on a Tuesday matters more than a Sunday photograph.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="questions">
+            <div class="question-title">
+                <p class="section-label"><span class="label-dot">·</span>Questions</p>
+                <h3 class="section-heading">The <em>asked</em> & the answered.</h3>
+                <p class="section-description">The six we hear most often. If yours isn’t here, drop us a note — we’ll write back, and add it if it could be helpful to others.</p>
+                <a href="mailto:info@thesalonco.com">info@thesalonco.com →</a>
+            </div>
+            <div class="questions-content">
+            </div>
+        </section>
+
     </main>
 
     <footer>
@@ -99,4 +275,5 @@
     </footer>
 
 </body>
+
 </html>
