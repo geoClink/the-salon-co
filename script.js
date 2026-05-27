@@ -1,11 +1,11 @@
-const header = document.querySelector('header')
+const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
-if (window.scrollY > 10) {
-    header.classList.add('scrolled');
-} else {
-    header.classList.remove('scrolled');
-}
+    if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
 });
 
 /*-- carousel quote rotation --*/
@@ -93,3 +93,29 @@ faqItems.forEach(item => {
 if (faqItems.length > 0) {
     faqItems[0].querySelector('.faq-question').click();
 }
+
+/*-- GALLERY FILTER --*/
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        galleryItems.forEach(item => {
+            if (filter === 'all') {
+                item.style.display = 'block';
+            } else if (item.dataset.category === filter) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+
+

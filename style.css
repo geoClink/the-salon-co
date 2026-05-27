@@ -1,4 +1,8 @@
 /* -- CSS VARIABLES & RESET */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --color-primary: #1A2E2A;
     --color-surface: #313e3a;
@@ -2034,6 +2038,92 @@ font-size: 0.9rem;
 }
 
 
+
+
+/*-- GALLERY --*/
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 2rem 4rem;
+}
+
+.gallery-item img {
+    width: 100%;
+     height: 400px;
+      object-fit: cover;
+      display: block;
+}
+
+
+.gallery-section {
+    background-color: var(--color-secondary);
+    padding: 0;
+}
+
+.gallery-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: sticky;
+    top: 110px;
+    z-index: 100;
+    background-color: var(--color-secondary);
+}
+.gallery-grid .gallery-quote-item {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 8rem;
+    background-color: var(--color-secondary);
+}
+
+.gallery-quote-item blockquote {
+    font-size: 1.8rem;
+    background-color: transparent;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.gallery-quote-cite {
+    display: block;
+    margin-top: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--color-muted);
+}
+
+
+.filter-btn {
+     background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--color-muted);
+      padding: 0 1rem 0 0;
+      font-style: italic;
+}
+
+.filter-btn.active {
+      color: var(--color-primary);
+      border-bottom: 0.5px solid var(--color-accent);
+
+  }
+  .gallery-count {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.15rem;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      letter-spacing: 0.3rem;
+  }
+
 /*--CONTACT--*/
 
 .the-studio {
@@ -2498,6 +2588,54 @@ font-size: 1rem;
     .booking-note .section-subtext {
         max-width: 75%;
     }
+
+    /* -- CONTACT PAGE TABLET -- */
+    .styled-address {
+        margin-left: 3rem;
+    }
+
+    .location-description {
+        max-width: 45%;
+        padding-right: 3rem;
+    }
+
+    .hours-reach-us-elsewhere {
+        padding: 4rem 3rem;
+    }
+
+    .send-a-note {
+        padding: 3rem 4rem 6rem;
+        gap: 4rem;
+    }
+
+    .first-visit {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .questions {
+        padding: 4rem 3rem;
+    }
+
+    /* -- STYLISTS PAGE TABLET -- */
+    .stylists {
+        padding: 3rem 3rem 3rem 4rem;
+        gap: 3rem;
+    }
+
+    .stylists-content {
+        padding-right: 2rem;
+    }
+
+    .stylists--reverse {
+        padding-left: 4rem;
+        padding-right: 4rem;
+        gap: 3rem;
+    }
+
+    .how-booking .section-heading {
+        max-width: 80%;
+    }
 }
 
 /*-- MOBILE --*/
@@ -2922,6 +3060,208 @@ footer {
 
     .room-images img {
         height: 250px;
+    }
+
+    /* -- GALLERY MOBILE -- */
+    .gallery-filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        top: 72px;
+    }
+
+    .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0;
+    }
+
+    .filter-btn {
+        font-size: 1.4rem;
+        padding-right: 1rem;
+    }
+
+    .gallery-grid .gallery-quote-item {
+        padding: 3rem 1.5rem;
+    }
+
+    .gallery-quote-item blockquote {
+        font-size: 1.3rem;
+    }
+
+    /* -- CONTACT MOBILE -- */
+    .the-studio {
+        flex-direction: column;
+    }
+
+    .styled-address {
+        margin-left: 1.5rem;
+    }
+
+    .styled-address h1 {
+        font-size: 3.5rem;
+    }
+
+    .styled-address h3 {
+        font-size: 1.75rem;
+    }
+
+    .location-description {
+        max-width: 100%;
+        padding-right: 1.5rem;
+        margin-left: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .hours-reach-us-elsewhere {
+        flex-direction: column;
+        padding: 3rem 1.5rem;
+        gap: 2.5rem;
+    }
+
+    .contact-column {
+        border-right: none;
+        border-bottom: 0.5px solid rgba(250, 250, 247, 0.2);
+        padding: 0 0 2rem 0;
+    }
+
+    .contact-column:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .send-a-note {
+        flex-direction: column;
+        padding: 2rem 1.5rem 4rem;
+        gap: 2rem;
+    }
+
+    .send-a-note img {
+        height: 300px;
+        position: static;
+        width: 100%;
+    }
+
+    .first-visit {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .visit-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .questions {
+        flex-direction: column;
+        padding: 3rem 1.5rem;
+    }
+
+    .questions-content {
+        min-width: 100%;
+        padding-top: 1.5rem;
+    }
+
+    /* -- SERVICES MOBILE -- */
+    .add-ons {
+        padding: 2rem 1.5rem 4rem;
+    }
+
+    .add-ons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-ons h2 {
+        max-width: 100%;
+    }
+
+    .menu-category {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+    }
+
+    .category-info {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        position: static;
+    }
+
+    .what-to-expect {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .image-section {
+        flex: none;
+        width: 100%;
+        position: static;
+    }
+
+    .image-section img {
+        height: 300px;
+        width: 100%;
+    }
+
+    /* -- STYLISTS MOBILE -- */
+    .how-booking .section-heading {
+        max-width: 100%;
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+
+    .how-booking .section-subtext {
+        max-width: 100%;
+    }
+
+    .stylists {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .stylists img {
+        height: 400px;
+        width: 100%;
+        position: static;
+    }
+
+    .stylists-content {
+        padding-right: 0;
+        padding-bottom: 2rem;
+    }
+
+    .stylists--reverse {
+        flex-direction: column;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        gap: 2rem;
+    }
+
+    .column-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .works-on li {
+        min-width: 0;
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .trained-at li {
+        min-width: 0;
+    }
+
+    .four-images {
+        gap: 0.5rem;
+    }
+
+    .four-images img {
+        width: calc(25% - 0.375rem);
+        height: 100px;
     }
 
 }

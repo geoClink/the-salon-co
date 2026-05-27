@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:ital,wght@0,100..900;1,100..900&family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-     <script src="script.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:ital,wght@0,100..900;1,100..900&family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-     <header>
-        <a href="index.html"><div class="mark">The Salon<span class="amp">&amp;</span>Co.</div></a>
+    <header>
+        <a href="index.html">
+            <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
+        </a>
         <nav>
             <a href="about.html">About</a>
             <a href="stylists.html">Stylists</a>
@@ -28,19 +32,93 @@
     </header>
     <main>
         <section class="hero page-hero">
-            <p>HOME  <span>/</span>  GALLERY</p>
+            <p>HOME <span>/</span> GALLERY</p>
             <p class="section-label"><span class="label-dot">·</span>SELECTED WORK</p>
             <div class="hero-divider">
                 <h2 class="section-heading">
                     Seven years,<br> <em>a few hundred</em> heads.
                 </h2>
                 <div class="page-description">
-                <p class="section-subtext">A small selection of cuts, color, and editorial work. Most of our guests prefer privacy — what’s here is shared with permission.</p>
+                    <p class="section-subtext">A small selection of cuts, color, and editorial work. Most of our guests
+                        prefer privacy — what’s here is shared with permission.</p>
                 </div>
             </div>
 
         </section>
-       
+
+
+        <section class="gallery-section">
+            <div class="gallery-filters">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="cuts">Cuts</button>
+                    <button class="filter-btn" data-filter="color">Color</button>
+                    <button class="filter-btn" data-filter="editorial">Editorial</button>
+                    <button class="filter-btn" data-filter="bridal">Bridal</button>
+                </div>
+                <span class="gallery-count">12 works · Updated weekly</span>
+            </div>
+
+            <div class="gallery-grid">
+
+                <div class="gallery-item" data-category="cuts">
+                    <img src="https://images.pexels.com/photos/3992874/pexels-photo-3992874.jpeg" alt="Cut">
+                </div>
+                <div class="gallery-item" data-category="color">
+                    <img src="https://images.pexels.com/photos/3992855/pexels-photo-3992855.jpeg" alt="Color">
+                </div>
+                <div class="gallery-item" data-category="editorial">
+                    <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg" alt="Editorial">
+                </div>
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg" alt="Bridal">
+                </div>
+
+                <div class="gallery-item gallery-quote-item" data-category="all">
+                    <blockquote>"A haircut is the closest thing most people have to being still for an hour. We try to honor that."</blockquote>
+                    <cite class="gallery-quote-cite">Margaux Hale, Founder</cite>
+                </div>
+
+                <div class="gallery-item" data-category="cuts">
+                    <img src="https://images.pexels.com/photos/3992867/pexels-photo-3992867.jpeg" alt="Cut">
+                </div>
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg" alt="Bridal">
+                </div>
+                <div class="gallery-item" data-category="color">
+                    <img src="https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg" alt="Color">
+                </div>
+                <div class="gallery-item" data-category="editorial">
+                    <img src="https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg" alt="Editorial">
+                </div>
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.pexels.com/photos/1730877/pexels-photo-1730877.jpeg" alt="Bridal">
+                </div>
+                <div class="gallery-item" data-category="cuts">
+                    <img src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg" alt="Cut">
+                </div>
+                <div class="gallery-item" data-category="editorial">
+                    <img src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg" alt="Editorial">
+                </div>
+                <div class="gallery-item" data-category="color">
+                    <img src="https://images.pexels.com/photos/3992876/pexels-photo-3992876.jpeg" alt="Color">
+                </div>
+                <div class="gallery-item" data-category="color">
+                    <img src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg" alt="Color">
+                </div>
+                <div class="gallery-item" data-category="editorial">
+                    <img src="https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg" alt="Editorial">
+                </div>
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg" alt="Bridal">
+                </div>
+                <div class="gallery-item" data-category="cuts">
+                    <img src="https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg" alt="Cut">
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
     <footer>
@@ -98,4 +176,5 @@
     </footer>
 
 </body>
+
 </html>
