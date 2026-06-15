@@ -119,3 +119,56 @@ filterBtns.forEach(btn => {
 });
 
 
+
+// RESERVE
+
+const radioButtons = document.querySelectorAll('input[name="service"]')
+const continueButton = document.querySelector('.booking-continue-btn')
+continueButton.disabled = true;
+
+radioButtons.forEach(radio => {
+    radio.addEventListener('change', () => {
+        continueButton.disabled = false;
+    });
+});
+
+const radioButtonsReserve = document.querySelectorAll('#step-2 input[name="stylist"]')
+const continueButtonReserve = document.querySelector('#step-2 .booking-continue-btn')
+continueButtonReserve.disabled = true;
+
+radioButtonsReserve.forEach(radio => {
+    radio.addEventListener('change', () => {
+        continueButtonReserve.disabled = false;
+    })
+})
+
+function nextStep(stepNumber) {
+    // 1. Hide all booking steps
+    const steps = document.querySelectorAll('.booking-step');
+    steps.forEach(step => {
+        step.style.display = 'none';
+    });
+
+    // 2. Show the requested step
+    const targetStep = document.getElementById('step-' + stepNumber);
+    if (targetStep) {
+        targetStep.style.display = 'block';
+    }
+
+    // 3. Update active state in the progress bar
+    const progressItems = document.querySelectorAll('.step-item');
+    progressItems.forEach((item, index) => {
+        if (index + 1 === stepNumber) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+
+    // 4. Smooth scroll to top of booking flow
+    window.scrollTo({
+        top: document.querySelector('.booking-flow').offsetTop - 100,
+        behavior: 'smooth'
+    });
+}
+
