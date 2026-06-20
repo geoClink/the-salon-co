@@ -3876,6 +3876,16 @@ input[type="radio"]:checked {
     border-color: #888;
 }
 
+.form-group input.input-error {
+    border-color: #b94a3a;
+}
+
+.field-error {
+    font-size: 0.8rem;
+    color: #b94a3a;
+    min-height: 1em;
+}
+
 /* Calendar Date Grid Elements */
 .calendar-day-header {
     font-weight: 700;

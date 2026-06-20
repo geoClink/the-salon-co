@@ -432,7 +432,78 @@ function attachCalendarDayClicks() {
 }
 
 // ==========================================
-// 4. FINAL SUBMISSION HANDLING
+// 4. STEP 4 FORM VALIDATION
+// ==========================================
+
+const depositBtn = document.getElementById('deposit-btn');
+const nameInput = document.getElementById('client-name');
+const emailInput = document.getElementById('client-email');
+const phoneInput = document.getElementById('client-phone');
+
+if (depositBtn && nameInput && emailInput && phoneInput) {
+    const isValidName = val => val.trim().length >= 2;
+    const isValidEmail = val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+    const isValidPhone = val => val.replace(/\D/g, '').length === 10;
+
+    const showError = (input, errorId, message) => {
+        input.classList.add('input-error');
+        document.getElementById(errorId).textContent = message;
+    };
+    const clearError = (input, errorId) => {
+        input.classList.remove('input-error');
+        document.getElementById(errorId).textContent = '';
+    };
+
+    const checkFormValidity = () => {
+        depositBtn.disabled = !(
+            isValidName(nameInput.value) &&
+            isValidEmail(emailInput.value) &&
+            isValidPhone(phoneInput.value)
+        );
+    };
+
+    nameInput.addEventListener('blur', () => {
+        if (nameInput.value.trim() && !isValidName(nameInput.value)) {
+            showError(nameInput, 'name-error', 'Please enter your full name.');
+        } else {
+            clearError(nameInput, 'name-error');
+        }
+        checkFormValidity();
+    });
+    nameInput.addEventListener('input', () => {
+        if (isValidName(nameInput.value)) clearError(nameInput, 'name-error');
+        checkFormValidity();
+    });
+
+    emailInput.addEventListener('blur', () => {
+        if (emailInput.value.trim() && !isValidEmail(emailInput.value)) {
+            showError(emailInput, 'email-error', 'Please enter a valid email address.');
+        } else {
+            clearError(emailInput, 'email-error');
+        }
+        checkFormValidity();
+    });
+    emailInput.addEventListener('input', () => {
+        if (isValidEmail(emailInput.value)) clearError(emailInput, 'email-error');
+        checkFormValidity();
+    });
+
+    phoneInput.addEventListener('blur', () => {
+        if (phoneInput.value.trim() && !isValidPhone(phoneInput.value)) {
+            showError(phoneInput, 'phone-error', 'Please enter a 10-digit phone number.');
+        } else {
+            clearError(phoneInput, 'phone-error');
+        }
+        checkFormValidity();
+    });
+    phoneInput.addEventListener('input', () => {
+        if (isValidPhone(phoneInput.value)) clearError(phoneInput, 'phone-error');
+        checkFormValidity();
+    });
+}
+
+// ==========================================
+// 5. FINAL SUBMISSION HANDLING
 // ==========================================
 
 function submitReservation(event) {
