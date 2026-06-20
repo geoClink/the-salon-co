@@ -524,3 +524,32 @@ function submitReservation(event) {
 
     window.location.href= "index.html"
 }
+
+if (depositBtn) {
+      depositBtn.addEventListener('click', async () => {
+          depositBtn.textContent = 'Redirecting...';
+          depositBtn.disabled = true;
+
+          const serviceId = selectedServiceId;
+          const serviceName = document.querySelector('.summary-service').textContent;
+          const stylist = document.querySelector('.summary-stylist').textContent;
+          const date = document.querySelector('.summary-date').textContent;
+          const time = document.querySelector('.summary-time').textContent;
+          const customerEmail = document.getElementById('client-email').value;
+
+          const response = await fetch('/create-checkout-session', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ serviceId, serviceName, stylist, date, time, customerEmail }),
+          });
+
+          const data = await response.json();
+          if (data.url) {
+              window.location.href = data.url;
+          } else {
+              alert('Something went wrong. Please try again.');
+              depositBtn.textContent = 'RESERVE & PAY DEPOSIT';
+              depositBtn.disabled = false;
+          }
+      });
+  }
