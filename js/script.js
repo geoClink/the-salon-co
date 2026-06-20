@@ -393,6 +393,7 @@ function attachCalendarDayClicks() {
         dayNode.addEventListener('click', () => {
             document.querySelectorAll('.calendar-day-btn').forEach(d => d.classList.remove('selected-date'));
             dayNode.classList.add('selected-date');
+            selectedDateString = dayNode.dataset.date;
 
             const step3ContinueBtn = document.querySelector('#step-3 .booking-continue-btn');
             if (step3ContinueBtn) step3ContinueBtn.disabled = true;
@@ -411,22 +412,29 @@ function attachCalendarDayClicks() {
                 return;
             }
 
-            times.forEach(time => {
-                const slotBtn = document.createElement('div');
-                slotBtn.classList.add('time-slot-btn');
-                slotBtn.textContent = time;
-                
-                slotBtn.addEventListener('click', (e) => {
-                    timeSlotsContainer.querySelectorAll('.time-slot-btn').forEach(s => s.classList.remove('selected'));
-                    e.target.classList.add('selected');
-
-                    selectedTimeSlot = time;
-
-                    if (step3ContinueBtn) step3ContinueBtn.disabled = false;
-                });
-
-                timeSlotsContainer.appendChild(slotBtn);
-            });
+            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`)
+      .then(res => res.json())
+      .then(({ bookedTimes }) => {
+          times.forEach(time => {
+              const slotBtn = document.createElement('div');
+              slotBtn.classList.add('time-slot-btn');
+              slotBtn.textContent = time;
+  
+              if (bookedTimes.includes(time)) {
+                  slotBtn.classList.add('booked');
+                  slotBtn.disabled = true;
+              } else {
+                  slotBtn.addEventListener('click', (e) => {
+                      timeSlotsContainer.querySelectorAll('.time-slot-btn').forEach(s => s.classList.remove('selected'));
+                      e.target.classList.add('selected');
+                      selectedTimeSlot = time;
+                      if (step3ContinueBtn) step3ContinueBtn.disabled = false;
+                  });
+              }
+  
+              timeSlotsContainer.appendChild(slotBtn);
+          });
+      });
         });
     });
 }
@@ -532,15 +540,17 @@ if (depositBtn) {
 
           const serviceId = selectedServiceId;
           const serviceName = document.querySelector('.summary-service').textContent;
-          const stylist = document.querySelector('.summary-stylist').textContent;
-          const date = document.querySelector('.summary-date').textContent;
-          const time = document.querySelector('.summary-time').textContent;
+          const stylist = selectedStylistId;
+          const date = selectedDateString;
+          const time = selectedTimeSlot;
+          const customerName = document.getElementById('client-name').value;
           const customerEmail = document.getElementById('client-email').value;
+          const customerPhone = document.getElementById('client-phone').value;
 
           const response = await fetch('/create-checkout-session', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ serviceId, serviceName, stylist, date, time, customerEmail }),
+              body: JSON.stringify({ serviceId, serviceName, stylist, date, time, customerName, customerEmail, customerPhone }),
           });
 
           const data = await response.json();
