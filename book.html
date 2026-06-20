@@ -33,217 +33,288 @@
 
     <main>
         <section class="hero page-hero">
-            <p>HOME  <span>/</span>  RESERVE</p>
+            <p>HOME <span>/</span> RESERVE</p>
             <p class="section-label"><span class="label-dot">·</span>BOOK YOUR APPOINTMENT</p>
             <div class="hero-divider">
                 <h2 class="section-heading">Reserve your <em>chair.</em>
                 </h2>
                 <div class="page-description">
-                <p class="section-subtext">Four chairs. By appointment only. Choose your service to get started.</p>
+                    <p class="section-subtext">Four chairs. By appointment only. Choose your service to get started.</p>
                 </div>
             </div>
         </section>
 
         <div class="booking-flow-background">
-        <section class="booking-flow">
+            <section class="booking-flow">
 
-           <nav class="booking-progress">
-    <a href="#" class="step-item active"><span class="step-num">I.</span> Service</a>
-    <a href="#" class="step-item"><span class="step-num">II.</span> Stylist</a>
-    <a href="#" class="step-item"><span class="step-num">III.</span> Date & Time</a>
-    <a href="#" class="step-item"><span class="step-num">IV.</span> Confirm</a>
-</nav>
+                <nav class="booking-progress">
+                    <a href="#" class="step-item active"><span class="step-num">I.</span> Service</a>
+                    <a href="#" class="step-item"><span class="step-num">II.</span> Stylist</a>
+                    <a href="#" class="step-item"><span class="step-num">III.</span> Date & Time</a>
+                    <a href="#" class="step-item"><span class="step-num">IV.</span> Confirm</a>
+                </nav>
 
-            <section id="step-1" class="booking-step" style="display: block;">
-                <p class="section-label"><span class="label-dot">·</span>Step I of IV</p>
-            <div class="hero-divider-reserve">
-                <h2 class="section-heading-reserve">What are you <em>here</em> for?
-                </h2>
-                <div class="page-description-reserve">
-                <p class="section-subtext">Choose the service you’d like to book. If you’re between two options — or not sure — pick the closer match. We confirm everything at consultation and can adjust before we begin.</p>
-                </div>
-            </div>
-                
-                <div id="service" class="book-step">
-                    <div class="booking-service-list">
-                        <label class="booking-service-row">
-                            <input type="radio" name="service" value="01">
-                            <div class="booking-index">01</div>
-                            <div class="booking-service-details">
-                                <h3>Signature Cut & <em>Finish</em></h3>
-                            
-                            </div>
-                            <div class="booking-service-meta">
-                                <p class="service-price">$ 145</p> <p class="service-duration">120 min</p>
-                                </div>
-                        </label>
-
-                        <label class="booking-service-row">
-                            <input type="radio" name="service" value="02">
-                            <div class="booking-index">02</div>
-                            <div class="booking-service-details">
-                                <h3>Returning <em>Cut</em></h3>
-                               
-                            </div>
-                            <div class="booking-service-meta">
-                                <p class="service-price">$ 115</p> 
-                                <p class="service-duration">75 min</p></div>
-                        </label>
-                        <label class="booking-service-row">
-                            <input type="radio" name="service" value="03">
-                            <div class="booking-index">03</div>
-                            <div class="booking-service-details">
-                                <h3>Texture & <em>Curl Cut</em></h3>
-                                
-                            </div>
-                            <div class="booking-service-meta">
-                                <p class="service-price">$ 165</p> 
-                                <p class="service-duration">90 min</p></div>
-                        </label>
-                        <label class="booking-service-row">
-                            <input type="radio" name="service" value="04">
-                            <div class="booking-index">04</div>
-                            <div class="booking-service-details">
-                                <h3>Single-process <em>Color</em></h3>
-                                
-                            </div>
-                            <div class="booking-service-meta">
-                                <p class="service-price">from $ 145</p> 
-                                <p class="service-duration">120 min</p></div>
-                        </label>
-                        <label class="booking-service-row">
-                            <input type="radio" name="service" value="05">
-                            <div class="booking-index">05</div>
-                            <div class="booking-service-details">
-                                <h3>Hand-painted <em>Balayage</em></h3>
-                                
-                            </div>
-                            <div class="booking-service-meta">
-                                <p class="service-price">from $ 280</p>
-                                <p class="service-duration">210 min</p>
-                            </div>
-                        </label>
-                        <label class="booking-service-row">
-                            <input type="radio" name="service" value="06">
-                            <div class="booking-index">06</div>
-                            <div class="booking-service-details">
-                                <h3>The Long <em>Ritual</em></h3>
-                               
-                            </div>
-                            <div class="booking-service-meta"> <p class="service-price">$ 320</p>
-                             <p class="service-duration">180 min</p>
-                            </div>
-                        </label>
-                        <div class="booking-nav-buttons">
-                        <span></span><button class="booking-continue-btn" onclick="nextStep(2)">Continue → </button>
+                <section id="step-1" class="booking-step" style="display: block;">
+                    <p class="section-label"><span class="label-dot">·</span>Step I of IV</p>
+                    <div class="hero-divider-reserve">
+                        <h2 class="section-heading-reserve">What are you <em>here</em> for?
+                        </h2>
+                        <div class="page-description-reserve">
+                            <p class="section-subtext">Choose the service you’d like to book. If you’re between two
+                                options — or not sure — pick the closer match. We confirm everything at consultation and
+                                can adjust before we begin.</p>
+                        </div>
                     </div>
-                </div>
-            </section>
 
-            <section id="step-2" class="booking-step" style="display: none;">
-<p class="section-label"><span class="label-dot">·</span>Step II of IV</p>
-            <div class="hero-divider-reserve">
-                <h2 class="section-heading-reserve">Whose <em>hands?</em>
-                </h2>
-                <div class="page-description-reserve">
-                <p class="section-subtext">These stylists offer your service. If you’ve been to the studio before, we recommend staying with the stylist you’ve been seeing. New guests — read each bio and pick whoever you’d like to start with.</p>
-                </div>
-            </div>
-                <div class="stylist-grid">
+                    <div id="service" class="book-step">
+                        <div class="booking-service-list">
+                            <label class="booking-service-row">
+                                <input type="radio" name="service" value="01">
+                                <div class="booking-index">01</div>
+                                <div class="booking-service-details">
+                                    <h3>Signature Cut & <em>Finish</em></h3>
+                                    <p class="service-description-reserve">Two-hour appointment for new guests.
+                                        Consultation, cut, scalp ritual, and finish.</p>
+                                </div>
+                                <div class="booking-service-meta">
+                                    <p class="service-price">$ 145</p>
+                                    <p class="service-duration">120 min</p>
+                                </div>
+                            </label>
+
+                            <label class="booking-service-row">
+                                <input type="radio" name="service" value="02">
+                                <div class="booking-index">02</div>
+                                <div class="booking-service-details">
+                                    <h3>Returning <em>Cut</em></h3>
+                                    <p class="service-description-reserve">For established guests. Cut and finish with
+                                        consultation.</p>
+                                </div>
+                                <div class="booking-service-meta">
+                                    <p class="service-price">$ 115</p>
+                                    <p class="service-duration">75 min</p>
+                                </div>
+                            </label>
+                            <label class="booking-service-row">
+                                <input type="radio" name="service" value="03">
+                                <div class="booking-index">03</div>
+                                <div class="booking-service-details">
+                                    <h3>Texture & <em>Curl Cut</em></h3>
+                                    <p class="service-description-reserve">Dry-cutting service for curl, coil, and
+                                        texture. Performed by Iris.</p>
+                                </div>
+                                <div class="booking-service-meta">
+                                    <p class="service-price">$ 165</p>
+                                    <p class="service-duration">90 min</p>
+                                </div>
+                            </label>
+                            <label class="booking-service-row">
+                                <input type="radio" name="service" value="04">
+                                <div class="booking-index">04</div>
+                                <div class="booking-service-details">
+                                    <h3>Single-process <em>Color</em></h3>
+                                    <p class="service-description-reserve">Roots and refresh with bond-builder. Includes
+                                        gloss and finishing cut.</p>
+                                </div>
+                                <div class="booking-service-meta">
+                                    <p class="service-price">from $ 145</p>
+                                    <p class="service-duration">120 min</p>
+                                </div>
+                            </label>
+                            <label class="booking-service-row">
+                                <input type="radio" name="service" value="05">
+                                <div class="booking-index">05</div>
+                                <div class="booking-service-details">
+                                    <h3>Hand-painted <em>Balayage</em></h3>
+                                    <p class="service-description-reserve">Free-hand lightening for natural dimension.
+                                        Includes toner and finishing cut.</p>
+                                </div>
+                                <div class="booking-service-meta">
+                                    <p class="service-price">from $ 280</p>
+                                    <p class="service-duration">210 min</p>
+                                </div>
+                            </label>
+                            <label class="booking-service-row">
+                                <input type="radio" name="service" value="06">
+                                <div class="booking-index">06</div>
+                                <div class="booking-service-details">
+                                    <h3>The Long <em>Ritual</em></h3>
+                                    <p class="service-description-reserve">A three-hour reset. Steam, scalp massage,
+                                        cut, color refresh, tea service.</p>
+                                </div>
+                                <div class="booking-service-meta">
+                                    <p class="service-price">$ 320</p>
+                                    <p class="service-duration">180 min</p>
+                                </div>
+                            </label>
+                            <div class="booking-nav-buttons">
+                                <span></span><button class="booking-continue-btn" onclick="nextStep(2)">Continue →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="step-2" class="booking-step" style="display: none;">
+                    <p class="section-label"><span class="label-dot">·</span>Step II of IV</p>
+                    <div class="hero-divider-reserve">
+                        <h2 class="section-heading-reserve">Whose <em>hands?</em>
+                        </h2>
+                        <div class="page-description-reserve">
+                            <p class="section-subtext">These stylists offer your service. If you’ve been to the studio
+                                before, we recommend staying with the stylist you’ve been seeing. New guests — read each
+                                bio and pick whoever you’d like to start with.</p>
+                        </div>
+                    </div>
+                    <div class="stylist-grid">
+
+
+                        <label class="stylist-card">
+                            <div class="stylist-img-wrap-reserve">
+                                <input type="radio" name="stylist" value="marguax">
+                                <img src="https://images.pexels.com/photos/8834021/pexels-photo-8834021.jpeg"
+                                    alt="Margaux Hale">
+                            </div>
+                            <div class="stylist-content">
+                                <p class="stylist-section-label">Founder · Senior Stylist</p>
+                                <h3>Margaux <em>Hale</em></h3>
+                                <p class="stylist-description">Considered cuts, fringe work, and the studio’s signature
+                                    Long Ritual.</p>
+                                <p class="availability">Does not offer this service</p>
+                            </div>
+                        </label>
+
+                        <label class="stylist-card">
+                            <div class="stylist-img-wrap-reserve">
+                                <input type="radio" name="stylist" value="théo">
+                                <img src="https://images.pexels.com/photos/35225425/pexels-photo-35225425.jpeg"
+                                    alt="Théo Marchand">
+                            </div>
+                            <div class="stylist-content">
+                                <p class="stylist-section-label">Senior Colorist</p>
+                                <h3>Théo <em>Marchand</em></h3>
+                                <p class="stylist-description">Hand-painted color, single-process, and patient
+                                    color-correction work.</p>
+                                <p class="availability">Waitlist · 8 weeks out</p>
+                            </div>
+                        </label>
+
+                        <label class="stylist-card">
+                            <div class="stylist-img-wrap-reserve">
+                                <input type="radio" name="stylist" value="iris">
+                                <img src="https://images.pexels.com/photos/15957632/pexels-photo-15957632.jpeg"
+                                    alt="Iris Okafor">
+                            </div>
+                            <div class="stylist-content">
+                                <p class="stylist-section-label">Stylist · Texture</p>
+                                <h3>Iris <em>Okafor</em></h3>
+                                <p class="stylist-description">Dry-cutting specialist for curl, coil, and texture.
+                                    Tokyo-trained.</p>
+                                <p class="availability">Does not offer this service</p>
+                            </div>
+                        </label>
+
+                        <label class="stylist-card">
+                            <div class="stylist-img-wrap-reserve">
+                                <input type="radio" name="stylist" value="sana">
+                                <img src="https://images.pexels.com/photos/3993455/pexels-photo-3993455.jpeg"
+                                    alt="Sana Lindqvist">
+                            </div>
+                            <div class="stylist-content">
+                                <p class="stylist-section-label">Apprentice · Year 2</p>
+                                <h3>Sana <em>Lindqvist</em></h3>
+                                <p class="stylist-description">Supervised cuts at the apprentice rate. Wednesdays &
+                                    Saturday mornings.</p>
+                                <p class="availability">Apprentice rate · Walk-ins welcome</p>
+                            </div>
+                        </label>
+
+                    </div>
+                    <div class="booking-nav-buttons">
+                        <button class="booking-back-btn" onclick="nextStep(1)">← Back</button>
+                        <button class="booking-continue-btn" onclick="nextStep(3)">Continue → </button>
+                    </div>
+                </section>
+
+                <section id="step-3" class="booking-step" style="display: none;">
+
+                    <p class="section-label"><span class="label-dot">·</span>Step III of IV</p>
+                    <div class="hero-divider-reserve">
+                        <h2 class="section-heading-reserve">When <em>suits?</em>
+                        </h2>
+                        <div class="page-description-reserve">
+                            <p class="section-subtext">Real-time availability for <em>Margaux Hale.</em> Studio is
+                                closed Sundays and Mondays. Choose a date to see open times.</p>
+
+                        </div>
+                    </div>
+                    <div class="calendar-time-layout">
+
+                    <div id="reserve-calendar" class="calendar-header">
+                        <div class="calendar-header-top">
+                            <div class="calendar-date-label">
+                            <span class="calendar-month">May </span><span class="calendar-year">2026</span>
+                            </div>
+                            <div class="calendar-buttons">
+                                <button class="prev-button">← Prev</button>
+                                <button class="next-button">Next →</button>
+                            </div>
+                        </div>
+                        <div id="calendar-grid" class="reserve-calendar">
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                        </div>
+
+                        <div class="time-slots">
+                        </div>
+                    </div>
+
+                    </div>
+                    <p class="pick-date-text">Pick a date from above, and we’ll show the times Margaux has open.</p>
+                    <div class="booking-nav-buttons">
+                        <button class="booking-back-btn" onclick="nextStep(2)">← Back</button>
+                        <button class="booking-continue-btn" onclick="nextStep(4)">Continue → </button>
+                    </div>
+                </section>
+
+                <section id="step-4" class="booking-step" style="display: none;">
+                    <p class="section-label"><span class="label-dot">·</span>Step IV of IV</p>
+                    <div class="hero-divider-reserve">
+                        <h2 class="section-heading-reserve">Almost <em>there.</em>
+                        </h2>
+                        <div class="page-description-reserve">
+                            <p class="section-subtext">Final details. A 25% deposit holds the appointment; the remainder
+                                is charged after service. You can change or cancel up to 48 hours before.</p>
+                        </div>
+                    </div>
+
+                    <form class="booking-user-details-form">
+                        <div class="form-group">
+                            <label for="client-name">Full Name</label>
+                            <input type="text" id="client-name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="client-email">Email Address</label>
+                            <input type="email" id="client-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client-phone">Phone Number</label>
+                            <input type="tel" id="client-phone" name="phone" required>
+                        </div>
+                    </form>
                     
-
-                    <label class="stylist-card">
-                        <div class="stylist-img-wrap-reserve">
-                            <input type="radio" name="stylist" value="marguax">
-                            <img src="https://images.pexels.com/photos/8834021/pexels-photo-8834021.jpeg" alt="Margaux Hale">
-                        </div>
-                        <div class="stylist-content">
-                            <p class="stylist-section-label">Founder · Senior Stylist</p>
-                            <h3>Margaux <em>Hale</em></h3>
-                            <p class="stylist-description">Considered cuts, fringe work, and the studio’s signature Long Ritual.</p>
-                            <p class="availability">Does not offer this service</p>
-                        </div>
-                    </label>
-
-                    <label class="stylist-card">
-                        <div class="stylist-img-wrap-reserve">
-                            <input type ="radio" name="stylist" value="théo">
-                            <img src="https://images.pexels.com/photos/35225425/pexels-photo-35225425.jpeg" alt="Théo Marchand">
-                        </div>
-                        <div class="stylist-content">
-                            <p class="stylist-section-label">Senior Colorist</p>
-                            <h3>Théo <em>Marchand</em></h3>
-                            <p class="stylist-description">Hand-painted color, single-process, and patient color-correction work.</p>
-                            <p class="availability">Waitlist · 8 weeks out</p>
-                        </div>
-                    </label>
-
-                    <label class="stylist-card">
-                        <input type ="radio" name="stylist" value="iris">
-                        <div class="stylist-img-wrap-reserve">
-                            <img src="https://images.pexels.com/photos/15957632/pexels-photo-15957632.jpeg" alt="Iris Okafor">
-                        </div>
-                        <div class="stylist-content">
-                            <p class="stylist-section-label">Stylist · Texture</p>
-                            <h3>Iris <em>Okafor</em></h3>
-                            <p class="stylist-description">Dry-cutting specialist for curl, coil, and texture. Tokyo-trained.</p>
-                            <p class="availability">Does not offer this service</p>
-                        </div>
-                    </label>
-
-                    <label class="stylist-card">
-                        <input type ="radio" name="stylist" value="sana">
-                        <div class="stylist-img-wrap-reserve">
-                            <img src="https://images.pexels.com/photos/3993455/pexels-photo-3993455.jpeg" alt="Sana Lindqvist">
-                        </div>
-                        <div class="stylist-content">
-                            <p class="stylist-section-label">Apprentice · Year 2</p>
-                            <h3>Sana <em>Lindqvist</em></h3>
-                            <p class="stylist-description">Supervised cuts at the apprentice rate. Wednesdays & Saturday mornings.</p>
-                            <p class="availability">Apprentice rate · Walk-ins welcome</p>
-                        </div>
-                    </label>
-
-                </div>
-                <div class="booking-nav-buttons">
-                <button class="booking-back-btn" onclick="nextStep(1)">← Back</button>
-                <button class="booking-continue-btn" onclick="nextStep(3)">Continue → </button>
-                </div>
+                    <div class="booking-nav-buttons">
+                        <button class="booking-back-btn" onclick="nextStep(3)">← Back</button>
+                        <button class="booking-continue-btn" onclick="nextStep(5)">RESERVE & PAY DEPOSIT</button>
+                    </div>
+                </section>
             </section>
-
-            <section id="step-3" class="booking-step" style="display: none;">
-                
-                <p class="section-label"><span class="label-dot">·</span>Step III of IV</p>
-            <div class="hero-divider-reserve">
-                <h2 class="section-heading-reserve">When <em>suits?</em>
-                </h2>
-                <div class="page-description">
-                <p class="section-subtext">Real-time availability for <em>Margaux Hale.</em> Studio is closed Sundays and Mondays. Choose a date to see open times.</p>
-                </div>
-            </div>
-            <p class="pick-date-text">Pick a date on the left, and we’ll show the times Margaux has open.</p>
-    <div class="booking-nav-buttons">
-        <button class="booking-back-btn" onclick="nextStep(2)">← Back</button>
-        <button class="booking-continue-btn" onclick="nextStep(4)">Continue → </button>
-    </div>
-</section>
-
-            <section id="step-4" class="booking-step" style="display: none;">
-                <p class="section-label"><span class="label-dot">·</span>Step IV of IV</p>
-            <div class="hero-divider-reserve">
-                <h2 class="section-heading-reserve">Almost <em>there.</em>
-                </h2>
-                <div class="page-description">
-                <p class="section-subtext">Final details. A 25% deposit holds the appointment; the remainder is charged after service. You can change or cancel up to 48 hours before.</p>
-                </div>
-            </div>
-                <div class="booking-nav-buttons">
-                <button class="booking-back-btn" onclick="nextStep(3)">← Back</button>
-                <button class="booking-continue-btn" onclick="nextStep(5)">RESERVE & PAY DEPOSIT</button>
-                </div>
-            </section>
-        </section>
-    </div>
+        </div>
     </main>
 
     <footer>
