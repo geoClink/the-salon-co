@@ -153,6 +153,8 @@ const stylistAvailability = {
 let currentCalendarDate = new Date();
 let selectedServiceId = null;
 let selectedStylistId = null;
+let selectedDateString = null;
+let selectedTimeSlot = null;
 
 // Step 1: Service Selection
 const serviceRadioButtons = document.querySelectorAll('input[name="service"]');
@@ -242,6 +244,12 @@ function nextStep(stepNumber) {
         // Initialize the calendar for the current month when stepping into Date & Time
         populateCalendar(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth());
         
+        // Ensure continue button starts disabled on Step 3 until date/time are picked
+        const step3ContinueBtn = document.querySelector('#step-3 .booking-continue-btn');
+        if (step3ContinueBtn) step3ContinueBtn.disabled = true;
+        selectedDateString = null;
+        selectedTimeSlot = null;
+
         // Update instruction text dynamically showing the chosen stylist's name
         const stylistSubtitle = document.querySelector('#step-3 .section-subtext');
         const selectedStylistLabel = document.querySelector(`input[name="stylist"]:checked + .stylist-img-wrap-reserve ~ .stylist-content h3, input[name="stylist"]:checked ~ .stylist-content h3`);
@@ -250,6 +258,30 @@ function nextStep(stepNumber) {
             // Strips out HTML tags from elements like <em>Hale</em>
             const cleanName = selectedStylistLabel.textContent.replace(/\s+/g, ' ').trim();
             stylistSubtitle.innerHTML = `Real-time availability for <em>${cleanName}</em>. Studio is closed Sundays and Mondays. Choose a date to see open times.`;
+        }
+    }
+
+    if (stepNumber === 4){
+        const selectedServiceLabel = document.querySelector('input[name="service"]:checked ~ .booking-service-details h3');
+        const selectedStylistLabel = document.querySelector('input[name="stylist"]:checked ~ .stylist-content h3');
+        const selectedDateBtn = document.querySelector('.calander-day-btn.selected-date');
+
+        const summaryService = document.querySelector('.summary-service');
+        const summaryStylist = document.querySelector('.summary-stylist');
+        const summaryDate = document.querySelector('.summary-date');
+        const summaryTime = document.querySelector('.summary-time');
+
+        if (summaryService) {
+            summaryService.textContent = selectedServiceLabel ? selectedServiceLabel.textContent.trim() : 'Not Selected';
+        } 
+        if (summaryStylist) {
+            summaryStylist.textContent = selectedStylistLabel ? selectedStylistLabel.textContent.replace(/\s+/g, ' ').trim() : 'Not selected';
+        }
+        if (summaryDate) {
+            summaryDate.textContent = selectedDateBtn ? selectedDateBtn.dataset.date : 'Not selected';
+        }
+        if (summaryTime) {
+            summaryTime.textContent = selectedTimeSlot || 'Not selected';
         }
     }
 
@@ -362,6 +394,10 @@ function attachCalendarDayClicks() {
             document.querySelectorAll('.calendar-day-btn').forEach(d => d.classList.remove('selected-date'));
             dayNode.classList.add('selected-date');
 
+            const step3ContinueBtn = document.querySelector('#step-3 .booking-continue-btn');
+            if (step3ContinueBtn) step3ContinueBtn.disabled = true;
+            selectedTimeSlot = null;
+
             const timeSlotsContainer = document.querySelector('.time-slots');
             if (!timeSlotsContainer) return;
             timeSlotsContainer.innerHTML = ''; 
@@ -383,10 +419,37 @@ function attachCalendarDayClicks() {
                 slotBtn.addEventListener('click', (e) => {
                     timeSlotsContainer.querySelectorAll('.time-slot-btn').forEach(s => s.classList.remove('selected'));
                     e.target.classList.add('selected');
+
+                    selectedTimeSlot = time;
+
+                    if (step3ContinueBtn) step3ContinueBtn.disabled = false;
                 });
 
                 timeSlotsContainer.appendChild(slotBtn);
             });
         });
     });
+}
+
+// ==========================================
+// 4. FINAL SUBMISSION HANDLING
+// ==========================================
+
+function submitReservation(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('client-name').value;
+    const phone = document.getElementById('client-phone').value;
+    const email = document.getElementById('client-email').value;
+
+    const service = document.querySelector('.summary-service').textContent;
+    const stylist = document.querySelector('.summary-stylist').textContent;
+    const date = document.querySelector('.summary-date').textContent;
+    const time = document.querySelector('.summary-time').textContent;
+
+    console.log("Submitting Reservation:", { name, phone, email, service, stylist, date, time });
+
+    alert(`Thank you, ${name}! Your request for a ${service} with ${stylist} on ${date} at ${time} has been submitted successfully.`);
+
+    window.location.href= "index.html"
 }
