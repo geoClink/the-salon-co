@@ -61,7 +61,7 @@ router.post('/create-checkout-session', async (req, res) => {
             mode: 'payment',
             customer_email: customerEmail,
             success_url: `${origin}/success.html?service=${encodeURIComponent(service.name)}&stylist=${encodeURIComponent(sanitize(req.body.stylist))}&date=${encodeURIComponent(sanitize(req.body.date))}&time=${encodeURIComponent(sanitize(req.body.time))}`,
-            cancel_url: `${origin}/book.html`,
+            cancel_url: `${origin}/reserve.html`,
             metadata: {
                 tenant_id: req.tenant.id,
                 serviceId: sanitize(serviceId),
