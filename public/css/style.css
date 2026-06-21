@@ -2802,24 +2802,31 @@ quote-footer {
 
     nav.nav-open a {
         color: var(--color-white) !important;
+        text-align: left;
+        font-size: 1rem;
+        padding: 0.75rem 0;
+        width: 100%;
+        border-bottom: 0.5px solid rgba(255,255,255,0.1);
     }
 
     header nav {
         position: fixed;
         top: 0;
         right: 0;
-        width: 75%;
+        width: 88%;
         height: 100vh;
         background-color: var(--color-primary);
         flex-direction: column;
+        align-items: flex-start;
         padding-top: 88px;
-        padding-left: 2rem;
+        padding-left: 2.5rem;
         padding-right: 2rem;
         display: flex;
         transform: translateX(100%);
         transition: transform 0.3s ease;
         z-index: 199;
         box-sizing: border-box;
+        gap: 0.5rem;
     }
 
     /*--NAV--*/
@@ -3023,7 +3030,7 @@ quote-footer {
 
     .service-text-content {
         width: 100%;
-
+        padding: 2rem 1.5rem;
     }
 
     .service-text-content>p {
@@ -3062,7 +3069,7 @@ quote-footer {
     }
 
     .page-cta {
-        padding-bottom: 3rem;
+        padding: 3rem 1.5rem;
     }
 
     /*--FOOTER--*/
@@ -3165,19 +3172,24 @@ quote-footer {
     }
 
     .protect-count {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
         padding: 2rem 0;
     }
 
     .principles-intro .section-subtext {
-        padding-right: 9rem;
+        padding-right: 0;
     }
 
     .protect-card {
+        display: block;
         padding: 0;
         border-top: 0.5px solid rgba(250, 250, 247, 0.15);
         padding-top: 1rem;
+    }
+
+    .protect-card h3 {
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
     }
 
     .history {
@@ -3195,9 +3207,14 @@ quote-footer {
     }
 
     .event {
-        grid-template-columns: 5rem 1fr;
-        column-gap: 1.5rem;
-        padding: 2rem 1rem 2rem 1.5rem;
+        grid-template-columns: 4rem 1fr;
+        column-gap: 1rem;
+        padding: 1.5rem 1rem 1.5rem 1.5rem;
+    }
+
+    .event h3 {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+        max-width: 100%;
     }
 
     .event .paragraph {
@@ -3205,8 +3222,19 @@ quote-footer {
         margin-top: 0.5rem;
     }
 
+    .history {
+        padding-bottom: 2rem;
+    }
+
     .inside-the-room {
         padding-top: 2rem;
+    }
+
+    .inside-the-room .room-heading {
+        font-size: clamp(2rem, 8vw, 3rem);
+        max-width: 100%;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
     .room-images {
@@ -3219,6 +3247,16 @@ quote-footer {
     }
 
     /* -- GALLERY MOBILE -- */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem 1.5rem;
+        gap: 0.75rem;
+    }
+
+    .gallery-item img {
+        height: 280px;
+    }
+
     .gallery-filters {
         flex-direction: column;
         align-items: flex-start;
@@ -3348,6 +3386,33 @@ quote-footer {
         flex-direction: column;
         padding: 2rem 1.5rem;
         gap: 2rem;
+    }
+
+    .what-to-expect .section-heading {
+        white-space: normal;
+        max-width: 100%;
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .booking-note .section-heading {
+        max-width: 100%;
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .booking-note .section-subtext {
+        max-width: 100%;
+    }
+
+    .menu-note h2 {
+        font-size: clamp(2rem, 9vw, 3.5rem);
+        line-height: 1.2;
+        letter-spacing: 0;
+    }
+
+    .menu-description {
+        letter-spacing: 0;
+        text-align: left;
+        font-size: 0.9rem;
     }
 
     .image-section {
@@ -3939,7 +4004,8 @@ input[type="radio"]:checked {
     color: var(--color-primary);
 }
 
-.calendar-number.selected-date {
+.calendar-number.selected-date,
+.calendar-number.selected-date:hover {
     background-color: var(--color-primary);
     color: var(--color-white);
 }
@@ -4133,23 +4199,50 @@ input[type="radio"]:checked {
     color: var(--color-accent);
 }
 
+/* SUCCESS PAGE */
+.confirmation-details {
+    padding: 3rem 0;
+    max-width: 480px;
+}
+
+.confirmation-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+}
+
+.confirmation-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+}
+
 /* MOBILE FIXES */
 @media (max-width: 1000px) {
 
     /* HOME PAGE */
     .as-featured {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding: 2rem 1.5rem;
     }
 
     .places {
         flex-wrap: wrap;
-        gap: 0.75rem 1.5rem;
-        justify-content: flex-start;
+        gap: 0.5rem 1.5rem;
+        justify-content: center;
+        padding: 1rem 0 0.5rem;
     }
 
     .places p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .as-featured .section-label {
+        text-align: center;
     }
 
     .come-visit h2 {
@@ -4159,9 +4252,19 @@ input[type="radio"]:checked {
         margin-top: 2rem;
     }
 
-    /* BOOKING FLOW */
+    /* REDUCE HERO PADDING SITEWIDE ON MOBILE */
+    .hero.page-hero {
+        padding: 2rem 1.5rem 2.5rem;
+        min-height: 0;
+        justify-content: flex-start;
+    }
+
+    .section-subtext {
+        text-align: left !important;
+    }
+
     .booking-flow-background {
-        padding: 0 1.5rem;
+        padding: 1.5rem 1.5rem 3rem;
     }
 
     .booking-progress {
@@ -4199,9 +4302,8 @@ input[type="radio"]:checked {
     .booking-service-row {
         display: grid;
         grid-template-columns: 32px 1fr auto;
-        grid-template-rows: auto auto;
         gap: 0.25rem 0.75rem;
-        padding: 1rem 0;
+        padding: 1rem 0.75rem;
         align-items: start;
     }
 
@@ -4240,9 +4342,36 @@ input[type="radio"]:checked {
     }
 
     /* STEP 2 — STYLIST */
-    .stylist-cards-reserve {
-        grid-template-columns: 1fr 1fr;
+    .stylist-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stylist-card {
+        flex-direction: row;
         gap: 1rem;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    .stylist-content {
+        max-width: 100%;
+        flex: 1;
+    }
+
+    .stylist-img-wrap-reserve {
+        flex-shrink: 0;
+        width: 100px;
+    }
+
+    .stylist-img-wrap-reserve img {
+        width: 100px;
+        height: 130px;
+        object-fit: cover;
+    }
+
+    .stylist-section-label {
+        white-space: normal;
+        font-size: 0.7rem;
     }
 
     /* STEP 3 — CALENDAR */

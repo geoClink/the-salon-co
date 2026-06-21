@@ -51,7 +51,7 @@ router.post('/create-checkout-session', async (req, res) => {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                        name: `25% Deposit — ${serviceName}`,
+                        name: `25% Deposit — ${service.name}`,
                         description: `${stylist} · ${date} at ${time}`,
                     },
                     unit_amount: depositAmount,
@@ -60,7 +60,7 @@ router.post('/create-checkout-session', async (req, res) => {
             }],
             mode: 'payment',
             customer_email: customerEmail,
-            success_url: `${origin}/success.html`,
+            success_url: `${origin}/success.html?service=${encodeURIComponent(service.name)}&stylist=${encodeURIComponent(sanitize(req.body.stylist))}&date=${encodeURIComponent(sanitize(req.body.date))}&time=${encodeURIComponent(sanitize(req.body.time))}`,
             cancel_url: `${origin}/book.html`,
             metadata: {
                 tenant_id: req.tenant.id,

@@ -156,6 +156,9 @@ let selectedStylistId = null;
 let selectedDateString = null;
 let selectedTimeSlot = null;
 
+// Pre-select stylist from URL param (?stylist=iris)
+const preselectedStylist = new URLSearchParams(window.location.search).get('stylist');
+
 // Step 1: Service Selection
 const serviceRadioButtons = document.querySelectorAll('input[name="service"]');
 const serviceContinueBtn = document.querySelector('#step-1 .booking-continue-btn');
@@ -238,6 +241,17 @@ function nextStep(stepNumber) {
     });
     
     if (stylistContinueBtn) stylistContinueBtn.disabled = true;
+
+    // Auto-select stylist from URL param if eligible
+    if (preselectedStylist) {
+        const targetRadio = document.querySelector(`input[name="stylist"][value="${preselectedStylist}"]`);
+        if (targetRadio && !targetRadio.disabled) {
+            targetRadio.checked = true;
+            selectedStylistId = preselectedStylist;
+            if (stylistContinueBtn) stylistContinueBtn.disabled = false;
+            targetRadio.closest('.stylist-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
 }
     
     if (stepNumber === 3) {
@@ -263,8 +277,8 @@ function nextStep(stepNumber) {
 
     if (stepNumber === 4){
         const selectedServiceLabel = document.querySelector('input[name="service"]:checked ~ .booking-service-details h3');
-        const selectedStylistLabel = document.querySelector('input[name="stylist"]:checked ~ .stylist-content h3');
-        const selectedDateBtn = document.querySelector('.calander-day-btn.selected-date');
+        const checkedStylist = document.querySelector('input[name="stylist"]:checked');
+        const selectedStylistLabel = checkedStylist ? checkedStylist.closest('.stylist-card').querySelector('.stylist-content h3') : null;
 
         const summaryService = document.querySelector('.summary-service');
         const summaryStylist = document.querySelector('.summary-stylist');
@@ -273,12 +287,12 @@ function nextStep(stepNumber) {
 
         if (summaryService) {
             summaryService.textContent = selectedServiceLabel ? selectedServiceLabel.textContent.trim() : 'Not Selected';
-        } 
+        }
         if (summaryStylist) {
             summaryStylist.textContent = selectedStylistLabel ? selectedStylistLabel.textContent.replace(/\s+/g, ' ').trim() : 'Not selected';
         }
         if (summaryDate) {
-            summaryDate.textContent = selectedDateBtn ? selectedDateBtn.dataset.date : 'Not selected';
+            summaryDate.textContent = selectedDateString || 'Not selected';
         }
         if (summaryTime) {
             summaryTime.textContent = selectedTimeSlot || 'Not selected';

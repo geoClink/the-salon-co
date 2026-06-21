@@ -19,12 +19,28 @@
             <div class="hero-divider">
                 <h2 class="section-heading">You're <em>confirmed.</em></h2>
                 <div class="page-description">
-                    <p class="section-subtext">Your deposit was received. We'll send a confirmation to your email shortly. See you soon.</p>
+                    <p class="section-subtext">Your deposit was received. We'll see you soon.</p>
                     <a href="index.html" class="booking-back-btn">← Back to home</a>
                 </div>
             </div>
         </section>
+        <section class="booking-flow-background">
+            <div class="confirmation-details">
+                <p class="section-label"><span class="label-dot">·</span>Your appointment</p>
+                <div class="confirmation-row"><span class="confirmation-label">Service</span><span id="conf-service">—</span></div>
+                <div class="confirmation-row"><span class="confirmation-label">Stylist</span><span id="conf-stylist">—</span></div>
+                <div class="confirmation-row"><span class="confirmation-label">Date</span><span id="conf-date">—</span></div>
+                <div class="confirmation-row"><span class="confirmation-label">Time</span><span id="conf-time">—</span></div>
+            </div>
+        </section>
     </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('conf-service').textContent = params.get('service') || '—';
+        document.getElementById('conf-stylist').textContent = params.get('stylist') || '—';
+        document.getElementById('conf-date').textContent = params.get('date') || '—';
+        document.getElementById('conf-time').textContent = params.get('time') || '—';
+    </script>
     <footer>
         <div class="footer-mark">&amp;</div>
         <div class="wrap foot">

@@ -51,7 +51,7 @@
                     <button class="filter-btn" data-filter="editorial">Editorial</button>
                     <button class="filter-btn" data-filter="bridal">Bridal</button>
                 </div>
-                <span class="gallery-count">12 works · Updated weekly</span>
+                <span class="gallery-count" id="gallery-count">— works · Updated weekly</span>
             </div>
 
             <div class="gallery-grid">
@@ -169,7 +169,10 @@
             </div>
         </div>
     </footer>
-
+    <script>
+        const count = document.querySelectorAll('.gallery-item').length;
+        document.getElementById('gallery-count').textContent = `${count} works · Updated weekly`;
+    </script>
 </body>
 
 </html>
