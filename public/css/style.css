@@ -2800,8 +2800,8 @@ quote-footer {
         overflow: visible;
     }
 
-    header.scrolled nav.nav-open a {
-        color: var(--color-white);
+    nav.nav-open a {
+        color: var(--color-white) !important;
     }
 
     header nav {
@@ -4197,33 +4197,46 @@ input[type="radio"]:checked {
 
     /* STEP 1 — SERVICE LIST */
     .booking-service-row {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 1.25rem 0;
-    }
-
-    .booking-index {
-        font-size: 0.8rem;
-    }
-
-    .booking-service-details {
-        width: 100%;
-    }
-
-    .booking-service-details h3 {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .booking-service-meta {
-        display: flex;
-        gap: 1.5rem;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 32px 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 0.25rem 0.75rem;
+        padding: 1rem 0;
+        align-items: start;
     }
 
     .booking-service-row input[type="radio"] {
         display: none;
+    }
+
+    .booking-index {
+        font-size: 0.75rem;
+        grid-row: 1;
+        grid-column: 1;
+        padding-top: 0.2rem;
+    }
+
+    .booking-service-details {
+        grid-row: 1 / 3;
+        grid-column: 2;
+    }
+
+    .booking-service-details h3 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .booking-service-details p {
+        font-size: 0.8rem;
+    }
+
+    .booking-service-meta {
+        grid-row: 1;
+        grid-column: 3;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.15rem;
+        text-align: right;
     }
 
     /* STEP 2 — STYLIST */
