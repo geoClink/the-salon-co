@@ -12,12 +12,35 @@ const SERVICES = {
     '06': { name: 'The Long Ritual',        price: 32000 },
 };
 
+function sanitize(str) {
+    if (typeof str !== 'string') return '';
+    return str.replace(/[<>"']/g, '').trim().slice(0, 200);
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone) {
+    return /^\d{10,15}$/.test(phone.replace(/\D/g, ''));
+}
+
 router.post('/create-checkout-session', async (req, res) => {
     try {
-        const { serviceId, serviceName, stylist, date, time, customerName, customerEmail, customerPhone } = req.body;
+        const { serviceId, customerName, customerEmail, customerPhone } = req.body;
+        const stylist = sanitize(req.body.stylist);
+        const date = sanitize(req.body.date);
+        const time = sanitize(req.body.time);
 
         const service = SERVICES[serviceId];
         if (!service) return res.status(400).json({ error: 'Invalid service' });
+
+        if (!customerName || sanitize(customerName).length < 2)
+            return res.status(400).json({ error: 'Invalid name' });
+        if (!isValidEmail(customerEmail))
+            return res.status(400).json({ error: 'Invalid email' });
+        if (!isValidPhone(customerPhone))
+            return res.status(400).json({ error: 'Invalid phone' });
 
         const depositAmount = Math.round(service.price * 0.25);
         const origin = req.protocol + '://' + req.get('host');
@@ -41,14 +64,14 @@ router.post('/create-checkout-session', async (req, res) => {
             cancel_url: `${origin}/book.html`,
             metadata: {
                 tenant_id: req.tenant.id,
-                serviceId,
-                serviceName,
+                serviceId: sanitize(serviceId),
+                serviceName: sanitize(service.name),
                 stylist,
                 date,
                 time,
-                customerName,
-                customerEmail,
-                customerPhone,
+                customerName: sanitize(customerName),
+                customerEmail: sanitize(customerEmail),
+                customerPhone: sanitize(customerPhone),
             },
         });
 

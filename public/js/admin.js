@@ -62,7 +62,28 @@ function todayString() {
     return `${y}-${m}-${d}`;
 }
 
+const SESSION_TIMEOUT = 30 * 60 * 1000;
+let sessionTimer;
+
+function startSessionTimer() {
+    sessionTimer = setTimeout(() => {
+        document.getElementById('admin-dashboard').style.display = 'none';
+        document.getElementById('admin-login').style.display = 'flex';
+        passwordInput.value = '';
+        loginError.textContent = 'Session expired. Please log in again.';
+    }, SESSION_TIMEOUT);
+}
+
+function resetSessionTimer() {
+    clearTimeout(sessionTimer);
+    startSessionTimer();
+}
+
+document.addEventListener('mousemove', resetSessionTimer);
+document.addEventListener('keydown', resetSessionTimer);
+
 async function loadBookings() {
+    startSessionTimer();
     const response = await fetch('/admin/bookings');
     const { bookings } = await response.json();
 
