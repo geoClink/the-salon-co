@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin | The Salon Co.</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+    <div id="admin-login">
+        <div class="admin-login-box">
+            <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
+            <p class="admin-subtitle">Owner Access</p>
+            <div class="form-group">
+                <label for="admin-password">Password</label>
+                <input type="password" id="admin-password" placeholder="Enter password">
+                <span class="field-error" id="login-error"></span>
+            </div>
+            <button id="admin-login-btn" class="booking-continue-btn">Enter →</button>
+        </div>
+    </div>
+
+    <div id="admin-dashboard" style="display: none;">
+        <header>
+            <a href="index.html" style="display: flex; align-items: center; gap: 1rem;">
+                <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
+                <span class="admin-label">/ Admin</span>
+            </a>
+        </header>
+        <main class="admin-main">
+            <h2 class="section-heading">Upcoming <em>bookings.</em></h2>
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-total">—</span>
+                    <span class="stat-label">Total Bookings</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-today">—</span>
+                    <span class="stat-label">Today</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-revenue">—</span>
+                    <span class="stat-label">Deposits Collected</span>
+                </div>
+            </div>
+            <div id="bookings-table-wrap">
+                <p id="bookings-loading">Loading bookings...</p>
+                <table id="bookings-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Stylist</th>
+                            <th>Service</th>
+                            <th>Deposit</th>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-body"></tbody>
+                </table>
+                <p id="bookings-empty" style="display: none;">No bookings yet.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

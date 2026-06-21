@@ -1,0 +1,95 @@
+const express = require('express');
+const router = express.Router();
+const stripe = require('../lib/stripe');
+const supabase = require('../lib/supabase');
+
+const SERVICES = {
+    '01': { name: 'Signature Cut & Finish', price: 14500 },
+    '02': { name: 'Returning Cut',          price: 11500 },
+    '03': { name: 'Texture & Curl Cut',     price: 16500 },
+    '04': { name: 'Single-process Color',   price: 14500 },
+    '05': { name: 'Hand-painted Balayage',  price: 28000 },
+    '06': { name: 'The Long Ritual',        price: 32000 },
+};
+
+router.post('/create-checkout-session', async (req, res) => {
+    try {
+        const { serviceId, serviceName, stylist, date, time, customerName, customerEmail, customerPhone } = req.body;
+
+        const service = SERVICES[serviceId];
+        if (!service) return res.status(400).json({ error: 'Invalid service' });
+
+        const depositAmount = Math.round(service.price * 0.25);
+        const origin = req.protocol + '://' + req.get('host');
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [{
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: `25% Deposit — ${serviceName}`,
+                        description: `${stylist} · ${date} at ${time}`,
+                    },
+                    unit_amount: depositAmount,
+                },
+                quantity: 1,
+            }],
+            mode: 'payment',
+            customer_email: customerEmail,
+            success_url: `${origin}/success.html`,
+            cancel_url: `${origin}/book.html`,
+            metadata: {
+                tenant_id: req.tenant.id,
+                serviceId,
+                serviceName,
+                stylist,
+                date,
+                time,
+                customerName,
+                customerEmail,
+                customerPhone,
+            },
+        });
+
+        res.json({ url: session.url });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.post('/webhook', async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    } catch (err) {
+        return res.status(400).send(`Webhook error: ${err.message}`);
+    }
+
+    if (event.type === 'checkout.session.completed') {
+        const session = event.data.object;
+        const m = session.metadata;
+
+        const { error } = await supabase.from('bookings').insert({
+            tenant_id: m.tenant_id,
+            stylist: m.stylist,
+            date: m.date,
+            time: m.time,
+            service: m.serviceName,
+            customer_name: m.customerName,
+            customer_email: m.customerEmail,
+            customer_phone: m.customerPhone,
+            stripe_session_id: session.id,
+        });
+
+        if (error) console.error('Supabase insert error:', error);
+        else console.log('Booking saved successfully');
+    }
+
+    res.json({ received: true });
+});
+
+module.exports = router;

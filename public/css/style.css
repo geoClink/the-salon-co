@@ -4004,3 +4004,131 @@ input[type="radio"]:checked {
     font-size: 1.1rem;
     font-weight: 300;
 }
+
+/* ADMIN */
+  .admin-body {
+      background: var(--color-secondary);
+      min-height: 100vh;
+      margin: 0;
+  }
+
+  #admin-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+  }
+
+  .admin-login-box {
+      background: var(--color-white);
+      padding: 3rem;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  }
+
+  .admin-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin: 0;
+  }
+
+  .admin-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+  }
+
+  .admin-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+  }
+
+  #bookings-table-wrap {
+      margin-top: 2rem;
+      overflow-x: auto;
+  }
+
+  #bookings-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+  }
+
+  #bookings-table th {
+      text-align: left;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      padding: 0.75rem 1rem;
+      border-bottom: 0.5px solid var(--color-primary);
+  }
+  
+  #bookings-table td {
+      padding: 1rem;
+      border-bottom: 0.5px solid #e0e0e0;
+      color: var(--color-text);
+  }
+
+  #bookings-table tr:hover td {
+      background: var(--color-secondary);
+  }
+
+  #bookings-loading,
+#bookings-empty {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-muted);
+}
+
+.admin-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: var(--color-white);
+    border: 0.5px solid var(--color-primary);
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 160px;
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-primary);
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.today-row td {
+    background: #f0f4f2;
+    font-weight: 500;
+}
+
+.today-row td:first-child::before {
+    content: '· ';
+    color: var(--color-accent);
+}
