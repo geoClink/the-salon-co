@@ -37,7 +37,7 @@ npm install
 
 ### 2. Set up environment variables
 
-Create a `.env` file at the project root:
+Copy `.env.example` to `.env` and fill in your values:
 
 ```
 STRIPE_PUBLISHABLE_KEY=pk_test_...
