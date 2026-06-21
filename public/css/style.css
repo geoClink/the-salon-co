@@ -777,6 +777,12 @@ footer {
     font-family: var(--font-heading);
 }
 
+.service-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+
 .service-price {
     font-size: 1.3rem;
     font-weight: 300;
@@ -2988,7 +2994,7 @@ quote-footer {
 
     .why-us .section-heading {
         max-width: 100%;
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 8vw, 3rem);
     }
 
     .why-us .section-subtext {
@@ -3039,7 +3045,8 @@ quote-footer {
 
     .service-meta {
         flex-direction: column;
-        gap: 0.3rem;
+        gap: 0.5rem;
+        padding-top: 1rem;
     }
 
 
@@ -3126,17 +3133,25 @@ quote-footer {
 
     .second-section-columns {
         flex-direction: column;
+        gap: 0;
     }
 
     .second-section img {
         width: 100%;
-        min-height: 300px;
+        min-height: 0;
+        max-height: 480px;
+        object-fit: cover;
+        object-position: top;
         position: static;
         margin-top: 0;
     }
 
     .about-text-column {
         padding: 2rem 1.5rem;
+    }
+
+    .story-intro::first-letter {
+        font-size: 3.5rem;
     }
 
     .about-text-column h2 {
@@ -3163,7 +3178,7 @@ quote-footer {
     }
 
     .principles-class .hero-divider .section-heading {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 8vw, 3rem);
         max-width: 100%;
     }
 
@@ -3223,11 +3238,11 @@ quote-footer {
     }
 
     .history {
-        padding-bottom: 2rem;
+        padding-bottom: 2.5rem;
     }
 
     .inside-the-room {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
     }
 
     .inside-the-room .room-heading {
@@ -3388,10 +3403,20 @@ quote-footer {
         gap: 2rem;
     }
 
+    .services .section-heading {
+        max-width: 100%;
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
     .what-to-expect .section-heading {
         white-space: normal;
         max-width: 100%;
         font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .booking-note {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     .booking-note .section-heading {
@@ -3429,8 +3454,8 @@ quote-footer {
     /* -- STYLISTS MOBILE -- */
     .how-booking .section-heading {
         max-width: 100%;
-        font-size: 2.5rem;
-        line-height: 3rem;
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.2;
     }
 
     .how-booking .section-subtext {
@@ -4259,12 +4284,24 @@ input[type="radio"]:checked {
         justify-content: flex-start;
     }
 
+    /* GLOBAL HEADING SIZES ON MOBILE */
+    .page-hero .section-heading {
+        font-size: clamp(2rem, 8vw, 3rem);
+        max-width: 100%;
+    }
+
+    .section-heading {
+        font-size: clamp(2rem, 8vw, 3rem);
+        max-width: 100%;
+    }
+
     .section-subtext {
         text-align: left !important;
     }
 
     .booking-flow-background {
-        padding: 1.5rem 1.5rem 3rem;
+        padding: 1.5rem 1.5rem 2rem;
+        min-height: 0;
     }
 
     .booking-progress {
