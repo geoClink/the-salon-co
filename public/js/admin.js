@@ -33,6 +33,15 @@ passwordInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') loginBtn.click();
 });
 
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 function formatDate(dateStr) {
     const [year, month, day] = dateStr.split('-');
     const date = new Date(year, month - 1, day);
@@ -80,14 +89,14 @@ async function loadBookings() {
         const row = document.createElement('tr');
         if (b.date === today) row.classList.add('today-row');
         row.innerHTML = `
-            <td>${formatDate(b.date)}</td>
-            <td>${b.time}</td>
-            <td>${b.stylist}</td>
-            <td>${b.service}</td>
-            <td>${formatDeposit(b.service)}</td>
-            <td>${b.customer_name}</td>
-            <td>${b.customer_email}</td>
-            <td>${b.customer_phone}</td>
+            <td>${escapeHtml(formatDate(b.date))}</td>
+            <td>${escapeHtml(b.time)}</td>
+            <td>${escapeHtml(b.stylist)}</td>
+            <td>${escapeHtml(b.service)}</td>
+            <td>${escapeHtml(formatDeposit(b.service))}</td>
+            <td>${escapeHtml(b.customer_name)}</td>
+            <td>${escapeHtml(b.customer_email)}</td>
+            <td>${escapeHtml(b.customer_phone)}</td>
         `;
         tbody.appendChild(row);
     });
