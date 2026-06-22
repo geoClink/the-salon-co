@@ -402,6 +402,8 @@ if (nextBtn) {
 }
 
 // Click event for generating dynamic timeslots per stylist
+let activeSlotFetch = null;
+
 function attachCalendarDayClicks() {
     document.querySelectorAll('.calendar-day-btn').forEach(dayNode => {
         dayNode.addEventListener('click', () => {
@@ -415,9 +417,8 @@ function attachCalendarDayClicks() {
 
             const timeSlotsContainer = document.querySelector('.time-slots');
             if (!timeSlotsContainer) return;
-            timeSlotsContainer.innerHTML = ''; 
+            timeSlotsContainer.innerHTML = '';
 
-            // Pull times array from object property
             const stylistData = stylistAvailability[selectedStylistId];
             const times = (stylistData && stylistData.isAvailable) ? stylistData.times : [];
 
@@ -426,29 +427,35 @@ function attachCalendarDayClicks() {
                 return;
             }
 
-            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`)
-      .then(res => res.json())
-      .then(({ bookedTimes }) => {
-          times.forEach(time => {
-              const slotBtn = document.createElement('div');
-              slotBtn.classList.add('time-slot-btn');
-              slotBtn.textContent = time;
-  
-              if (bookedTimes.includes(time)) {
-                  slotBtn.classList.add('booked');
-                  slotBtn.disabled = true;
-              } else {
-                  slotBtn.addEventListener('click', (e) => {
-                      timeSlotsContainer.querySelectorAll('.time-slot-btn').forEach(s => s.classList.remove('selected'));
-                      e.target.classList.add('selected');
-                      selectedTimeSlot = time;
-                      if (step3ContinueBtn) step3ContinueBtn.disabled = false;
-                  });
-              }
-  
-              timeSlotsContainer.appendChild(slotBtn);
-          });
-      });
+            if (activeSlotFetch) activeSlotFetch.abort();
+            activeSlotFetch = new AbortController();
+
+            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`, { signal: activeSlotFetch.signal })
+                .then(res => res.json())
+                .then(({ bookedTimes }) => {
+                    times.forEach(time => {
+                        const slotBtn = document.createElement('div');
+                        slotBtn.classList.add('time-slot-btn');
+                        slotBtn.textContent = time;
+
+                        if (bookedTimes.includes(time)) {
+                            slotBtn.classList.add('booked');
+                            slotBtn.disabled = true;
+                        } else {
+                            slotBtn.addEventListener('click', (e) => {
+                                timeSlotsContainer.querySelectorAll('.time-slot-btn').forEach(s => s.classList.remove('selected'));
+                                e.target.classList.add('selected');
+                                selectedTimeSlot = time;
+                                if (step3ContinueBtn) step3ContinueBtn.disabled = false;
+                            });
+                        }
+
+                        timeSlotsContainer.appendChild(slotBtn);
+                    });
+                })
+                .catch(err => {
+                    if (err.name !== 'AbortError') console.error('Failed to load time slots:', err);
+                });
         });
     });
 }

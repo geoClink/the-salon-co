@@ -1035,6 +1035,7 @@ quote-footer {
     display: flex;
     gap: 4rem;
     align-items: stretch;
+    padding-top: 4rem;
 }
 
 .second-section img {
@@ -1043,11 +1044,9 @@ quote-footer {
     min-height: 500px;
     object-fit: cover;
     padding: 0;
-
     align-self: flex-start;
-    margin-top: 4rem;
     position: sticky;
-    top: 0;
+    top: 6rem;
 }
 
 .page-hero .section-label {
