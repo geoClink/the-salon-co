@@ -365,6 +365,26 @@ function populateCalendar(year, month) {
 
     // Attach click triggers on selectable calendar days
     attachCalendarDayClicks();
+
+    // Grey out fully-booked dates if a stylist is selected
+    if (selectedStylistId) {
+        const stylistData = stylistAvailability[selectedStylistId];
+        const totalSlots = stylistData ? stylistData.times.length : 0;
+
+        fetch(`/booked-dates?stylist=${selectedStylistId}&year=${year}&month=${month + 1}`)
+            .then(res => res.json())
+            .then(({ bookedByDate }) => {
+                document.querySelectorAll('.calendar-day-btn').forEach(btn => {
+                    const date = btn.dataset.date;
+                    const bookedCount = bookedByDate[date] ? bookedByDate[date].length : 0;
+                    if (totalSlots > 0 && bookedCount >= totalSlots) {
+                        btn.classList.add('disabled');
+                        btn.querySelector('input').disabled = true;
+                    }
+                });
+            })
+            .catch(() => {});
+    }
 }
 
 // Calendar Month Button Pagination Listeners
@@ -388,6 +408,8 @@ if (nextBtn) {
 }
 
 // Click event for generating dynamic timeslots per stylist
+let activeSlotFetch = null;
+
 function attachCalendarDayClicks() {
     document.querySelectorAll('.calendar-day-btn').forEach(dayNode => {
         dayNode.addEventListener('click', () => {
@@ -403,7 +425,6 @@ function attachCalendarDayClicks() {
             if (!timeSlotsContainer) return;
             timeSlotsContainer.innerHTML = '';
 
-            // Pull times array from object property
             const stylistData = stylistAvailability[selectedStylistId];
             const times = (stylistData && stylistData.isAvailable) ? stylistData.times : [];
 
@@ -412,7 +433,10 @@ function attachCalendarDayClicks() {
                 return;
             }
 
-            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`)
+            if (activeSlotFetch) activeSlotFetch.abort();
+            activeSlotFetch = new AbortController();
+
+            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`, { signal: activeSlotFetch.signal })
                 .then(res => res.json())
                 .then(({ bookedTimes }) => {
                     times.forEach(time => {
@@ -434,6 +458,9 @@ function attachCalendarDayClicks() {
 
                         timeSlotsContainer.appendChild(slotBtn);
                     });
+                })
+                .catch(err => {
+                    if (err.name !== 'AbortError') console.error('Failed to load time slots:', err);
                 });
         });
     });
