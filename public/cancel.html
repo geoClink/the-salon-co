@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cancel Appointment | The Salon Co.</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="The Salon Co." />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
+        </a>
+    </header>
+    <main>
+        <section class="hero page-hero">
+            <p>HOME <span>/</span> CANCEL APPOINTMENT</p>
+            <div class="hero-divider">
+                <h2 class="section-heading" id="cancel-heading">Cancel your <em>appointment.</em></h2>
+                <div class="page-description">
+                    <p class="section-subtext" id="cancel-subtext">Please confirm you'd like to cancel. This cannot be undone.</p>
+                </div>
+            </div>
+        </section>
+        <section class="booking-flow-background">
+            <div class="confirmation-details" id="cancel-details">
+                <p class="section-label"><span class="label-dot">·</span>Your appointment</p>
+                <div class="confirmation-row"><span class="confirmation-label">Date</span><span id="cancel-date">—</span></div>
+                <div class="confirmation-row"><span class="confirmation-label">Time</span><span id="cancel-time">—</span></div>
+                <div class="confirmation-row"><span class="confirmation-label">Service</span><span id="cancel-service">—</span></div>
+                <div class="booking-nav-buttons" id="cancel-actions">
+                    <a href="index.html" class="booking-back-btn">← Keep my appointment</a>
+                    <button id="confirm-cancel-btn" class="booking-continue-btn">Confirm cancellation →</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-mark">&amp;</div>
+        <div class="wrap foot">
+            <div class="foot-grid">
+                <div>
+                    <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
+                    <p>A four-chair studio for considered hair. By appointment, by referral, by the hour.</p>
+                    <span class="by-appt">By appointment only.</span>
+                </div>
+                <div>
+                    <h4>Visit</h4>
+                    <p>123 Main Street<br>Anytown, MI 00000</p>
+                    <p>Tue — Sat / 09 — 18<br>Sun &amp; Mon / closed</p>
+                </div>
+                <div>
+                    <h4>Studio</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="stylists.html">Stylists</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Stay in touch</h4>
+                    <ul>
+                        <li><a href="mailto:info@thesalonco.com">info@thesalonco.com</a></li>
+                        <li><a href="tel:5555555555">(555) 555-5555</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal">
+                <span>© 2026 The Salon Co.</span>
+                <span><a href="privacy.html">Privacy Policy</a></span>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const token = new URLSearchParams(window.location.search).get('token');
+
+        if (!token) {
+            document.getElementById('cancel-heading').textContent = 'Invalid link.';
+            document.getElementById('cancel-subtext').textContent = 'This cancellation link is missing or expired.';
+            document.getElementById('cancel-details').style.display = 'none';
+        } else {
+            document.getElementById('confirm-cancel-btn').addEventListener('click', async () => {
+                const btn = document.getElementById('confirm-cancel-btn');
+                btn.disabled = true;
+                btn.textContent = 'Cancelling...';
+
+                const res = await fetch(`/bookings/cancel?token=${encodeURIComponent(token)}`, { method: 'PATCH' });
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    document.getElementById('cancel-heading').innerHTML = 'Appointment <em>cancelled.</em>';
+                    document.getElementById('cancel-subtext').textContent = 'Your appointment has been cancelled. Your deposit refund will be processed within 5–10 business days.';
+                    document.getElementById('cancel-actions').style.display = 'none';
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = 'Confirm cancellation →';
+                    document.getElementById('cancel-subtext').textContent = data.error || 'Something went wrong. Please call us directly.';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

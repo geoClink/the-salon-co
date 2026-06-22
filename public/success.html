@@ -37,15 +37,31 @@
                 <div class="confirmation-row"><span class="confirmation-label">Stylist</span><span id="conf-stylist">—</span></div>
                 <div class="confirmation-row"><span class="confirmation-label">Date</span><span id="conf-date">—</span></div>
                 <div class="confirmation-row"><span class="confirmation-label">Time</span><span id="conf-time">—</span></div>
+                <a id="conf-cancel" href="#" style="display:none;" class="booking-back-btn">Cancel this appointment →</a>
             </div>
         </section>
     </main>
     <script>
         const params = new URLSearchParams(window.location.search);
-        document.getElementById('conf-service').textContent = params.get('service') || '—';
-        document.getElementById('conf-stylist').textContent = params.get('stylist') || '—';
-        document.getElementById('conf-date').textContent = params.get('date') || '—';
-        document.getElementById('conf-time').textContent = params.get('time') || '—';
+        const sessionId = params.get('session_id');
+
+        if (sessionId) {
+            fetch(`/booking-confirmed?session_id=${encodeURIComponent(sessionId)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) return;
+                    document.getElementById('conf-service').textContent = data.service || '—';
+                    document.getElementById('conf-stylist').textContent = data.stylist || '—';
+                    document.getElementById('conf-date').textContent = data.date || '—';
+                    document.getElementById('conf-time').textContent = data.time || '—';
+                    const cancelLink = document.getElementById('conf-cancel');
+                    if (cancelLink && data.cancel_url) {
+                        cancelLink.href = data.cancel_url;
+                        cancelLink.style.display = 'inline';
+                    }
+                })
+                .catch(() => {});
+        }
     </script>
     <footer>
         <div class="footer-mark">&amp;</div>

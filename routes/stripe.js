@@ -3,15 +3,6 @@ const router = express.Router();
 const stripe = require('../lib/stripe');
 const supabase = require('../lib/supabase');
 
-const SERVICES = {
-    '01': { name: 'Signature Cut & Finish', price: 14500 },
-    '02': { name: 'Returning Cut',          price: 11500 },
-    '03': { name: 'Texture & Curl Cut',     price: 16500 },
-    '04': { name: 'Single-process Color',   price: 14500 },
-    '05': { name: 'Hand-painted Balayage',  price: 28000 },
-    '06': { name: 'The Long Ritual',        price: 32000 },
-};
-
 function sanitize(str) {
     if (typeof str !== 'string') return '';
     return str.replace(/[<>"']/g, '').trim().slice(0, 200);
@@ -32,8 +23,13 @@ router.post('/create-checkout-session', async (req, res) => {
         const date = sanitize(req.body.date);
         const time = sanitize(req.body.time);
 
-        const service = SERVICES[serviceId];
-        if (!service) return res.status(400).json({ error: 'Invalid service' });
+        const { data: service, error: serviceError } = await supabase
+            .from('services')
+            .select('name, price')
+            .eq('tenant_id', req.tenant.id)
+            .eq('slug', sanitize(serviceId))
+            .single();
+        if (serviceError || !service) return res.status(400).json({ error: 'Invalid service' });
 
         if (!customerName || sanitize(customerName).length < 2)
             return res.status(400).json({ error: 'Invalid name' });
@@ -60,7 +56,7 @@ router.post('/create-checkout-session', async (req, res) => {
             }],
             mode: 'payment',
             customer_email: customerEmail,
-            success_url: `${origin}/success.html?service=${encodeURIComponent(service.name)}&stylist=${encodeURIComponent(sanitize(req.body.stylist))}&date=${encodeURIComponent(sanitize(req.body.date))}&time=${encodeURIComponent(sanitize(req.body.time))}`,
+            success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${origin}/reserve.html`,
             metadata: {
                 tenant_id: req.tenant.id,
