@@ -144,9 +144,9 @@ const serviceToStylists = {
 // Add an explicit availability flag for each stylist
 const stylistAvailability = {
     'marguax': { times: ['09:00 AM', '11:30 AM', '02:00 PM', '04:30 PM'], isAvailable: true },
-    'théo':    { times: [], isAvailable: false }, // Greyed out due to waitlist
-    'iris':    { times: ['09:30 AM', '11:00 AM', '01:30 PM'], isAvailable: true },
-    'sana':    { times: ['09:00 AM', '10:30 AM', '12:00 PM', '02:00 PM', '04:00 PM'], isAvailable: true }
+    'théo': { times: [], isAvailable: false }, // Greyed out due to waitlist
+    'iris': { times: ['09:30 AM', '11:00 AM', '01:30 PM'], isAvailable: true },
+    'sana': { times: ['09:00 AM', '10:30 AM', '12:00 PM', '02:00 PM', '04:00 PM'], isAvailable: true }
 };
 
 // Global state tracking for the booking flow
@@ -155,9 +155,6 @@ let selectedServiceId = null;
 let selectedStylistId = null;
 let selectedDateString = null;
 let selectedTimeSlot = null;
-
-// Pre-select stylist from URL param (?stylist=iris)
-const preselectedStylist = new URLSearchParams(window.location.search).get('stylist');
 
 // Step 1: Service Selection
 const serviceRadioButtons = document.querySelectorAll('input[name="service"]');
@@ -178,7 +175,7 @@ if (serviceContinueBtn) {
 const stylistContinueBtn = document.querySelector('#step-2 .booking-continue-btn');
 if (stylistContinueBtn) {
     stylistContinueBtn.disabled = true;
-    
+
     // Listen for selection changes on step-2 radio buttons
     document.querySelectorAll('#step-2 input[name="stylist"]').forEach(radio => {
         radio.addEventListener('change', () => {
@@ -204,60 +201,49 @@ function nextStep(stepNumber) {
 
     // 3. Data processing rules based on destination step
     if (stepNumber === 2) {
-    const validStylists = serviceToStylists[selectedServiceId] || [];
+        const validStylists = serviceToStylists[selectedServiceId] || [];
 
-    document.querySelectorAll('.stylist-card').forEach(card => {
-        const radioInput = card.querySelector('input[name="stylist"]');
-        const availabilityText = card.querySelector('.availability');
-        const stylistId = radioInput ? radioInput.value : null;
-        
-        // Check both service compatibility AND global availability
-        const isEligible = validStylists.includes(stylistId) && 
-                           (stylistAvailability[stylistId] ? stylistAvailability[stylistId].isAvailable : false);
-        
-        if (radioInput && isEligible) {
-            card.classList.remove('disabled-card');
-            radioInput.disabled = false;
-            if (availabilityText) {
-                availabilityText.textContent = "Available";
-                availabilityText.style.color = "#222";
-            }
-        } else {
-            card.classList.add('disabled-card');
-            if (radioInput) {
-                radioInput.disabled = true;
-                radioInput.checked = false; 
-            }
-            if (availabilityText) {
-                // Keep the "Waitlist" custom text if they have it, otherwise use fallback
-                if (stylistId === 'théo') {
-                    availabilityText.textContent = "Waitlist · 8 weeks out (Unavailable)";
-                } else {
-                    availabilityText.textContent = "Does not perform this service";
+        document.querySelectorAll('.stylist-card').forEach(card => {
+            const radioInput = card.querySelector('input[name="stylist"]');
+            const availabilityText = card.querySelector('.availability');
+            const stylistId = radioInput ? radioInput.value : null;
+
+            // Check both service compatibility AND global availability
+            const isEligible = validStylists.includes(stylistId) &&
+                (stylistAvailability[stylistId] ? stylistAvailability[stylistId].isAvailable : false);
+
+            if (radioInput && isEligible) {
+                card.classList.remove('disabled-card');
+                radioInput.disabled = false;
+                if (availabilityText) {
+                    availabilityText.textContent = "Available";
+                    availabilityText.style.color = "#222";
                 }
-                availabilityText.style.color = "#999";
+            } else {
+                card.classList.add('disabled-card');
+                if (radioInput) {
+                    radioInput.disabled = true;
+                    radioInput.checked = false;
+                }
+                if (availabilityText) {
+                    // Keep the "Waitlist" custom text if they have it, otherwise use fallback
+                    if (stylistId === 'théo') {
+                        availabilityText.textContent = "Waitlist · 8 weeks out (Unavailable)";
+                    } else {
+                        availabilityText.textContent = "Does not perform this service";
+                    }
+                    availabilityText.style.color = "#999";
+                }
             }
-        }
-    });
-    
-    if (stylistContinueBtn) stylistContinueBtn.disabled = true;
+        });
 
-    // Auto-select stylist from URL param if eligible
-    if (preselectedStylist) {
-        const targetRadio = document.querySelector(`input[name="stylist"][value="${preselectedStylist}"]`);
-        if (targetRadio && !targetRadio.disabled) {
-            targetRadio.checked = true;
-            selectedStylistId = preselectedStylist;
-            if (stylistContinueBtn) stylistContinueBtn.disabled = false;
-            targetRadio.closest('.stylist-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        if (stylistContinueBtn) stylistContinueBtn.disabled = true;
     }
-}
-    
+
     if (stepNumber === 3) {
         // Initialize the calendar for the current month when stepping into Date & Time
         populateCalendar(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth());
-        
+
         // Ensure continue button starts disabled on Step 3 until date/time are picked
         const step3ContinueBtn = document.querySelector('#step-3 .booking-continue-btn');
         if (step3ContinueBtn) step3ContinueBtn.disabled = true;
@@ -267,7 +253,7 @@ function nextStep(stepNumber) {
         // Update instruction text dynamically showing the chosen stylist's name
         const stylistSubtitle = document.querySelector('#step-3 .section-subtext');
         const selectedStylistLabel = document.querySelector(`input[name="stylist"]:checked + .stylist-img-wrap-reserve ~ .stylist-content h3, input[name="stylist"]:checked ~ .stylist-content h3`);
-        
+
         if (stylistSubtitle && selectedStylistLabel) {
             // Strips out HTML tags from elements like <em>Hale</em>
             const cleanName = selectedStylistLabel.textContent.replace(/\s+/g, ' ').trim();
@@ -275,10 +261,10 @@ function nextStep(stepNumber) {
         }
     }
 
-    if (stepNumber === 4){
+    if (stepNumber === 4) {
         const selectedServiceLabel = document.querySelector('input[name="service"]:checked ~ .booking-service-details h3');
-        const checkedStylist = document.querySelector('input[name="stylist"]:checked');
-        const selectedStylistLabel = checkedStylist ? checkedStylist.closest('.stylist-card').querySelector('.stylist-content h3') : null;
+        const selectedStylistLabel = document.querySelector('input[name="stylist"]:checked ~ .stylist-content h3');
+        const selectedDateBtn = document.querySelector('.calander-day-btn.selected-date');
 
         const summaryService = document.querySelector('.summary-service');
         const summaryStylist = document.querySelector('.summary-stylist');
@@ -292,7 +278,7 @@ function nextStep(stepNumber) {
             summaryStylist.textContent = selectedStylistLabel ? selectedStylistLabel.textContent.replace(/\s+/g, ' ').trim() : 'Not selected';
         }
         if (summaryDate) {
-            summaryDate.textContent = selectedDateString || 'Not selected';
+            summaryDate.textContent = selectedDateBtn ? selectedDateBtn.dataset.date : 'Not selected';
         }
         if (summaryTime) {
             summaryTime.textContent = selectedTimeSlot || 'Not selected';
@@ -358,12 +344,12 @@ function populateCalendar(year, month) {
     for (let i = 1; i <= days; i++) {
         const dayDate = new Date(year, month, i);
         const dayIndex = dayDate.getDay();
-        
+
         // Check if day is Sunday (0) or Monday (1) -> Salon closed
         if (dayIndex === 0 || dayIndex === 1) {
             grabAndClear.innerHTML += `<span class="calendar-number disabled">${i}</span>`;
         } else {
-            grabAndClear.innerHTML += `<label class="calendar-number calendar-day-btn" data-date="${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}">
+            grabAndClear.innerHTML += `<label class="calendar-number calendar-day-btn" data-date="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
                 <input type="radio" name="date">${i}
             </label>`;
         }
@@ -373,7 +359,7 @@ function populateCalendar(year, month) {
     const currentMonth = document.querySelector('.calendar-month');
     const currentYear = document.querySelector('.calendar-year');
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
+
     if (currentMonth) currentMonth.textContent = monthNames[month] + ' ';
     if (currentYear) currentYear.textContent = year;
 
@@ -402,8 +388,6 @@ if (nextBtn) {
 }
 
 // Click event for generating dynamic timeslots per stylist
-let activeSlotFetch = null;
-
 function attachCalendarDayClicks() {
     document.querySelectorAll('.calendar-day-btn').forEach(dayNode => {
         dayNode.addEventListener('click', () => {
@@ -419,6 +403,7 @@ function attachCalendarDayClicks() {
             if (!timeSlotsContainer) return;
             timeSlotsContainer.innerHTML = '';
 
+            // Pull times array from object property
             const stylistData = stylistAvailability[selectedStylistId];
             const times = (stylistData && stylistData.isAvailable) ? stylistData.times : [];
 
@@ -427,10 +412,7 @@ function attachCalendarDayClicks() {
                 return;
             }
 
-            if (activeSlotFetch) activeSlotFetch.abort();
-            activeSlotFetch = new AbortController();
-
-            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`, { signal: activeSlotFetch.signal })
+            fetch(`/booked-slots?stylist=${selectedStylistId}&date=${selectedDateString}`)
                 .then(res => res.json())
                 .then(({ bookedTimes }) => {
                     times.forEach(time => {
@@ -452,9 +434,6 @@ function attachCalendarDayClicks() {
 
                         timeSlotsContainer.appendChild(slotBtn);
                     });
-                })
-                .catch(err => {
-                    if (err.name !== 'AbortError') console.error('Failed to load time slots:', err);
                 });
         });
     });
@@ -551,36 +530,36 @@ function submitReservation(event) {
 
     alert(`Thank you, ${name}! Your request for a ${service} with ${stylist} on ${date} at ${time} has been submitted successfully.`);
 
-    window.location.href= "index.html"
+    window.location.href = "index.html"
 }
 
 if (depositBtn) {
-      depositBtn.addEventListener('click', async () => {
-          depositBtn.textContent = 'Redirecting...';
-          depositBtn.disabled = true;
+    depositBtn.addEventListener('click', async () => {
+        depositBtn.textContent = 'Redirecting...';
+        depositBtn.disabled = true;
 
-          const serviceId = selectedServiceId;
-          const serviceName = document.querySelector('.summary-service').textContent;
-          const stylist = selectedStylistId;
-          const date = selectedDateString;
-          const time = selectedTimeSlot;
-          const customerName = document.getElementById('client-name').value;
-          const customerEmail = document.getElementById('client-email').value;
-          const customerPhone = document.getElementById('client-phone').value;
+        const serviceId = selectedServiceId;
+        const serviceName = document.querySelector('.summary-service').textContent;
+        const stylist = selectedStylistId;
+        const date = selectedDateString;
+        const time = selectedTimeSlot;
+        const customerName = document.getElementById('client-name').value;
+        const customerEmail = document.getElementById('client-email').value;
+        const customerPhone = document.getElementById('client-phone').value;
 
-          const response = await fetch('/create-checkout-session', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ serviceId, serviceName, stylist, date, time, customerName, customerEmail, customerPhone }),
-          });
+        const response = await fetch('/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ serviceId, serviceName, stylist, date, time, customerName, customerEmail, customerPhone }),
+        });
 
-          const data = await response.json();
-          if (data.url) {
-              window.location.href = data.url;
-          } else {
-              alert('Something went wrong. Please try again.');
-              depositBtn.textContent = 'RESERVE & PAY DEPOSIT';
-              depositBtn.disabled = false;
-          }
-      });
-  }
+        const data = await response.json();
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            alert('Something went wrong. Please try again.');
+            depositBtn.textContent = 'RESERVE & PAY DEPOSIT';
+            depositBtn.disabled = false;
+        }
+    });
+}
