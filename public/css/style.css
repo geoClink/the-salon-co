@@ -477,7 +477,7 @@ footer {
     align-self: flex-start;
     margin-top: 4rem;
     position: sticky;
-    top: 0;
+    top: 110px;
 }
 
 .about-columns .section-label {
