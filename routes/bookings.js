@@ -1,6 +1,7 @@
 const express = require('express');
   const router = express.Router();
   const supabase = require('../lib/supabase');
+  const stripe = require('../lib/stripe');
 
   router.get('/booked-slots', async (req, res) => {
       try {
@@ -27,23 +28,40 @@ const express = require('express');
       const { session_id } = req.query;
       if (!session_id) return res.status(400).json({ error: 'session_id required' });
 
-      const { data, error } = await supabase
+      // Try Supabase first — webhook may have already fired
+      const { data } = await supabase
           .from('bookings')
           .select('service, stylist, date, time, customer_name, cancel_token')
           .eq('tenant_id', req.tenant.id)
           .eq('stripe_session_id', session_id)
           .single();
 
-      if (error || !data) return res.status(404).json({ error: 'Booking not found' });
+      if (data) {
+          return res.json({
+              service: data.service,
+              stylist: data.stylist,
+              date: data.date,
+              time: data.time,
+              customer_name: data.customer_name,
+              cancel_url: `/cancel?token=${data.cancel_token}`,
+          });
+      }
 
-      res.json({
-          service: data.service,
-          stylist: data.stylist,
-          date: data.date,
-          time: data.time,
-          customer_name: data.customer_name,
-          cancel_url: `/cancel?token=${data.cancel_token}`,
-      });
+      // Webhook hasn't fired yet — pull details directly from Stripe session metadata
+      try {
+          const session = await stripe.checkout.sessions.retrieve(session_id);
+          const m = session.metadata;
+          if (!m || m.tenant_id !== req.tenant.id) return res.status(404).json({ error: 'Booking not found' });
+          return res.json({
+              service: m.serviceName,
+              stylist: m.stylist,
+              date: m.date,
+              time: m.time,
+              customer_name: m.customerName,
+          });
+      } catch (err) {
+          return res.status(404).json({ error: 'Booking not found' });
+      }
   });
 
   // Cancel a booking by token (no auth — token is the credential)
