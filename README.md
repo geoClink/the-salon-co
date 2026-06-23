@@ -2,13 +2,16 @@
 
 A booking and deposit platform for a four-chair hair studio. Built with HTML/CSS/JS, Node.js/Express, Stripe, and Supabase.
 
+**Live site:** https://the-salon-co.onrender.com
+
 ---
 
 ## Features
 
 - Multi-step appointment booking flow (service → stylist → date & time → contact details)
 - 25% deposit payment via Stripe Checkout
-- Booked time slots automatically grayed out for subsequent bookings
+- Booked time slots and fully-booked dates automatically grayed out
+- Client cancellation via tokenized link (no login required)
 - Bookings saved to Supabase with full tenant isolation
 - Admin dashboard for viewing upcoming appointments (password protected)
 - Self-hosted fonts (Cormorant Garamond, Jost) — no Google Fonts dependency
@@ -45,7 +48,7 @@ STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_KEY=your_service_key
-TENANT_ID=e81908cd-b890-404a-9bfb-2ad160e92307
+TENANT_ID=your_tenant_uuid
 ADMIN_PASSWORD=yourchosenpassword
 ```
 
@@ -65,6 +68,8 @@ create table bookings (
   customer_email text not null,
   customer_phone text not null,
   stripe_session_id text,
+  cancel_token uuid default gen_random_uuid(),
+  status text default 'confirmed',
   created_at timestamptz default now()
 );
 
@@ -97,7 +102,7 @@ Copy the `whsec_...` secret printed in the terminal into your `.env` as `STRIPE_
 2. Create a new **Web Service** on Render connected to the repo
 3. Set **Build Command** to `npm install` and **Start Command** to `node server.js`
 4. Add all environment variables from `.env` in the Render dashboard
-5. Set up a Stripe webhook in the Stripe dashboard pointing to `https://your-render-url.onrender.com/webhook`
+5. Set up a Stripe webhook in the Stripe dashboard pointing to `https://the-salon-co.onrender.com/webhook`
 
 ---
 
@@ -111,18 +116,28 @@ The admin dashboard is at `/admin.html` — not linked anywhere on the public si
 
 ```
 the-salon-co/
-├── css/
-│   └── style.css
-├── fonts/              # Self-hosted WOFF2 files
-├── images/
-├── js/
-│   ├── script.js       # Booking flow, calendar, validation
-│   └── admin.js        # Admin dashboard logic
-├── server.js           # Express server, Stripe + Supabase endpoints
-├── package.json
-├── index.html
-├── book.html
-├── admin.html
-├── success.html
-└── ...
+├── public/
+│   ├── css/
+│   │   └── style.css
+│   ├── fonts/              # Self-hosted WOFF2 files
+│   ├── images/
+│   ├── js/
+│   │   ├── script.js       # Booking flow, calendar, validation
+│   │   └── admin.js        # Admin dashboard logic
+│   ├── index.html
+│   ├── reserve.html
+│   ├── success.html
+│   ├── cancel.html
+│   ├── admin.html
+│   └── ...
+├── routes/
+│   ├── bookings.js
+│   ├── stripe.js
+│   └── admin.js
+├── lib/
+│   ├── stripe.js
+│   └── supabase.js
+├── middleware/
+├── server.js
+└── package.json
 ```
