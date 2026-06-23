@@ -1502,15 +1502,14 @@ quote-footer {
 .stylists img {
     height: 600px;
     width: 400px;
-    flex-shrink: 0;
     object-fit: cover;
-    position: sticky;
-    top: 110px;
 }
 
 .stylist-img-wrap {
-    position: relative;
+    position: sticky;
+    top: 110px;
     flex-shrink: 0;
+    align-self: flex-start;
 }
 
 .booking-badge {
@@ -3475,7 +3474,11 @@ quote-footer {
     .stylists img {
         height: 400px;
         width: 100%;
-        position: static;
+    }
+
+    .stylist-img-wrap {
+        position: relative;
+        align-self: auto;
     }
 
     .stylists-content {
