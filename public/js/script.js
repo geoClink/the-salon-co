@@ -621,3 +621,46 @@ if (depositBtn) {
         }
     });
 }
+
+/*-- CONTACT FORM --*/
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const successMsg = document.createElement('p');
+    successMsg.className = 'contact-success';
+    successMsg.textContent = 'Your message was sent. We\'ll be in touch within one business day.';
+    successMsg.style.display = 'none';
+    contactForm.appendChild(successMsg);
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.textContent = 'Sending…';
+        submitBtn.disabled = true;
+
+        const body = {
+            firstName: contactForm.querySelector('#first-name').value.trim(),
+            lastName: contactForm.querySelector('#last-name').value.trim(),
+            email: contactForm.querySelector('#email').value.trim(),
+            phone: contactForm.querySelector('#tel').value.trim(),
+            subject: contactForm.querySelector('#help').value,
+            message: contactForm.querySelector('#message').value.trim(),
+        };
+
+        const res = await fetch('/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+            contactForm.reset();
+            successMsg.style.display = 'block';
+            submitBtn.style.display = 'none';
+        } else {
+            const { error } = await res.json();
+            alert(error || 'Something went wrong. Please try again.');
+            submitBtn.textContent = 'Send a note →';
+            submitBtn.disabled = false;
+        }
+    });
+}

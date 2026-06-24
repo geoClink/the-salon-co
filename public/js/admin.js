@@ -1,37 +1,101 @@
-const loginBtn = document.getElementById('admin-login-btn');
-const passwordInput = document.getElementById('admin-password');
-const loginError = document.getElementById('login-error');
-
+let supabaseClient = null;
+let accessToken = null;
 let DEPOSIT_MAP = {};
 
-loginBtn.addEventListener('click', async () => {
-    const password = passwordInput.value;
+async function initSupabase() {
+    const res = await fetch('/admin/config');
+    const { supabaseUrl, supabaseAnonKey } = await res.json();
+    supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+}
 
-    const response = await fetch('/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
-    });
+function authHeaders() {
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+    };
+}
 
-    if (response.ok) {
+function showLogin(message) {
+    accessToken = null;
+    document.getElementById('admin-dashboard').style.display = 'none';
+    document.getElementById('admin-login').style.display = 'flex';
+    document.getElementById('admin-password').value = '';
+    if (message) document.getElementById('login-error').textContent = message;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await initSupabase();
+
+    const loginBtn = document.getElementById('admin-login-btn');
+    const passwordInput = document.getElementById('admin-password');
+    const emailInput = document.getElementById('admin-email');
+    const loginError = document.getElementById('login-error');
+
+    async function doLogin() {
+        loginError.textContent = '';
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+        if (error || !data.session) {
+            loginError.textContent = 'Incorrect email or password.';
+            return;
+        }
+
+        accessToken = data.session.access_token;
         document.getElementById('admin-login').style.display = 'none';
         document.getElementById('admin-dashboard').style.display = 'block';
-        fetch('/admin/services')
-            .then(r => r.json())
-            .then(({ services }) => {
-                services.forEach(s => {
+
+        fetch('/admin/services', { headers: authHeaders() })
+            .then(r => {
+                if (r.status === 401) { showLogin('Session expired. Please log in again.'); return null; }
+                return r.json();
+            })
+            .then(data => {
+                if (!data) return;
+                data.services.forEach(s => {
                     DEPOSIT_MAP[s.name] = Math.round(s.price * 0.25);
                 });
                 loadBookings();
             });
-        loadClosedDates();
-    } else {
-        loginError.textContent = 'Incorrect password.';
-    }
-});
 
-passwordInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') loginBtn.click();
+        loadClosedDates();
+        startSessionTimer();
+    }
+
+    loginBtn.addEventListener('click', doLogin);
+    passwordInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+    emailInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+
+    const addBtn = document.getElementById('add-closed-date-btn');
+    if (addBtn) {
+        addBtn.addEventListener('click', async () => {
+            const date = document.getElementById('closed-date-input').value;
+            const reason = document.getElementById('closed-date-reason').value.trim();
+            const errorEl = document.getElementById('closed-date-error');
+
+            if (!date) { errorEl.textContent = 'Please select a date.'; return; }
+            errorEl.textContent = '';
+
+            const res = await fetch('/admin/closed-dates', {
+                method: 'POST',
+                headers: authHeaders(),
+                body: JSON.stringify({ date, reason }),
+            });
+
+            if (res.status === 401) { showLogin('Session expired. Please log in again.'); return; }
+
+            if (res.ok) {
+                document.getElementById('closed-date-input').value = '';
+                document.getElementById('closed-date-reason').value = '';
+                loadClosedDates();
+            } else {
+                const { error } = await res.json();
+                errorEl.textContent = error || 'Failed to block date.';
+            }
+        });
+    }
 });
 
 function escapeHtml(str) {
@@ -67,15 +131,15 @@ const SESSION_TIMEOUT = 30 * 60 * 1000;
 let sessionTimer;
 
 function startSessionTimer() {
-    sessionTimer = setTimeout(() => {
-        document.getElementById('admin-dashboard').style.display = 'none';
-        document.getElementById('admin-login').style.display = 'flex';
-        passwordInput.value = '';
-        loginError.textContent = 'Session expired. Please log in again.';
+    clearTimeout(sessionTimer);
+    sessionTimer = setTimeout(async () => {
+        if (supabaseClient) await supabaseClient.auth.signOut();
+        showLogin('Session expired. Please log in again.');
     }, SESSION_TIMEOUT);
 }
 
 function resetSessionTimer() {
+    if (!accessToken) return;
     clearTimeout(sessionTimer);
     startSessionTimer();
 }
@@ -84,7 +148,8 @@ document.addEventListener('mousemove', resetSessionTimer);
 document.addEventListener('keydown', resetSessionTimer);
 
 async function loadClosedDates() {
-    const res = await fetch('/admin/closed-dates');
+    const res = await fetch('/admin/closed-dates', { headers: authHeaders() });
+    if (res.status === 401) { showLogin('Session expired. Please log in again.'); return; }
     const { closedDates } = await res.json();
     const list = document.getElementById('closed-dates-list');
     list.innerHTML = '';
@@ -102,44 +167,12 @@ async function loadClosedDates() {
             <button class="remove-closed-date-btn" data-id="${escapeHtml(id)}">Remove</button>
         `;
         li.querySelector('.remove-closed-date-btn').addEventListener('click', async () => {
-            await fetch(`/admin/closed-dates/${id}`, { method: 'DELETE' });
+            await fetch(`/admin/closed-dates/${id}`, { method: 'DELETE', headers: authHeaders() });
             loadClosedDates();
         });
         list.appendChild(li);
     });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const addBtn = document.getElementById('add-closed-date-btn');
-    if (addBtn) {
-        addBtn.addEventListener('click', async () => {
-            const date = document.getElementById('closed-date-input').value;
-            const reason = document.getElementById('closed-date-reason').value.trim();
-            const errorEl = document.getElementById('closed-date-error');
-
-            if (!date) {
-                errorEl.textContent = 'Please select a date.';
-                return;
-            }
-            errorEl.textContent = '';
-
-            const res = await fetch('/admin/closed-dates', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ date, reason }),
-            });
-
-            if (res.ok) {
-                document.getElementById('closed-date-input').value = '';
-                document.getElementById('closed-date-reason').value = '';
-                loadClosedDates();
-            } else {
-                const { error } = await res.json();
-                errorEl.textContent = error || 'Failed to block date.';
-            }
-        });
-    }
-});
 
 let allBookings = [];
 let activeFilter = 'upcoming';
@@ -213,10 +246,10 @@ function updateStats() {
 }
 
 async function loadBookings() {
-    startSessionTimer();
-    const response = await fetch('/admin/bookings');
-    const { bookings } = await response.json();
+    const response = await fetch('/admin/bookings', { headers: authHeaders() });
+    if (response.status === 401) { showLogin('Session expired. Please log in again.'); return; }
 
+    const { bookings } = await response.json();
     document.getElementById('bookings-loading').style.display = 'none';
 
     if (!bookings || bookings.length === 0) {

@@ -2,16 +2,26 @@ const express = require('express');
 const router = express.Router();
 const supabase = require('../lib/supabase');
 
-router.post('/admin/login', (req, res) => {
-    const { password } = req.body;
-    if (password === process.env.ADMIN_PASSWORD) {
-        res.json({ ok: true });
-    } else {
-        res.status(401).json({ error: 'Incorrect password' });
+async function requireAdminAuth(req, res, next) {
+    const auth = req.headers['authorization'];
+    if (!auth || !auth.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Unauthorized' });
     }
+    const { data: { user }, error } = await supabase.auth.getUser(auth.slice(7));
+    if (error || !user) {
+        return res.status(401).json({ error: 'Session expired. Please log in again.' });
+    }
+    next();
+}
+
+router.get('/admin/config', (req, res) => {
+    res.json({
+        supabaseUrl: process.env.SUPABASE_URL,
+        supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
+    });
 });
 
-router.get('/admin/bookings', async (req, res) => {
+router.get('/admin/bookings', requireAdminAuth, async (req, res) => {
     try {
         const { data, error } = await supabase
             .from('bookings')
@@ -21,7 +31,6 @@ router.get('/admin/bookings', async (req, res) => {
             .order('time', { ascending: true });
 
         if (error) throw error;
-
         res.json({ bookings: data });
     } catch (err) {
         console.error(err);
@@ -29,7 +38,7 @@ router.get('/admin/bookings', async (req, res) => {
     }
 });
 
-router.get('/admin/services', async (req, res) => {
+router.get('/admin/services', requireAdminAuth, async (req, res) => {
     try {
         const { data, error } = await supabase
             .from('services')
@@ -43,7 +52,7 @@ router.get('/admin/services', async (req, res) => {
     }
 });
 
-router.get('/admin/closed-dates', async (req, res) => {
+router.get('/admin/closed-dates', requireAdminAuth, async (req, res) => {
     try {
         const today = new Date().toISOString().split('T')[0];
         const { data, error } = await supabase
@@ -60,7 +69,7 @@ router.get('/admin/closed-dates', async (req, res) => {
     }
 });
 
-router.post('/admin/closed-dates', async (req, res) => {
+router.post('/admin/closed-dates', requireAdminAuth, async (req, res) => {
     try {
         const { date, reason } = req.body;
         if (!date) return res.status(400).json({ error: 'date required' });
@@ -78,7 +87,7 @@ router.post('/admin/closed-dates', async (req, res) => {
     }
 });
 
-router.delete('/admin/closed-dates/:id', async (req, res) => {
+router.delete('/admin/closed-dates/:id', requireAdminAuth, async (req, res) => {
     try {
         const { error } = await supabase
             .from('closed_dates')

@@ -11,6 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="The Salon Co." />
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="admin-body">
 
@@ -18,6 +19,10 @@
         <div class="admin-login-box">
             <div class="mark">The Salon<span class="amp">&amp;</span>Co.</div>
             <p class="admin-subtitle">Owner Access</p>
+            <div class="form-group">
+                <label for="admin-email">Email</label>
+                <input type="email" id="admin-email" placeholder="owner@thesalonco.com">
+            </div>
             <div class="form-group">
                 <label for="admin-password">Password</label>
                 <input type="password" id="admin-password" placeholder="Enter password">

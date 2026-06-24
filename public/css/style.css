@@ -2488,6 +2488,14 @@ blockquote::before {
     margin-top: 24px;
 }
 
+.contact-success {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1rem;
+}
+
 .form-field {
     display: flex;
     flex-direction: column;
@@ -3868,7 +3876,6 @@ input[type="radio"]:checked {
     object-fit: cover;
     height: 175px;
     width: auto;
-
 }
 
 .hero-divider-reserve .section-subtext {

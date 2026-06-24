@@ -2,6 +2,8 @@ const express = require('express');
   const router = express.Router();
   const supabase = require('../lib/supabase');
   const stripe = require('../lib/stripe');
+  const { Resend } = require('resend');
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   router.get('/booked-slots', async (req, res) => {
       try {
@@ -166,6 +168,50 @@ const express = require('express');
       } catch (err) {
           console.error(err);
           res.status(500).json({ error: err.message });
+      }
+  });
+
+  router.post('/contact', async (req, res) => {
+      const { firstName, lastName, email, phone, subject, message } = req.body;
+
+      if (!firstName || !lastName || !email || !message) {
+          return res.status(400).json({ error: 'Please fill in all required fields.' });
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          return res.status(400).json({ error: 'Invalid email address.' });
+      }
+
+      const ownerEmail = process.env.OWNER_EMAIL;
+      if (!ownerEmail) return res.status(500).json({ error: 'Contact form is not configured.' });
+
+      try {
+          await resend.emails.send({
+              from: 'The Salon Co. <onboarding@resend.dev>',
+              to: ownerEmail,
+              reply_to: email,
+              subject: `Contact form: ${subject || 'General enquiry'} — ${firstName} ${lastName}`,
+              html: `
+                  <div style="font-family: Georgia, serif; max-width: 520px; margin: 0 auto; color: #1A2E2A;">
+                      <p style="font-size: 1.2rem; font-weight: 300;">New message from the website.</p>
+                      <hr style="border: none; border-top: 0.5px solid #1A2E2A; margin: 1rem 0;">
+                      <table style="width: 100%; font-size: 0.9rem; border-collapse: collapse;">
+                          <tr><td style="padding: 0.5rem 0; color: #6a746d;">Name</td><td>${firstName} ${lastName}</td></tr>
+                          <tr><td style="padding: 0.5rem 0; color: #6a746d; border-top: 0.5px solid rgba(26,46,42,0.1);">Email</td><td style="border-top: 0.5px solid rgba(26,46,42,0.1);">${email}</td></tr>
+                          <tr><td style="padding: 0.5rem 0; color: #6a746d; border-top: 0.5px solid rgba(26,46,42,0.1);">Phone</td><td style="border-top: 0.5px solid rgba(26,46,42,0.1);">${phone || '—'}</td></tr>
+                          <tr><td style="padding: 0.5rem 0; color: #6a746d; border-top: 0.5px solid rgba(26,46,42,0.1);">Subject</td><td style="border-top: 0.5px solid rgba(26,46,42,0.1);">${subject || '—'}</td></tr>
+                      </table>
+                      <hr style="border: none; border-top: 0.5px solid #1A2E2A; margin: 1rem 0;">
+                      <p style="font-size: 0.9rem; white-space: pre-wrap;">${message}</p>
+                      <hr style="border: none; border-top: 0.5px solid rgba(26,46,42,0.15); margin: 1rem 0;">
+                      <p style="font-size: 0.8rem; color: #6a746d;">Reply directly to this email to respond to ${firstName}.</p>
+                  </div>
+              `,
+          });
+
+          res.json({ ok: true });
+      } catch (err) {
+          console.error('Contact email error:', err.message);
+          res.status(500).json({ error: 'Failed to send message. Please try again.' });
       }
   });
 
