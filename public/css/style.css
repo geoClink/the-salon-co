@@ -98,14 +98,22 @@
     --color-primary: #1A2E2A;
     --color-surface: #313e3a;
     --color-secondary: #F5F0E8;
-
     --color-accent: #C9A96E;
     --color-text: #2C2C2C;
     --color-white: #FAFAF7;
     --color-muted: #6a746d;
+    --color-skeleton: #e8e3da;
+    --color-error: #b94a3a;
+    --color-today-highlight: #f0f4f2;
+    --color-border-light: rgba(26, 46, 42, 0.1);
+    --color-overlay: rgba(0, 0, 0, 0.4);
 
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Jost', sans-serif;
+}
+
+img {
+    background-color: var(--color-skeleton);
 }
 
 h1,
@@ -2824,7 +2832,7 @@ blockquote::before {
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.4);
+        background: var(--color-overlay);
         z-index: 198;
     }
 
@@ -4301,7 +4309,7 @@ input[type="radio"]:checked {
 }
 
 .today-row td {
-    background: #f0f4f2;
+    background: var(--color-today-highlight);
     font-weight: 500;
 }
 
