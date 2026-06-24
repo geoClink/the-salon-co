@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 
 const tenantMiddleware = require('./middleware/tenant');
 const bookingsRouter = require('./routes/bookings');
@@ -25,27 +26,7 @@ const app = express();
 
 app.use('/webhook', express.raw({ type: 'application/json' }), stripeRouter);
 
-app.use((req, res, next) => {
-    res.setHeader('X-Frame-Options', 'DENY');
-    res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-    res.setHeader(
-        'Content-Security-Policy',
-        [
-            "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' https://js.stripe.com",
-            "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' https://images.pexels.com data:",
-            "font-src 'self'",
-            "connect-src 'self' https://api.stripe.com",
-            "frame-src https://js.stripe.com",
-        ].join('; ')
-    );
-    next();
-});
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
