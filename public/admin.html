@@ -51,6 +51,10 @@
                 </div>
             </div>
             <div id="bookings-table-wrap">
+                <div class="bookings-filter">
+                    <button class="filter-tab active" data-filter="upcoming">Upcoming</button>
+                    <button class="filter-tab" data-filter="all">All</button>
+                </div>
                 <p id="bookings-loading">Loading bookings...</p>
                 <table id="bookings-table" style="display: none;">
                     <thead>
@@ -63,6 +67,8 @@
                             <th>Customer</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="bookings-body"></tbody>

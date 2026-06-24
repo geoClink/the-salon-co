@@ -4198,6 +4198,64 @@ input[type="radio"]:checked {
     color: var(--color-muted);
 }
 
+.bookings-filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-tab {
+    background: none;
+    border: 0.5px solid var(--color-primary);
+    padding: 0.4rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.filter-tab.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.booking-status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-body);
+}
+
+.status-confirmed { color: var(--color-primary); }
+.status-cancelled { color: var(--color-muted); }
+
+.cancelled-row td {
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+
+.cancelled-row .booking-status {
+    text-decoration: none;
+}
+
+.admin-cancel-btn {
+    background: none;
+    border: 0.5px solid var(--color-primary);
+    padding: 0.3rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.admin-cancel-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
 .today-row td {
     background: #f0f4f2;
     font-weight: 500;

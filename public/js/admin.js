@@ -141,6 +141,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+let allBookings = [];
+let activeFilter = 'upcoming';
+
+function renderBookings() {
+    const today = todayString();
+    const tbody = document.getElementById('bookings-body');
+    tbody.innerHTML = '';
+
+    const visible = activeFilter === 'upcoming'
+        ? allBookings.filter(b => b.date >= today && b.status !== 'cancelled')
+        : allBookings;
+
+    if (visible.length === 0) {
+        document.getElementById('bookings-empty').style.display = 'block';
+        document.getElementById('bookings-table').style.display = 'none';
+        return;
+    }
+
+    document.getElementById('bookings-empty').style.display = 'none';
+    document.getElementById('bookings-table').style.display = 'table';
+
+    visible.forEach(b => {
+        const cancelled = b.status === 'cancelled';
+        const isPast = b.date < today;
+        const row = document.createElement('tr');
+        if (b.date === today && !cancelled) row.classList.add('today-row');
+        if (cancelled) row.classList.add('cancelled-row');
+
+        row.innerHTML = `
+            <td>${escapeHtml(formatDate(b.date))}</td>
+            <td>${escapeHtml(b.time)}</td>
+            <td>${escapeHtml(b.stylist)}</td>
+            <td>${escapeHtml(b.service)}</td>
+            <td>${escapeHtml(formatDeposit(b.service))}</td>
+            <td>${escapeHtml(b.customer_name)}</td>
+            <td>${escapeHtml(b.customer_email)}</td>
+            <td>${escapeHtml(b.customer_phone)}</td>
+            <td><span class="booking-status ${cancelled ? 'status-cancelled' : 'status-confirmed'}">${cancelled ? 'Cancelled' : 'Confirmed'}</span></td>
+            <td>${!cancelled && !isPast ? `<button class="admin-cancel-btn" data-token="${escapeHtml(b.cancel_token)}">Cancel</button>` : ''}</td>
+        `;
+
+        if (!cancelled && !isPast) {
+            row.querySelector('.admin-cancel-btn').addEventListener('click', async (e) => {
+                if (!confirm('Cancel this booking? This will issue a refund if within the 48-hour window.')) return;
+                const token = e.target.dataset.token;
+                const res = await fetch(`/bookings/cancel?token=${encodeURIComponent(token)}`, { method: 'PATCH' });
+                const data = await res.json();
+                if (res.ok) {
+                    b.status = 'cancelled';
+                    renderBookings();
+                    updateStats();
+                } else {
+                    alert(data.error || 'Could not cancel booking.');
+                }
+            });
+        }
+
+        tbody.appendChild(row);
+    });
+}
+
+function updateStats() {
+    const today = todayString();
+    const confirmed = allBookings.filter(b => b.status !== 'cancelled');
+    const todayCount = confirmed.filter(b => b.date === today).length;
+    const totalRevenue = confirmed.reduce((sum, b) => sum + (DEPOSIT_MAP[b.service] || 0), 0);
+    document.getElementById('stat-total').textContent = confirmed.length;
+    document.getElementById('stat-today').textContent = todayCount;
+    document.getElementById('stat-revenue').textContent = '$' + (totalRevenue / 100).toFixed(2);
+}
+
 async function loadBookings() {
     startSessionTimer();
     const response = await fetch('/admin/bookings');
@@ -156,30 +227,16 @@ async function loadBookings() {
         return;
     }
 
-    const today = todayString();
-    const todayCount = bookings.filter(b => b.date === today).length;
-    const totalRevenue = bookings.reduce((sum, b) => sum + (DEPOSIT_MAP[b.service] || 0), 0);
+    allBookings = bookings;
+    updateStats();
+    renderBookings();
 
-    document.getElementById('stat-total').textContent = bookings.length;
-    document.getElementById('stat-today').textContent = todayCount;
-    document.getElementById('stat-revenue').textContent = '$' + (totalRevenue / 100).toFixed(2);
-
-    const tbody = document.getElementById('bookings-body');
-    bookings.forEach(b => {
-        const row = document.createElement('tr');
-        if (b.date === today) row.classList.add('today-row');
-        row.innerHTML = `
-            <td>${escapeHtml(formatDate(b.date))}</td>
-            <td>${escapeHtml(b.time)}</td>
-            <td>${escapeHtml(b.stylist)}</td>
-            <td>${escapeHtml(b.service)}</td>
-            <td>${escapeHtml(formatDeposit(b.service))}</td>
-            <td>${escapeHtml(b.customer_name)}</td>
-            <td>${escapeHtml(b.customer_email)}</td>
-            <td>${escapeHtml(b.customer_phone)}</td>
-        `;
-        tbody.appendChild(row);
+    document.querySelectorAll('.filter-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = btn.dataset.filter;
+            renderBookings();
+        });
     });
-
-    document.getElementById('bookings-table').style.display = 'table';
 }
