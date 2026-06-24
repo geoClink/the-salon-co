@@ -263,8 +263,10 @@ function nextStep(stepNumber) {
 
     if (stepNumber === 4) {
         const selectedServiceLabel = document.querySelector('input[name="service"]:checked ~ .booking-service-details h3');
-        const selectedStylistLabel = document.querySelector('input[name="stylist"]:checked ~ .stylist-content h3');
-        const selectedDateBtn = document.querySelector('.calander-day-btn.selected-date');
+        const checkedStylist = document.querySelector('input[name="stylist"]:checked');
+        const selectedStylistLabel = checkedStylist
+            ? checkedStylist.closest('.stylist-card').querySelector('.stylist-content h3')
+            : null;
 
         const summaryService = document.querySelector('.summary-service');
         const summaryStylist = document.querySelector('.summary-stylist');
@@ -272,13 +274,13 @@ function nextStep(stepNumber) {
         const summaryTime = document.querySelector('.summary-time');
 
         if (summaryService) {
-            summaryService.textContent = selectedServiceLabel ? selectedServiceLabel.textContent.trim() : 'Not Selected';
+            summaryService.textContent = selectedServiceLabel ? selectedServiceLabel.textContent.trim() : 'Not selected';
         }
         if (summaryStylist) {
             summaryStylist.textContent = selectedStylistLabel ? selectedStylistLabel.textContent.replace(/\s+/g, ' ').trim() : 'Not selected';
         }
         if (summaryDate) {
-            summaryDate.textContent = selectedDateBtn ? selectedDateBtn.dataset.date : 'Not selected';
+            summaryDate.textContent = selectedDateString || 'Not selected';
         }
         if (summaryTime) {
             summaryTime.textContent = selectedTimeSlot || 'Not selected';
