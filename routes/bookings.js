@@ -69,6 +69,27 @@ const express = require('express');
       const { token } = req.query;
       if (!token) return res.status(400).json({ error: 'token required' });
 
+      const { data: existing, error: fetchError } = await supabase
+          .from('bookings')
+          .select('id, date, time, service, status, stripe_session_id')
+          .eq('cancel_token', token)
+          .eq('tenant_id', req.tenant.id)
+          .single();
+
+      if (fetchError || !existing) return res.status(404).json({ error: 'Booking not found or already cancelled' });
+
+      // Parse "02:00 PM" into 24h so we can build a proper Date
+      const [timePart, period] = existing.time.split(' ');
+      let [hours, minutes] = timePart.split(':').map(Number);
+      if (period === 'PM' && hours !== 12) hours += 12;
+      if (period === 'AM' && hours === 12) hours = 0;
+      const appointmentDate = new Date(`${existing.date}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`);
+      const hoursUntil = (appointmentDate - new Date()) / (1000 * 60 * 60);
+
+      if (hoursUntil < 48) {
+          return res.status(400).json({ error: 'Cancellations must be made at least 48 hours before your appointment. Please call us directly.' });
+      }
+
       const { data, error } = await supabase
           .from('bookings')
           .update({ status: 'cancelled' })
@@ -78,6 +99,18 @@ const express = require('express');
           .single();
 
       if (error || !data) return res.status(404).json({ error: 'Booking not found or already cancelled' });
+
+      // Issue Stripe refund automatically
+      if (existing.stripe_session_id) {
+          try {
+              const session = await stripe.checkout.sessions.retrieve(existing.stripe_session_id);
+              if (session.payment_intent) {
+                  await stripe.refunds.create({ payment_intent: session.payment_intent });
+              }
+          } catch (refundErr) {
+              console.error('Stripe refund error:', refundErr.message);
+          }
+      }
 
       res.json({ success: true, booking: data });
   });
