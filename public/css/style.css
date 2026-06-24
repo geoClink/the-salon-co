@@ -1054,7 +1054,7 @@ blockquote::before {
 .second-section img {
     width: 42%;
     flex-shrink: 0;
-    min-height: 500px;
+    height: 550px;
     object-fit: cover;
     padding: 0;
     align-self: flex-start;
