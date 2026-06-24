@@ -29,6 +29,20 @@ router.get('/admin/bookings', async (req, res) => {
     }
 });
 
+router.get('/admin/services', async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('services')
+            .select('name, price')
+            .eq('tenant_id', req.tenant.id);
+
+        if (error) throw error;
+        res.json({ services: data });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 router.get('/admin/closed-dates', async (req, res) => {
     try {
         const today = new Date().toISOString().split('T')[0];

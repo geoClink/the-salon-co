@@ -2,14 +2,7 @@ const loginBtn = document.getElementById('admin-login-btn');
 const passwordInput = document.getElementById('admin-password');
 const loginError = document.getElementById('login-error');
 
-const DEPOSIT_MAP = {
-    'Signature Cut & Finish': 3625,
-    'Returning Cut':          2875,
-    'Texture & Curl Cut':     4125,
-    'Single-process Color':   3625,
-    'Hand-painted Balayage':  7000,
-    'The Long Ritual':        8000,
-};
+let DEPOSIT_MAP = {};
 
 loginBtn.addEventListener('click', async () => {
     const password = passwordInput.value;
@@ -23,7 +16,14 @@ loginBtn.addEventListener('click', async () => {
     if (response.ok) {
         document.getElementById('admin-login').style.display = 'none';
         document.getElementById('admin-dashboard').style.display = 'block';
-        loadBookings();
+        fetch('/admin/services')
+            .then(r => r.json())
+            .then(({ services }) => {
+                services.forEach(s => {
+                    DEPOSIT_MAP[s.name] = Math.round(s.price * 0.25);
+                });
+                loadBookings();
+            });
         loadClosedDates();
     } else {
         loginError.textContent = 'Incorrect password.';
