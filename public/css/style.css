@@ -2820,6 +2820,18 @@ blockquote::before {
         gap: 0.5rem;
     }
 
+    .nav-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 198;
+    }
+
+    .nav-backdrop.nav-backdrop-visible {
+        display: block;
+    }
+
     /*--NAV--*/
 
     .nav-reserve {
@@ -2828,10 +2840,6 @@ blockquote::before {
 
     nav.nav-open {
         transform: translateX(0);
-    }
-
-    button.menu-open {
-        display: none;
     }
 
     .menu-toggle {
@@ -2843,6 +2851,7 @@ blockquote::before {
         width: 24px;
         height: 18px;
         position: relative;
+        z-index: 300;
     }
 
     .menu-toggle span,
@@ -2853,6 +2862,7 @@ blockquote::before {
         height: 1px;
         background-color: var(--color-white);
         position: absolute;
+        transition: transform 0.25s ease, opacity 0.25s ease, top 0.25s ease, bottom 0.25s ease;
     }
 
     header.scrolled .menu-toggle span,
@@ -2873,6 +2883,27 @@ blockquote::before {
     .menu-toggle::after {
         content: '';
         bottom: 0;
+    }
+
+    /* Animate into X when open */
+    .menu-toggle.menu-open span {
+        opacity: 0;
+    }
+
+    .menu-toggle.menu-open::before {
+        top: 50%;
+        transform: rotate(45deg);
+    }
+
+    .menu-toggle.menu-open::after {
+        bottom: 50%;
+        transform: rotate(-45deg);
+    }
+
+    .menu-toggle.menu-open span,
+    .menu-toggle.menu-open::before,
+    .menu-toggle.menu-open::after {
+        background-color: var(--color-white);
     }
 
     /*--HERO--*/

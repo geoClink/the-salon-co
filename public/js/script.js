@@ -46,27 +46,35 @@ const menuToggle = document.querySelector('.menu-toggle');
 const navBar = document.querySelector('header nav');
 
 if (menuToggle && navBar) {
-    menuToggle.addEventListener('click', () => {
-        navBar.classList.toggle('nav-open');
-        menuToggle.classList.toggle('menu-open');
-    });
+    const backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    document.body.appendChild(backdrop);
 
-    const navLinks = document.querySelectorAll('header nav a');
+    function openNav() {
+        navBar.classList.add('nav-open');
+        menuToggle.classList.add('menu-open');
+        menuToggle.setAttribute('aria-label', 'Close menu');
+        backdrop.classList.add('nav-backdrop-visible');
+        document.body.style.overflow = 'hidden';
+    }
 
     function closeNav() {
         navBar.classList.remove('nav-open');
         menuToggle.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+        backdrop.classList.remove('nav-backdrop-visible');
+        document.body.style.overflow = '';
     }
 
-    navLinks.forEach(link => {
+    menuToggle.addEventListener('click', () => {
+        navBar.classList.contains('nav-open') ? closeNav() : openNav();
+    });
+
+    navBar.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeNav);
     });
 
-    document.addEventListener('click', (event) => {
-        if (!navBar.contains(event.target) && !menuToggle.contains(event.target)) {
-            closeNav();
-        }
-    });
+    backdrop.addEventListener('click', closeNav);
 }
 
 /*-- FAQ --*/
