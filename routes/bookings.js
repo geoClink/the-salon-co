@@ -82,6 +82,28 @@ const express = require('express');
       res.json({ success: true, booking: data });
   });
 
+  // Returns owner-blocked dates for a given month (used by the booking calendar)
+  router.get('/closed-dates', async (req, res) => {
+      try {
+          const { year, month } = req.query;
+          const paddedMonth = String(month).padStart(2, '0');
+          const from = `${year}-${paddedMonth}-01`;
+          const to = `${year}-${paddedMonth}-31`;
+
+          const { data, error } = await supabase
+              .from('closed_dates')
+              .select('date')
+              .eq('tenant_id', req.tenant.id)
+              .gte('date', from)
+              .lte('date', to);
+
+          if (error) throw error;
+          res.json({ closedDates: data.map(r => r.date) });
+      } catch (err) {
+          res.status(500).json({ error: err.message });
+      }
+  });
+
   // Returns dates in a given month where ALL of the stylist's slots are taken
   router.get('/booked-dates', async (req, res) => {
       try {

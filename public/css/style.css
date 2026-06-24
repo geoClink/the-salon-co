@@ -392,13 +392,12 @@ footer {
 /*-- HOMEPAGE --*/
 /* -- HERO (homepage only) */
 .hero {
-    background: var(--color-primary);
+    background-color: var(--color-primary);
     background-size: cover;
     background-position: center;
     position: relative;
     text-align: center;
     padding: 4rem 2rem 6rem;
-    background-color: var(--color-primary);
     color: var(--color-white);
     display: flex;
     flex-direction: column;
@@ -759,11 +758,6 @@ footer {
     font-weight: 300;
 }
 
-.service-duration {
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 0.7rem;
-}
 
 .booking-service-meta {
     display: flex;
@@ -873,7 +867,7 @@ blockquote::before {
     font-size: 12rem;
 }
 
-quote-footer {
+.quote-footer {
     font-family: var(--font-body);
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -1090,16 +1084,6 @@ quote-footer {
     font-style: italic;
 }
 
-.about-text-column p {
-    color: var(--color-primary);
-    font-weight: 300;
-    font-family: var(--font-body);
-    letter-spacing: 0.05rem;
-    line-height: 1.7;
-    font-size: 0.85rem;
-
-}
-
 .page-description .section-subtext {
     font-family: var(--font-body);
     font-size: 1rem;
@@ -1156,12 +1140,12 @@ quote-footer {
 
 .about-text-column p {
     color: var(--color-primary);
-    font-size: 0.8rem;
-    letter-spacing: 0.1rem;
     font-family: var(--font-body);
+    font-weight: 300;
     font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.7;
     max-width: 80%;
-
 }
 
 /*-- STYLISTS PAGE --*/
@@ -1440,13 +1424,11 @@ quote-footer {
 .cta-links a {
     text-decoration: none;
     color: var(--color-white);
-    padding-bottom: 5px;
     padding-top: 30px;
-    border-bottom: 0.5px solid var(--color-accent);
     padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid var(--color-accent);
     font-family: var(--font-heading);
     font-size: 1.25rem;
-
 }
 
 
@@ -1482,13 +1464,12 @@ quote-footer {
 }
 
 .how-booking p {
-    color: var(--color-primary);
+    color: var(--color-muted);
     max-width: 500px;
     font-family: var(--font-body);
     font-weight: 300;
     margin: 0 auto;
     line-height: 2rem;
-    color: var(--color-muted);
     padding-bottom: 2rem;
 }
 
@@ -1962,9 +1943,8 @@ quote-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(26, 46, 42, 0.1);
     padding: 0.1rem 0;
+    border-bottom: 1px solid rgba(26, 46, 42, 0.1);
 }
 
 .service-menu-duration {
@@ -2013,10 +1993,9 @@ quote-footer {
 }
 
 .add-on-card {
-    padding: 4rem;
+    padding: 1.5rem;
     background-color: var(--color-secondary);
     border: 1px solid rgba(26, 46, 42, 0.15);
-    padding: 1.5rem;
 }
 
 .add-ons h2 {
@@ -2359,7 +2338,6 @@ quote-footer {
 .contact-column .contact-section-title {
     color: var(--color-white);
     font-weight: 300;
-    font-size: 2rem;
     font-size: 3rem;
 }
 
@@ -2369,9 +2347,7 @@ quote-footer {
     color: var(--color-white);
     font-family: var(--font-body);
     font-weight: 300;
-    font-size: 1.5\2rem;
-
-
+    font-size: 1.5rem;
 }
 
 .contact-column dt {
@@ -3536,7 +3512,6 @@ quote-footer {
 .booking-flow-background {
     background-color: var(--color-secondary);
     padding: 0 12rem;
-    ;
 }
 
 .page-book .page-hero {
@@ -3688,14 +3663,9 @@ input[type="radio"]:checked {
 .booking-nav-buttons {
     display: flex;
     justify-content: space-between;
-    padding-top: 2rem;
+    padding: 3rem 3rem 0;
     border-top: 0.5px solid var(--color-text);
     margin-top: 5rem;
-}
-
-.booking-nav-buttons {
-    justify-content: space-between;
-    padding: 3rem;
 }
 
 .booking-continue-btn {
@@ -3704,6 +3674,7 @@ input[type="radio"]:checked {
     padding: 1rem 2.5rem;
     border: none;
     font-family: var(--font-body);
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     cursor: pointer;
@@ -3718,11 +3689,6 @@ input[type="radio"]:checked {
     font-family: var(--font-body);
     font-weight: 300;
     border: none;
-}
-
-.booking-continue-btn {
-    font-family: var(--font-body);
-    font-weight: 300;
 }
 
 .stylist-grid {
@@ -3817,7 +3783,7 @@ input[type="radio"]:checked {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 8px 16px;
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-body);
     font-weight: 700;
     letter-spacing: 1.5px;
     font-size: 0.9rem;
@@ -3971,15 +3937,15 @@ input[type="radio"]:checked {
 
 .form-group input {
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-muted);
     border-radius: 4px;
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-body);
     font-size: 1rem;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #888;
+    border-color: var(--color-primary);
 }
 
 .form-group input.input-error {
@@ -4229,6 +4195,72 @@ input[type="radio"]:checked {
 .today-row td:first-child::before {
     content: '· ';
     color: var(--color-accent);
+}
+
+/* ADMIN CLOSED DATES */
+.admin-closed-dates {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 0.5px solid var(--color-primary);
+}
+
+.closed-dates-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin: 1.5rem 0 2rem;
+}
+
+.closed-dates-form input[type="date"],
+.closed-dates-form input[type="text"] {
+    border: 0.5px solid var(--color-primary);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    background: var(--color-white);
+}
+
+.closed-dates-form input[type="text"] {
+    min-width: 220px;
+}
+
+#closed-dates-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 560px;
+}
+
+.closed-date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0;
+    border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+}
+
+.remove-closed-date-btn {
+    background: none;
+    border: 0.5px solid var(--color-primary);
+    padding: 0.3rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.remove-closed-date-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.closed-dates-empty {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-muted);
 }
 
 /* SUCCESS PAGE */

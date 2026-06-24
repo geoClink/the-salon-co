@@ -24,6 +24,7 @@ loginBtn.addEventListener('click', async () => {
         document.getElementById('admin-login').style.display = 'none';
         document.getElementById('admin-dashboard').style.display = 'block';
         loadBookings();
+        loadClosedDates();
     } else {
         loginError.textContent = 'Incorrect password.';
     }
@@ -81,6 +82,64 @@ function resetSessionTimer() {
 
 document.addEventListener('mousemove', resetSessionTimer);
 document.addEventListener('keydown', resetSessionTimer);
+
+async function loadClosedDates() {
+    const res = await fetch('/admin/closed-dates');
+    const { closedDates } = await res.json();
+    const list = document.getElementById('closed-dates-list');
+    list.innerHTML = '';
+
+    if (!closedDates || closedDates.length === 0) {
+        list.innerHTML = '<li class="closed-dates-empty">No blocked dates.</li>';
+        return;
+    }
+
+    closedDates.forEach(({ id, date, reason }) => {
+        const li = document.createElement('li');
+        li.className = 'closed-date-row';
+        li.innerHTML = `
+            <span>${escapeHtml(formatDate(date))}${reason ? ' — ' + escapeHtml(reason) : ''}</span>
+            <button class="remove-closed-date-btn" data-id="${escapeHtml(id)}">Remove</button>
+        `;
+        li.querySelector('.remove-closed-date-btn').addEventListener('click', async () => {
+            await fetch(`/admin/closed-dates/${id}`, { method: 'DELETE' });
+            loadClosedDates();
+        });
+        list.appendChild(li);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addBtn = document.getElementById('add-closed-date-btn');
+    if (addBtn) {
+        addBtn.addEventListener('click', async () => {
+            const date = document.getElementById('closed-date-input').value;
+            const reason = document.getElementById('closed-date-reason').value.trim();
+            const errorEl = document.getElementById('closed-date-error');
+
+            if (!date) {
+                errorEl.textContent = 'Please select a date.';
+                return;
+            }
+            errorEl.textContent = '';
+
+            const res = await fetch('/admin/closed-dates', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ date, reason }),
+            });
+
+            if (res.ok) {
+                document.getElementById('closed-date-input').value = '';
+                document.getElementById('closed-date-reason').value = '';
+                loadClosedDates();
+            } else {
+                const { error } = await res.json();
+                errorEl.textContent = error || 'Failed to block date.';
+            }
+        });
+    }
+});
 
 async function loadBookings() {
     startSessionTimer();

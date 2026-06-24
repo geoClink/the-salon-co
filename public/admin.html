@@ -69,6 +69,17 @@
                 </table>
                 <p id="bookings-empty" style="display: none;">No bookings yet.</p>
             </div>
+            <div class="admin-closed-dates">
+                <h2 class="section-heading">Closed <em>dates.</em></h2>
+                <p class="section-subtext">Block a date to remove it from the booking calendar.</p>
+                <div class="closed-dates-form">
+                    <input type="date" id="closed-date-input">
+                    <input type="text" id="closed-date-reason" placeholder="Reason (optional, e.g. Holiday)">
+                    <button id="add-closed-date-btn" class="booking-continue-btn">Block Date</button>
+                    <span class="field-error" id="closed-date-error"></span>
+                </div>
+                <ul id="closed-dates-list"></ul>
+            </div>
         </main>
     </div>
 

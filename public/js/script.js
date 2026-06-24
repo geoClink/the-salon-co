@@ -366,7 +366,19 @@ function populateCalendar(year, month) {
     // Attach click triggers on selectable calendar days
     attachCalendarDayClicks();
 
-    // Grey out fully-booked dates if a stylist is selected
+    // Grey out owner-blocked dates and fully-booked dates
+    const closedFetch = fetch(`/closed-dates?year=${year}&month=${month + 1}`)
+        .then(res => res.json())
+        .then(({ closedDates }) => {
+            document.querySelectorAll('.calendar-day-btn').forEach(btn => {
+                if (closedDates.includes(btn.dataset.date)) {
+                    btn.classList.add('disabled');
+                    btn.querySelector('input').disabled = true;
+                }
+            });
+        })
+        .catch(() => {});
+
     if (selectedStylistId) {
         const stylistData = stylistAvailability[selectedStylistId];
         const totalSlots = stylistData ? stylistData.times.length : 0;
