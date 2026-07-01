@@ -2816,6 +2816,7 @@ blockquote::before {
     header {
         grid-template-columns: 1fr auto;
         overflow: visible;
+        padding: 1.25rem 1.5rem;
     }
 
     nav.nav-open a {
