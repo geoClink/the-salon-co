@@ -99,6 +99,7 @@
     --color-surface: #313e3a;
     --color-secondary: #F5F0E8;
     --color-accent: #C9A96E;
+    --color-accent-text: #7A5C2E;
     --color-text: #2C2C2C;
     --color-white: #FAFAF7;
     --color-muted: #6a746d;
@@ -289,7 +290,7 @@ footer {
     font-size: 10.5px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     margin: 0 0 22px;
 }
 
@@ -326,7 +327,7 @@ footer {
     font-family: var(--font-heading);
     font-style: italic;
     font-size: 14px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     margin-top: 12px;
     display: inline-block;
 }
@@ -355,7 +356,7 @@ footer {
     font-size: 0.8rem;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 .label-dot {
@@ -499,7 +500,7 @@ footer {
 }
 
 .about-columns .section-label {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-size: 0.9rem;
 
 }
@@ -659,7 +660,7 @@ footer {
     font-size: 6rem;
     font-family: var(--font-heading);
     font-style: italic;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     width: 200px;
 }
 
@@ -894,7 +895,7 @@ blockquote::before {
 
 .received-service {
     font-family: var(--font-heading);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-size: 1rem
 }
 
