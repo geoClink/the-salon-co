@@ -26,7 +26,22 @@ const app = express();
 
 app.use('/webhook', express.raw({ type: 'application/json' }), stripeRouter);
 
-app.use(helmet({ contentSecurityPolicy: false, frameguard: false }));
+app.use(helmet({
+    frameguard: { action: 'sameorigin' },
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "https://js.stripe.com"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            imgSrc: ["'self'", "data:", "https://images.pexels.com"],
+            connectSrc: ["'self'", "https://*.supabase.co", "https://api.stripe.com"],
+            frameSrc: ["https://js.stripe.com", "https://checkout.stripe.com"],
+            fontSrc: ["'self'"],
+            objectSrc: ["'none'"],
+            formAction: ["'self'", "https://checkout.stripe.com"],
+        },
+    },
+}));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));

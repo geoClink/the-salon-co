@@ -286,7 +286,7 @@ footer {
     position: relative;
 }
 
-.foot h4 {
+.foot h3 {
     font-family: var(--font-body);
     font-weight: 500;
     font-size: 10.5px;
@@ -2051,7 +2051,7 @@ blockquote::before {
     align-items: baseline;
 }
 
-.add-on-card h4 {
+.add-on-card h3 {
     font-family: var(--font-heading);
     font-weight: 300;
     font-size: 1.5rem;
@@ -3130,7 +3130,7 @@ blockquote::before {
         padding: 1.5rem;
     }
 
-    .foot h4 {
+    .foot h3 {
         letter-spacing: 0.1rem;
     }
 
