@@ -100,6 +100,8 @@
     --color-secondary: #F5F0E8;
     --color-accent: #C9A96E;
     --color-accent-text: #7A5C2E;
+
+    
     --color-text: #2C2C2C;
     --color-white: #FAFAF7;
     --color-muted: #606b65;
@@ -800,7 +802,7 @@ footer {
 .service-price {
     font-size: 1.3rem;
     font-weight: 300;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     margin: 0;
 
 }
@@ -1895,7 +1897,7 @@ blockquote::before {
 .category-info p.category-number {
     font-family: var(--font-heading);
     font-size: 4rem;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-align: left;
     font-weight: 300;
 }
@@ -2009,6 +2011,10 @@ blockquote::before {
 .add-ons {
     background-color: var(--color-primary);
     padding: 4rem 8rem 12rem 12rem;
+}
+
+.add-ons .section-label {
+    color: var(--color-accent);
 
 }
 
@@ -2116,7 +2122,7 @@ blockquote::before {
 }
 
 .expectation-number {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-size: 2.5rem;
     font-family: var(--font-heading);
     font-weight: 300;
@@ -2175,6 +2181,10 @@ blockquote::before {
 
 .choose-chair p {
     color: var(--color-muted);
+}
+
+.choose-chair.page-cta p {
+    color: var(--color-white);
 }
 
 

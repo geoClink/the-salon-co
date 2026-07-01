@@ -27,6 +27,7 @@ const app = express();
 app.use('/webhook', express.raw({ type: 'application/json' }), stripeRouter);
 
 app.use(helmet({ contentSecurityPolicy: false, frameguard: false }));
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(tenantMiddleware);
