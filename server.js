@@ -27,7 +27,7 @@ const app = express();
 app.use('/webhook', express.raw({ type: 'application/json' }), stripeRouter);
 
 app.use(helmet({
-    frameguard: { action: 'sameorigin' },
+    frameguard: false,
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
@@ -39,6 +39,7 @@ app.use(helmet({
             fontSrc: ["'self'"],
             objectSrc: ["'none'"],
             formAction: ["'self'", "https://checkout.stripe.com"],
+            frameAncestors: ["*"],
         },
     },
 }));
