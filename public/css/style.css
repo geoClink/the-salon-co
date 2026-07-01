@@ -556,7 +556,7 @@ footer {
 
 }
 
-.about-content cite h4 {
+.about-content cite h3 {
     color: var(--color-accent-text);
     font-size: 3.5rem;
     font-weight: 300;
@@ -566,7 +566,7 @@ footer {
 
 }
 
-.about-content h4 {
+.about-content h3 {
     font-family: var(--font-heading);
     color: var(--color-accent-text);
     transform: rotate(-3deg);
