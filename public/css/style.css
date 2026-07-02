@@ -2804,8 +2804,13 @@ blockquote::before {
     }
 }
 
+/*-- TABLET --*/
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
 /*-- MOBILE --*/
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
 
     /*--BODY--*/
     html {
@@ -4467,7 +4472,7 @@ input[type="radio"]:checked {
 }
 
 /* MOBILE FIXES */
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
 
     /* HOME PAGE */
     .as-featured {
