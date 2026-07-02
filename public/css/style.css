@@ -2937,8 +2937,6 @@ blockquote::before {
     /*--HERO--*/
     .hero {
         padding: 2.5rem 1.5rem 3.5rem;
-        min-height: 100svh;
-        justify-content: center;
     }
 
     .hero h1 {
